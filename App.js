@@ -6,7 +6,7 @@ class App extends React.Component {
   constructor() {
     super()
     this.state = {
-      socketServer: '192.168.1.152:5000',
+      socketServer: 'http://6186deb9.ngrok.io/:5000',
       receiveMessages: ''
     }
   }

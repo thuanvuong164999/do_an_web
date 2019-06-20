@@ -1,6 +1,7 @@
 import React from 'react'
 import './message-list.scss'
 import MessageItem from '../message-item/message-item';
+import ScrollToBottom from 'react-scroll-to-bottom';
 
 class MessageList extends React.Component {
     constructor(props) {
@@ -11,7 +12,7 @@ class MessageList extends React.Component {
         return (
             <React.Fragment>
                 <div className='message-list-container'>
-                    <div className='message-list'>
+                    <ScrollToBottom className='message-list'>
                         {
                             this.props.messages.map((value, index) => {
                                 return(
@@ -19,7 +20,7 @@ class MessageList extends React.Component {
                                 )
                             })
                         }
-                    </div>
+                    </ScrollToBottom>
                 </div>
             </React.Fragment>
         )

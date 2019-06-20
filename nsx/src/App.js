@@ -3,16 +3,15 @@ import './App.scss';
 import socketIOClient from 'socket.io-client'
 import MessageList from './components/message-list/message-list';
 
-const socket = socketIOClient('192.168.1.152:5000')
+const socket = socketIOClient('localhost:5000')
 
 class App extends React.Component {
   constructor() {
     super()
     this.state = {
-      socketServer: '192.168.1.152:5000',
       receiveMessages: '',
       buttonTitle: 'Join',
-      userName: 'Kson',
+      userName: 'K son',
       message: '',
       messages: [
       ]
@@ -40,6 +39,7 @@ class App extends React.Component {
         user: value.userName,
         avatar: value.avatar,
         message: value.message,
+        createAt: value.created_at,
         fr: value.userName == this.state.userName ? 'fr' : ''
       }
       let items = this.state.messages
