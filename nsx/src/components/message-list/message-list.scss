@@ -1,0 +1,12 @@
+.message-list-container {
+    height: 300px;
+    width: 100%;
+    position: relative;
+    background: #fff;
+    .message-list {
+        position: relative;
+        overflow-y: auto;
+        overflow-x: auto;
+        max-height: 300px;
+    }
+}
