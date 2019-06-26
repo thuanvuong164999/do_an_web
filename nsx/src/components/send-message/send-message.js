@@ -1,11 +1,13 @@
 import React from 'react'
 import socketIOClient from 'socket.io-client'
+import socket from '../../services/socket-service/socket-service'
 
-const socket = socketIOClient('http://40c4330c.ngrok.io')
-
-class SendMessage extends React.Component{
+class SendMessage extends React.Component {
     constructor(props){
         super(props)
+        // let SocketService = new SocketService()
+        // SocketService.join('ks')
+
         this.state = {
             receiveMessages: '',
             buttonTitle: 'Join',
@@ -15,33 +17,10 @@ class SendMessage extends React.Component{
             ]
           }
     }
+
     componentDidMount() {
-        this.onReceived()
         this.onJoined()
         this.onLeaved()
-        this.onTypingFromMember()
-      }
-    
-      onTypingFromMember() {
-        socket.on('member_typing', (user) => {
-          if(user.userName != this.state.userName) {
-            this.setMessage(`${user.userName} typing ....`)
-          }
-        })
-      }
-    
-      onReceived() {
-        socket.on('receive-message', (value) => {
-          let item = {
-            user: value.userName,
-            avatar: value.avatar,
-            message: value.message,
-            createAt: value.created_at,
-            fr: value.userName == this.state.userName ? 'fr' : ''
-          }
-          this.props.callback(item)
-          this.setMessage(`${value.userName}: ${value.message}`)
-        })
       }
     
       onJoined() {
@@ -110,7 +89,8 @@ class SendMessage extends React.Component{
           message: event.target.value
         })
         socket.emit('typing', {
-          userName: this.state.userName
+          userName: this.state.userName,
+          text: event.target.value
         })
       }
       
