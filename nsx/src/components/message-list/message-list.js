@@ -16,13 +16,14 @@ class MessageList extends React.Component {
             messages: [
             ],
             typing: false,
-            users: []
+            users_typing: []
           }
     }
     
     componentDidMount() {
         this.onReceived()
         this.onTypingFromMember()
+        this.onStopTyping()
       }  //tao method
       
 
@@ -35,21 +36,47 @@ class MessageList extends React.Component {
             createAt: value.created_at,
             fr: value.userName == this.state.userName ? 'fr' : ''
           }
+          let items = this.state.messages
+          items.push(item)
+          this.setState({
+            messages: items
+          })
         //   this.props.callback(item)
         // //   this.setMessage(`${value.userName}: ${value.message}`)
+        })
+      }
+
+      onStopTyping() {
+        socket.on('member_stop_typing', (user) => {
+          let listUsers = this.state.users_typing
+          let index = listUsers.indexOf(user.userName)
+          if (index != -1) {
+            listUsers.splice(index, 1)
+          }
+
+          let status = true
+          if (listUsers.length == 0) {
+            status = false
+          }
+          this.setState({
+            typing: status,
+            users_typing: listUsers
+          })
         })
       }
 
       onTypingFromMember() {
         socket.on('member_typing', (user) => {
           if(user.userName != this.state.userName) {
-              let listusers = this.state.users
-              if(!listusers.includes(user.userName))
+              let listUsers = this.state.users_typing
+              if(!listUsers.includes(user.userName)) {
+                listUsers.push(user.userName)
+              }
             this.setState({
                 typing: true,
-                users: listusers
+                users_typing: listUsers
             })
-            this.setMessage(`${user.userName} typing ....`)
+            // this.setMessage(`${user.userName} typing ....`)
           }
         })
       }

@@ -35,9 +35,17 @@ io.on('connection', (socket) => {
 
     socket.on('typing', (value) => {
         console.log(`${value.userName} typing.....`)
-        io.in(room).emit('member_typing', {
-            userName: value.userName
-        })
+        console.log(value)
+        console.log(value.text == '')
+        if(value.text == '') {
+            io.in(room).emit('member_stop_typing', {
+                userName: value.userName
+            })    
+        } else {
+            io.in(room).emit('member_typing', {
+                userName: value.userName
+            })    
+        }
     })
 
     socket.on('disconnect', () => {

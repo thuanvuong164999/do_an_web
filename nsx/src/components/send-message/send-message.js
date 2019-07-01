@@ -1,5 +1,4 @@
 import React from 'react'
-import socketIOClient from 'socket.io-client'
 import socket from '../../services/socket-service/socket-service'
 
 class SendMessage extends React.Component {
@@ -88,7 +87,8 @@ class SendMessage extends React.Component {
         this.setState({
           message: event.target.value
         })
-        socket.emit('typing', {
+
+      socket.emit('typing', {
           userName: this.state.userName,
           text: event.target.value
         })
