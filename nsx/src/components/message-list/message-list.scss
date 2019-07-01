@@ -10,3 +10,16 @@
         max-height: 300px;
     }
 }
+
+.typing{
+    text-align: left;
+    visibility: hidden;
+    // display: none;
+    &.show{
+        visibility: visible;
+        // display: block;
+    }
+    // &div{
+    //     background: blanchedalmond;
+    // }
+}

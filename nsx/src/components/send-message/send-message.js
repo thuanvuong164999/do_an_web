@@ -10,7 +10,7 @@ class SendMessage extends React.Component {
         this.state = {
             receiveMessages: '',
             buttonTitle: 'Join',
-            userName: 'K son',
+            userName: 'Thuan Vuong',
             message: '',
             messages: [
             ]
