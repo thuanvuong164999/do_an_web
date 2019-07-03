@@ -11,7 +11,7 @@ const pg = require('pg')
 const env = require('dotenv').config()
 
 const config={
-    user: postgres.env.DB_USER,
+    user: process.env.DB_USER,
     database: process.env.DB_NAME,
     password: process.env.DB_PASS,
     port: process.env.DB_PORT
@@ -38,9 +38,9 @@ io.on('connection', (socket) => {
     
     socket.on('join', (value) => {
         socket.join(room)
-        io.in(room).emit('joined', value)
+        // io.in(room).emit('joined', value)
         console.log(`${value.userName} joined`)
-        // getOldDataFromDB()
+        getOldDataFromDB()
     })
     
     socket.on('leave', (value) => {
@@ -98,18 +98,22 @@ function convert2HTML(message) {
 
 function save2DB(value, room) {
     pool.connect(function(err, client, done) {
-        let sql = `insert into room(messenger, created_at, message) value(${value.userName}', '${value.create_at}', '${value.message});`
+        let sql = `insert into chat(messenger, created_at, message) value(${value.userName}', '${value.create_at}', '${value.message});`
         client.query(sql, function(err, result){
             done()
         })
     })
 }
 
-// function getOldDataFromDB(value, room){
-//     pool.connect(function(err, client,done) {
-//         let sql = `select * from room;`
-//         client.query(sql, function(err, result) {
-//             done()
-//         })
-//     })
-// }
+function getOldDataFromDB(socket){
+    pool.connect(function(err, client,done) {
+        client.query(`select * from chat`, function(err, result){
+            done()
+            if(!err){
+                io.in(room).emit('histories', result.rows)
+                io.in(room).emit('joined', value)
+
+            }
+        })
+    })
+}

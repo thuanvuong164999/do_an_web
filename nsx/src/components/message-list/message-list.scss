@@ -1,12 +1,11 @@
 .message-list-container {
     height: 300px;
     width: 100%;
+    overflow-y: auto;
     position: relative;
     background: blanchedalmond;
     .message-list {
         position: relative;
-        overflow-y: auto;
-        overflow-x: auto;
         max-height: 300px;
     }
 }

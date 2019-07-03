@@ -1,7 +1,6 @@
 import React from 'react'
 import './message-item.scss'
 import Avatar from 'react-avatar';
-import ScrollToBottom from 'react-scroll-to-bottom';
 
 class MessageItem extends React.Component {
     constructor(props) {
@@ -11,7 +10,6 @@ class MessageItem extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <ScrollToBottom>
                 <div className='message-item'>
                     <div className={'message-item-avatar ' + this.props.value.fr }>
                         <Avatar name={this.props.value.user} size="50px" round="50px" maxinitial={2} />
@@ -25,7 +23,6 @@ class MessageItem extends React.Component {
                         </div>
                     </div>
                 </div>
-                </ScrollToBottom>
             </React.Fragment>
         )
     }

@@ -24,8 +24,32 @@ class MessageList extends React.Component {
     this.onReceived()
     this.onTypingFromMember()
     this.onStopTyping()
+    this.receiveHistories()
   }  //tao method
 
+
+  receiveHistories() {
+    socket.on('histories', (values) => {
+      console.log(values)
+      let items = this.state.messages
+      values.map((value, index) => {
+        let user = value.sent_by.trim()
+        // sent_by lay tu database
+        let item = {
+          user: user,
+          avatar: value.sent_by,
+          message: value.message,
+          createAt: value.created_at,
+          fr: user === this.state.userName ? 'fr' : ''
+        }
+        items.push(item)
+      })
+      this.setState({
+        messages: items
+      })
+      socket.off('histories') // chuc nang dung khi chay 1 lan
+    })
+  }
 
   onReceived() {
     socket.on('receive-message', (value) => {
@@ -34,7 +58,7 @@ class MessageList extends React.Component {
         avatar: value.avatar,
         message: value.message,
         createAt: value.created_at,
-        fr: value.userName == this.state.userName ? 'fr' : ''
+        fr: value.userName === this.state.userName ? 'fr' : ''
       }
       let items = this.state.messages
       items.push(item)
@@ -50,12 +74,12 @@ class MessageList extends React.Component {
     socket.on('member_stop_typing', (user) => {
       let listUsers = this.state.users_typing
       let index = listUsers.indexOf(user.userName)
-      if (index != -1) {
+      if (index !== -1) {
         listUsers.splice(index, 1)
       }
 
       let status = true
-      if (listUsers.length == 0) {
+      if (listUsers.length === 0) {
         status = false
       }
       this.setState({
@@ -67,7 +91,7 @@ class MessageList extends React.Component {
 
   onTypingFromMember() {
     socket.on('member_typing', (user) => {
-      if (user.userName != this.state.userName) {
+      if (user.userName !== this.state.userName) {
         let listUsers = this.state.users_typing
         if (!listUsers.includes(user.userName)) {
           listUsers.push(user.userName)

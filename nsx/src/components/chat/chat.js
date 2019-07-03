@@ -4,9 +4,6 @@ import MessageList from '../message-list/message-list'
 import SendMessage from '../send-message/send-message';
 
 class Chat extends React.Component {
-    constructor() {
-        super()
-      }
 
     render() {
         return (

@@ -1,0 +1,15 @@
+tạo table chat chứa histories có:
+sent_by char(50), created_at char(100), message, room_id char(250) ;
+
+tạo table rooms chứa danh sách các room
+id, room_name char(50), counter integer ;
+
+counter lưu giá trị 0 (mặc định)
+
+select chat.sent_by, chat.created_at, chat.message, rooms.sent_to from chat, rooms where chat.room_id = rooms.id ;
+
+select * from chat limit <room_id> ;
+
+công việc về nhà:
++) tạo frond_end:
+chia chat_bg thanhf 2 cột, 1 cột room_list, 1 cột room_chat
