@@ -8,11 +8,23 @@ import socket from '../../services/socket-service/socket-service'
 class MessageList extends React.Component {
   constructor(props) {
     super(props)
+
+    var today = new Date(),
+      ddate = today.getFullYear() + '/' + (today.getMonth() + 1) + '/' + today.getDate(),
+      ttime = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
+
     this.state = {
+      DaT: '',  //Date and Time
       receiveMessages: '',
       buttonTitle: 'Join',
       userName: 'thuan vuong',
       message: '',
+      emoji: '',
+      avatar: '', //Avatar by shorten userName
+      changeInput: '',
+      open: false,  //noti EmojiMenu was opened ?? 
+      date: ddate,
+      time: ttime,
       messages: [
       ],
       typing: false,
@@ -27,6 +39,29 @@ class MessageList extends React.Component {
     this.receiveHistories()
   }  //tao method
 
+  onReceived() {
+    socket.on('receive-message', (value) => {
+      let item = {
+        user: value.userName,
+        ava: value.avatar,
+        message: value.message,
+        // createAt: value.created_at,
+        DaT: value.DaT, //using MomentJS to get Date and Time
+        ci: this.state.changeInput,
+        emoji: this.state.emoji,
+        time: this.state.time, //get manually
+        date: this.state.date,  //get manually by function
+        fr: value.userName === this.state.userName ? 'fr' : ''
+      }
+      let items = this.state.messages
+      items.push(item)
+      this.setState({
+        messages: items
+      })
+      //   this.props.callback(item)
+      // //   this.setMessage(`${value.userName}: ${value.message}`)
+    })
+  }
 
   receiveHistories() {
     socket.on('histories', (values) => {
@@ -48,25 +83,6 @@ class MessageList extends React.Component {
         messages: items
       })
       socket.off('histories') // chuc nang dung khi chay 1 lan
-    })
-  }
-
-  onReceived() {
-    socket.on('receive-message', (value) => {
-      let item = {
-        user: value.userName,
-        avatar: value.avatar,
-        message: value.message,
-        createAt: value.created_at,
-        fr: value.userName === this.state.userName ? 'fr' : ''
-      }
-      let items = this.state.messages
-      items.push(item)
-      this.setState({
-        messages: items
-      })
-      //   this.props.callback(item)
-      // //   this.setMessage(`${value.userName}: ${value.message}`)
     })
   }
 

@@ -1,0 +1,29 @@
+.room-bg{
+    height: 100%;
+    width: 25%;
+    background-color:whitesmoke;
+    float: left;
+    border-radius: 10px;
+    ul{
+        list-style: none;
+        li{
+            height: 40px;
+            width: 90%;
+            text-align: left;
+            color: blueviolet;
+            line-height: 40px;
+            padding-left: 5px;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 1.2em;
+            font-weight: bold;
+            border:none;
+            border-bottom: 0.5px solid sienna;
+        }
+        li:hover{
+            background-color: rgb(170, 170, 253);
+        }
+        li:active{
+            background-color: burlywood;
+        }
+    }
+}
