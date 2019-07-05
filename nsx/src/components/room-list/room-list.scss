@@ -9,11 +9,11 @@
     ul{
         list-style: none;
         .test-li{
-            height: 80px;
+            height: 40px;
             padding-left: 0px;
+            width: 50%;
             .li-title{
                 height: 40px;
-                width: 100%;
                 text-align: left;
                 color: blueviolet;
                 line-height: 40px;
@@ -49,3 +49,6 @@
     }
 }
 
+.test-li-bg:hover > .test-li {
+    width: 100%;
+}

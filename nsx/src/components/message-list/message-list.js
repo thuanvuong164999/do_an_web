@@ -64,10 +64,12 @@ class MessageList extends React.Component {
   }
 
   receiveHistories() {
-    socket.on('histories', (values) => {
+    socket.on(`histories-${this.state.userName}`, (values) => { // server gửi về socket tín hiệu histories
+
       // console.log(values)
-      let items = this.state.messages
-      values.map((value, index) => {
+      let items = [] //ban đầu là trống
+
+      values.rows.map((value, index) => {
         let user = value.sent_by.trim()
         // sent_by lay tu database
         let item = {
@@ -82,7 +84,11 @@ class MessageList extends React.Component {
       this.setState({
         messages: items
       })
-      socket.off('histories') // chuc nang dung khi chay 1 lan
+
+      if(values.userName !== this.state.userName) { //nếu không phải mình thì sẽ không lập lại
+        return
+      }
+      // socket.off('histories') // chuc nang dung khi chay 1 lan, sử dụng không được khi nhiều room
     })
   }
 

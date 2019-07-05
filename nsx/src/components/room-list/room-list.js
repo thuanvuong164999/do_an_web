@@ -56,12 +56,14 @@ class RoomList extends React.Component {
             <React.Fragment>
                 <div className='room-bg'>
                     <ul>
-                        <li className='test-li'>
-                            <div className='li-title'>D002</div>
-                            <div className='join-room-btn'>
-
-                            </div>
-                        </li>
+                        <div className='test-li-bg'>    
+                            <li className='test-li'>
+                                <div className='li-title'>D002</div>
+                                <div className='join-room-btn'>
+                                    <button type='submit'>Join room</button>
+                                </div>
+                            </li>
+                        </div>
                         {/* gọi data trong api ra html */}
                         {
                             this.state.rooms.map((value,index) => { //nhiều data (map) trong rooms được truyền vào value 

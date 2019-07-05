@@ -6,7 +6,7 @@ const socketIO = require('socket.io')
 const server = http.createServer(app)
 const io = socketIO(server)
 const moment = require('moment')
-const room = 'main'
+// const room = 'main'
 const cors = 'cors'
 
 const pg = require('pg')
@@ -42,10 +42,12 @@ io.on('connection', (socket) => {
     
     socket.on('join', (value) => {
         console.log(value)
-        // socket.join(room)
-        // io.in(room).emit('joined', value)
-        console.log(`${value.userName} joined ${value.room}`)
-        // getOldDataFromDB()
+
+        let roomName = generrateRoom(value.room) //cho cả generrateRoom(value.room) vào room để khỏi viết nhìu
+        socket.join(roomName)
+        io.in(roomname).emit('joined', value)
+        console.log(`${value.userName} joined ${value.room}`) 
+        getOldDataFromDB(roomName, value.room) //truyền data của value.room sang roomName
     })
     
     socket.on('leave', (value) => {
@@ -144,14 +146,21 @@ function save2DB(value, room) {
     })
 }
 
-function getOldDataFromDB(socket){
+function getOldDataFromDB(roomName, room_id, userName){
     pool.connect(function(err, client,done) {
-        client.query(`select * from chat`, function(err, result){
+        client.query(`select * from chat where room_id = ${room_id}`, function(err, result){
             done()
             if(!err){
-                io.in(room).emit('histories', result.rows)
-                io.in(room).emit('joined', value)
+                io.in(room).emit(`histories-${this.state.userName}`, {
+                    room: room_id,
+                    userName: userName,
+                    rows: result.rows
+                })
             }
         })
     })
+}
+
+function generrateRoom(){
+    return `room ${id}`
 }
