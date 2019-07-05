@@ -1,9 +1,9 @@
 import React from 'react'
 import socket from '../../services/socket-service/socket-service'
 
-import ReactTextareaAutocomplete from '@webscopeio/react-textarea-autocomplete';
+// import ReactTextareaAutocomplete from '@webscopeio/react-textarea-autocomplete';
 // npm i @webscopeio/react-textarea-autocomplete --save
-import { Picker, emojiIndex } from 'emoji-mart';
+// import { Picker, emojiIndex } from 'emoji-mart';
 // npm i emoji-mart --save
 
 class SendMessage extends React.Component {
@@ -169,64 +169,66 @@ class SendMessage extends React.Component {
     })
   }
 
-  // render() {
-  //   return (
-  //     <React.Fragment>
-  //       <div className='send-message-field'>
-  //         <input value={this.state.message} onKeyPress={this.onKeyPress} onChange={this.onChange}></input>
-  //       </div>
-  //       <div className='send-message-action'>
-  //         <button onClick={e => this.onClick(e)}>{this.state.buttonTitle}</button>
-  //       </div>
-  //     </React.Fragment>
-  //   )
-  // }
-
   render() {
     return (
       <React.Fragment>
         <div className='send-message-field'>
           <div className='input-area'>
-
-            <ReactTextareaAutocomplete
-              className='input'
-              row="1"
-              data-emojiable="true"
-              value={this.state.message}
-              onKeyPress={this.onKeyPress}
-              onChange={this.onChange}
-              loadingComponent={() => <span>Loading</span>}
-              placeholder='Type your message here ...'
-              trigger={{
-                ':': {
-                  dataProvider: token =>
-                    emojiIndex.search(token).map(o => ({
-                      colons: o.colons,
-                      native: o.native,
-                    })),
-                  component: ({ entity: { native, colons } }) => (
-                    <div>{`${colons} ${native}`}</div>
-                  ),
-                  output: item => `${item.native}`,
-                },
-              }}
-            />
-            <div className='emoji-btn-menu' id='emoji-menu-btn'>
-              <button type='button' className='emoji-menu' onClick={e => this.onOffEmoij(e)} id='emoji-menu-btn'>
-                <i className="far fa-smile fa-2x" id='emoji-menu-btn'></i>
-              </button>
-            </div>
-
+          <input className='input' value={this.state.message} onKeyPress={this.onKeyPress} onChange={this.onChange}></input>
           </div>
         </div>
         <div className='send-message-action'>
           <button className='join-leave-btn' onClick={e => this.onClick(e)}>{this.state.buttonTitle}</button>
         </div>
-        {this.state.open ? (<Picker set="emojione" onSelect={this.addEmoji} />) : null}
-
       </React.Fragment>
     )
   }
+
+//   render() {
+//     return (
+//       <React.Fragment>
+//         <div className='send-message-field'>
+//           <div className='input-area'>
+
+//             <ReactTextareaAutocomplete
+//               className='input'
+//               // row="1"
+//               data-emojiable="true"
+//               value={this.state.message}
+//               onKeyPress={this.onKeyPress}
+//               onChange={this.onChange}
+//               loadingComponent={() => <span>Loading</span>}
+//               placeholder='Type your message here ...'
+//               trigger={{
+//                 ':': {
+//                   dataProvider: token =>
+//                     emojiIndex.search(token).map(o => ({
+//                       colons: o.colons,
+//                       native: o.native,
+//                     })),
+//                   component: ({ entity: { native, colons } }) => (
+//                     <div>{`${colons} ${native}`}</div>
+//                   ),
+//                   output: item => `${item.native}`,
+//                 },
+//               }}
+//             />
+//             <div className='emoji-btn-menu' id='emoji-menu-btn'>
+//               <button type='button' className='emoji-menu' onClick={e => this.onOffEmoij(e)} id='emoji-menu-btn'>
+//                 <i className="far fa-smile fa-2x" id='emoji-menu-btn'></i>
+//               </button>
+//             </div>
+
+//           </div>
+//         </div>
+//         <div className='send-message-action'>
+//           <button className='join-leave-btn' onClick={e => this.onClick(e)}>{this.state.buttonTitle}</button>
+//         </div>
+//         {this.state.open ? (<Picker set="emojione" onSelect={this.addEmoji} />) : null}
+
+//       </React.Fragment>
+//     )
+//   }
 }
 
 export default SendMessage

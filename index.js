@@ -36,14 +36,14 @@ io.on('connection', (socket) => {
         value.avatar = createAvatar(ava)
         //gửi tín hiệu cho receive-message
         io.in(room).emit('receive-message', value)
-        save2DB(value,room)
+        // save2DB(value,room)
     })
     
     socket.on('join', (value) => {
         socket.join(room)
         io.in(room).emit('joined', value)
         console.log(`${value.userName} joined`)
-        getOldDataFromDB()
+        // getOldDataFromDB()
     })
     
     socket.on('leave', (value) => {
@@ -117,24 +117,24 @@ function createAvatar(userStr) {
 //         .replace(/\:\+1/g, '<i class="em em-ok_hand"></i>')
 // }
 
-function save2DB(value, room) {
-    pool.connect(function(err, client, done) {
-        let sql = `insert into chat(sent_by, created_at, message) value(${value.userName}', '${value.create_at}', '${value.message});`
-        client.query(sql, function(err, result){
-            done()
-        })
-    })
-}
+// function save2DB(value, room) {
+//     pool.connect(function(err, client, done) {
+//         let sql = `insert into chat(sent_by, created_at, message) value(${value.userName}', '${value.create_at}', '${value.message});`
+//         client.query(sql, function(err, result){
+//             done()
+//         })
+//     })
+// }
 
-function getOldDataFromDB(socket){
-    pool.connect(function(err, client,done) {
-        client.query(`select * from chat`, function(err, result){
-            done()
-            if(!err){
-                io.in(room).emit('histories', result.rows)
-                io.in(room).emit('joined', value)
+// function getOldDataFromDB(socket){
+//     pool.connect(function(err, client,done) {
+//         client.query(`select * from chat`, function(err, result){
+//             done()
+//             if(!err){
+//                 io.in(room).emit('histories', result.rows)
+//                 io.in(room).emit('joined', value)
 
-            }
-        })
-    })
-}
+//             }
+//         })
+//     })
+// }

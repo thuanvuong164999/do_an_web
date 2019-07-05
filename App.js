@@ -6,7 +6,7 @@ class App extends React.Component {
   constructor() {
     super()
     this.state = {
-      socketServer: 'localhost:5000',
+      socketServer:'localhost:5000',
       receiveMessages: ''
     }
   }

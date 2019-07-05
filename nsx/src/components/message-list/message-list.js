@@ -65,7 +65,7 @@ class MessageList extends React.Component {
 
   receiveHistories() {
     socket.on('histories', (values) => {
-      console.log(values)
+      // console.log(values)
       let items = this.state.messages
       values.map((value, index) => {
         let user = value.sent_by.trim()
