@@ -24,20 +24,22 @@ const pool = new pg.Pool(config)
 
 
 io.on('connection', (socket) => {
-    console.log('Connectd')
+    console.log('Connected')
     socket.on('send-message', (value) => {
         console.log(value)
+        let roomName = generrateRoom(value.room)
+
         let msg = value.message
         // value.message = msg.replace(/\:\)/g, '<li class="fas fa-smile"></li>')
-        value.message = convert2Icon(value.message)
+        value.message = convert2Icon(msg)
         value.DaT = moment().format('MMMM Do YYYY, h:mm:ss a') //dataTime
         // value.message = convert2HTML(value.message)
         //create avatar
         let ava = value.userName
         value.avatar = createAvatar(ava)
         //gửi tín hiệu cho receive-message
-        io.in(room).emit('receive-message', value)
-        save2DB(value,room)
+        io.in(roomName).emit('receive-message', value)
+        save2DB(value,value.room)
     })
     
     socket.on('join', (value) => {
@@ -137,9 +139,9 @@ function convert2HTML(message) {
         .replace(/\:\+1/g, '<i class="em em-ok_hand"></i>')
 }
 
-function save2DB(value, room) {
+function save2DB(value, room_id) {
     pool.connect(function(err, client, done) {
-        let sql = `insert into chat (sent_by, created_at, message) values(${value.userName}', '${value.create_at}', '${value.message});`
+        let sql = `insert into chat (sent_by, created_at, message) values(${value.userName}', '${value.create_at}', '${value.message}', '${room_id});`
         client.query(sql, function(err, result){
             done()
         })
@@ -151,7 +153,7 @@ function getOldDataFromDB(roomName, room_id, userName){
         client.query(`select * from chat where room_id = ${room_id}`, function(err, result){
             done()
             if(!err){
-                io.in(room).emit(`histories-${this.state.userName}`, {
+                io.in(room).emit(`histories-${userName}`, {
                     room: room_id,
                     userName: userName,
                     rows: result.rows
