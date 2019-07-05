@@ -1,5 +1,5 @@
 import socketIOClient from 'socket.io-client'
 
-const socket = socketIOClient('localhost:5000')
-
-export default socket
+export const serverEndPoint = 'http://008f9448.ngrok.io'
+export const socket = socketIOClient(serverEndPoint)
+export const userName = 'Thuan Vuong'

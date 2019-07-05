@@ -5,13 +5,12 @@
   background-color: #edeff2;
   height: 100vh;
   position: relative;
-  // padding: 10px;
+  padding: 10px;
   // bottom: 0;
   .Chat-Container {
     width: 75%;
     // margin: auto;
     float: right;
-
     .chat-box {
       width: 100%;
       background-color: #f8f8f8;
@@ -32,7 +31,7 @@
         max-height: 90px;
         min-height: 90px;
         background-color: white;
-        border-radius: 0px 0px 10px 10px;
+        border-radius: 0px 0px 10px 0px;
         .send-message-field {
           width: 80%;
           padding: 20px;

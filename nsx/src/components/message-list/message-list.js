@@ -3,7 +3,7 @@ import './message-list.scss'
 import MessageItem from '../message-item/message-item';
 import ScrollToBottom from 'react-scroll-to-bottom';
 
-import socket from '../../services/socket-service/socket-service'
+import {socket, userName} from '../../services/socket-service/socket-service'
 
 class MessageList extends React.Component {
   constructor(props) {
@@ -17,7 +17,7 @@ class MessageList extends React.Component {
       DaT: '',  //Date and Time
       receiveMessages: '',
       buttonTitle: 'Join',
-      userName: 'thuan vuong',
+      userName: userName,
       message: '',
       emoji: '',
       avatar: '', //Avatar by shorten userName

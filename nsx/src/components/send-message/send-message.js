@@ -1,5 +1,5 @@
 import React from 'react'
-import socket from '../../services/socket-service/socket-service'
+import {socket, userName} from '../../services/socket-service/socket-service'
 
 // import ReactTextareaAutocomplete from '@webscopeio/react-textarea-autocomplete';
 // npm i @webscopeio/react-textarea-autocomplete --save
@@ -20,7 +20,7 @@ class SendMessage extends React.Component {
       DaT: '',
       receiveMessages: '',
       buttonTitle: 'Join',
-      userName: 'Thuan Vuong',
+      userName: userName,
       message: '',
       emoji: '',
       avatar: '', //Avatar by shorten userName
@@ -43,38 +43,38 @@ class SendMessage extends React.Component {
     //this.setZindexMenuOFF()
   }
 
-  onOffEmoij = event => {
-    if (this.state.open) {
-      this.setState({
-        open: false
-      })
-      //this.closeEmojiMenu(event)
-      //this.setZindexMenuOFF(event)
-    } else {
-      this.setState({
-        open: true
-      })
-      //this.openEmojiMenu(event)
-      //this.setZindexMenuON(event)
-    }
-    event.preventDefault() //Tranh bi lap lai 
-  }
+  // onOffEmoij = event => {
+  //   if (this.state.open) {
+  //     this.setState({
+  //       open: false
+  //     })
+  //     //this.closeEmojiMenu(event)
+  //     //this.setZindexMenuOFF(event)
+  //   } else {
+  //     this.setState({
+  //       open: true
+  //     })
+  //     //this.openEmojiMenu(event)
+  //     //this.setZindexMenuON(event)
+  //   }
+  //   event.preventDefault() //Tranh bi lap lai 
+  // }
 
-  setZindexMenuON = event => {
-    document.getElementById("overlay-menu").style.zIndex = "1022"
-    document.getElementById("emoji-menu-btn").style.zIndex = "1025"
-  }
-  setZindexMenuOFF = event => {
-    document.getElementById("overlay-menu").style.zIndex = "-1"
-    document.getElementById("emoji-menu-btn").style.zIndex = "0"
-  }
-  openEmojiMenu = event => {
-    document.getElementById("emoji-mart").style.display = "block"
-  }
+  // setZindexMenuON = event => {
+  //   document.getElementById("overlay-menu").style.zIndex = "1022"
+  //   document.getElementById("emoji-menu-btn").style.zIndex = "1025"
+  // }
+  // setZindexMenuOFF = event => {
+  //   document.getElementById("overlay-menu").style.zIndex = "-1"
+  //   document.getElementById("emoji-menu-btn").style.zIndex = "0"
+  // }
+  // openEmojiMenu = event => {
+  //   document.getElementById("emoji-mart").style.display = "block"
+  // }
 
-  closeEmojiMenu = event => {
-    document.getElementById("emoji-mart").style.display = "none"
-  }
+  // closeEmojiMenu = event => {
+  //   document.getElementById("emoji-mart").style.display = "none"
+  // }
 
   onJoined() {
     socket.on('joined', (user) => {

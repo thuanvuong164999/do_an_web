@@ -7,6 +7,7 @@ const server = http.createServer(app)
 const io = socketIO(server)
 const moment = require('moment')
 const room = 'main'
+const cors = 'cors'
 
 const pg = require('pg')
 const env = require('dotenv').config()
@@ -36,13 +37,14 @@ io.on('connection', (socket) => {
         value.avatar = createAvatar(ava)
         //gửi tín hiệu cho receive-message
         io.in(room).emit('receive-message', value)
-        // save2DB(value,room)
+        save2DB(value,room)
     })
     
     socket.on('join', (value) => {
-        socket.join(room)
-        io.in(room).emit('joined', value)
-        console.log(`${value.userName} joined`)
+        console.log(value)
+        // socket.join(room)
+        // io.in(room).emit('joined', value)
+        console.log(`${value.userName} joined ${value.room}`)
         // getOldDataFromDB()
     })
     
@@ -78,6 +80,22 @@ server.listen(port, () => {
     console.log(`Server started with port ${port}`)
 })
 
+
+// khai báo database trên API
+app.get('/api/room-list', cors(), (req, res) =>{
+    pool.connect(function(err, client,done) {
+        client.query(`select * from chat`, function(err, result){
+            done()
+            if(!err){
+                res.send({
+                    status: 200,
+                    data: result.rows
+                })
+            }
+        })
+    })
+})
+
 function convert2Icon(message) {
     return message
         // .replace(/\:\)/gI, '<i class="fas fa-smile"></i>')
@@ -109,32 +127,31 @@ function createAvatar(userStr) {
     return userStr.substr(0, 2)
 }
 
-// function convert2HTML(message) {
-//     return message
-//         .replace(/\:\)/g, '<i class="em em-slightly_smiling_face"></i>')
-//         .replace(/\:\(/g, '<i class="em em-disappointed"></i>')
-//         .replace(/\:d/g, '<i class="em em-smiley"></i>')
-//         .replace(/\:\+1/g, '<i class="em em-ok_hand"></i>')
-// }
+function convert2HTML(message) {
+    return message
+        .replace(/\:\)/g, '<i class="em em-slightly_smiling_face"></i>')
+        .replace(/\:\(/g, '<i class="em em-disappointed"></i>')
+        .replace(/\:d/g, '<i class="em em-smiley"></i>')
+        .replace(/\:\+1/g, '<i class="em em-ok_hand"></i>')
+}
 
-// function save2DB(value, room) {
-//     pool.connect(function(err, client, done) {
-//         let sql = `insert into chat(sent_by, created_at, message) value(${value.userName}', '${value.create_at}', '${value.message});`
-//         client.query(sql, function(err, result){
-//             done()
-//         })
-//     })
-// }
+function save2DB(value, room) {
+    pool.connect(function(err, client, done) {
+        let sql = `insert into chat (sent_by, created_at, message) values(${value.userName}', '${value.create_at}', '${value.message});`
+        client.query(sql, function(err, result){
+            done()
+        })
+    })
+}
 
-// function getOldDataFromDB(socket){
-//     pool.connect(function(err, client,done) {
-//         client.query(`select * from chat`, function(err, result){
-//             done()
-//             if(!err){
-//                 io.in(room).emit('histories', result.rows)
-//                 io.in(room).emit('joined', value)
-
-//             }
-//         })
-//     })
-// }
+function getOldDataFromDB(socket){
+    pool.connect(function(err, client,done) {
+        client.query(`select * from chat`, function(err, result){
+            done()
+            if(!err){
+                io.in(room).emit('histories', result.rows)
+                io.in(room).emit('joined', value)
+            }
+        })
+    })
+}
