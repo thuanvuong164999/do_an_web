@@ -5,7 +5,7 @@ const http = require('http') // module http có sẳn trong react
 const socketIO = require('socket.io')
 // module socket: sử dụng trong phần mềm cần gửi message giữa 2 bên, di chung với express
 const server = http.createServer(app) // tạo server http vào gán vào mục server
-const io = socketIO(server)
+const io = socketIO(server) //biến <io(có thể đổi)> thực hiện 2 tín hiệu on off
 const moment = require('moment')
 // const room = 'main'
 const cors = require('cors') //module khắc lỗi
@@ -25,9 +25,10 @@ const pool = new pg.Pool(config)
 
 app.use(cors())
 
-io.on('connection', (socket) => {
+io.on('connection', (socket) => { //code mặt định
+    //nhận(on) tín hiệu, khi client kết nối với server--socket thì tạo ra socket (tên có thể đổi) (trung gian, như io, thực hiện 2 tín hiệu on/off/emit)
     console.log('Connected') 
-    socket.on('send-message', (value) => { //máy chủ gửi cho socket tín hiệu send-message và value
+    socket.on('send-message', (value) => { //client -(tín hiệu)-> socket--server -(thực hiện lệnh)-> client
         console.log(value)
         let roomName = generrateRoom(value.room) //truyền nội dung của generrateRoom(value.room) vào roomName
 
@@ -46,7 +47,7 @@ io.on('connection', (socket) => {
         save2DB(value, value.room) //thực hiện hàm save2DB
     })
     
-    socket.on('join', (value) => { //máy chủ gửi cho socket tín hiệu join và value
+    socket.on('join', (value) => { //client -(tín hiệu)-> socket--server -(thực hiện lệnh)-> client
         console.log(value)
 
         let roomName = generrateRoom(value.room) 
@@ -56,33 +57,33 @@ io.on('connection', (socket) => {
         getOldDataFromDB(roomName, value.room) //thực hiện hàm getOldDataFromDB()
     })
     
-    socket.on('leave', (value) => { //máy chủ gửi cho socket tín hiệu leave và value
-        io.in(room).emit('leaved', value)
-        socket.leave(room) //socket thực hiện hàm leave()
+    socket.on('leave', (value) => { //client -(tín hiệu)-> socket--server -(thực hiện lệnh)-> client
+        io.in(roomName).emit('leaved', value)
+        socket.leave(roomName) //socket thực hiện hàm leave()
         console.log(`${value.userName} leaved`)
     })
 
-    socket.on('typing', (value) => { //máy chủ gửi cho socket tín hiệu typing và value
+    socket.on('typing', (value) => { //client -(tín hiệu)-> socket--server -(thực hiện lệnh)-> client
         console.log(`${value.userName} typing.....`)
         console.log(value)
         console.log(value.text == '')
         if(value.text == '') { //nếu giá trị text trong value = rỗng
-            io.in(room).emit('member_stop_typing', { 
+            io.in(roomName).emit('member_stop_typing', { 
                 userName: value.userName
             })    
         } else {
-            io.in(room).emit('member_typing', {
+            io.in(roomName).emit('member_typing', {
                 userName: value.userName
             })    
         }
     })
 
-    socket.on('disconnect', () => { //máy chủ gửi cho socket tín hiệu disconect
+    socket.on('disconnect', () => { //client -(tín hiệu)-> socket--server -(thực hiện lệnh)-> client
         console.log('Client disconnected.')
     })
 })
-app.get('/', (req, res) => { 
-    res.send('Hello World')
+app.get('/', (req, res) => { //tạo API localhost:5000/
+    res.send('Hello World') //chạy API, nếu hiện Hello World thì server hd
 })
 server.listen(port, () => {
     console.log(`Server started with port ${port}`)
@@ -90,7 +91,7 @@ server.listen(port, () => {
 
 
 // khai báo database trên API
-app.get('/api/room-list', cors(), (req, res) =>{ 
+app.get('/api/room-list',cors() ,(req, res) =>{ 
     pool.connect(function(err, client,done) {
         client.query(`select * from rooms`, function(err, result){
             done()
@@ -106,11 +107,6 @@ app.get('/api/room-list', cors(), (req, res) =>{
 
 function convert2Icon(message) {
     return message
-        // .replace(/\:\)/gI, '<i class="fas fa-smile"></i>')
-        // .replace(/\:\)/gI, '<i class="fas fa-frown"></i>')
-        // .replace(/\;\)/gI, '<i class="fas fa-sad-tear"></i>')
-        // .replace(/\;\)/gI, '<i class="fas fa-sad-cry"></i>')
-        // .replace(/\:\o/gI, '<i class="fas fa-surprise"></i>')
         .replace(/\:\)/gi, '<span role="image" aria-label="slightly-smiling-face">&#x1f642</span>')
         .replace(/\=\)/gi, '<span role="image" aria-label="slightly-smiling-face">&#x1f642</span>')
         .replace(/\:\(/gi, '<span role="image" aria-label="slightly-frowning-face">&#x1f641</span>')
@@ -167,6 +163,6 @@ function getOldDataFromDB(roomName, room_id, userName){
     })
 }
 
-function generrateRoom(){
+function generrateRoom(roomName, id){
     return `room ${id}`
 }

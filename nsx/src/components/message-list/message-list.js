@@ -47,8 +47,8 @@ class MessageList extends React.Component {
         message: value.message,
         // createAt: value.created_at,
         DaT: value.DaT, //using MomentJS to get Date and Time
-        ci: this.state.changeInput,
-        emoji: this.state.emoji,
+        // ci: this.state.changeInput,
+        // emoji: this.state.emoji,
         time: this.state.time, //get manually
         date: this.state.date,  //get manually by function
         fr: value.userName === this.state.userName ? 'fr' : ''
@@ -58,8 +58,8 @@ class MessageList extends React.Component {
       this.setState({
         messages: items
       })
-      //   this.props.callback(item)
-      // //   this.setMessage(`${value.userName}: ${value.message}`)
+      //this.props.callback(item)
+      //this.setMessage(`${value.userName}: ${value.message}`)
     })
   }
 
