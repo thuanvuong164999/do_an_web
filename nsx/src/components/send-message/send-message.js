@@ -103,78 +103,81 @@ class SendMessage extends React.Component {
     })
   }
 
-  onKeyPress = event => {
-    if (event.key === 'Enter') {
+  onKeyPress = event => { //tạo event onKeyPress, sử dụng khi có sự thay đổi trên bàn phím
+    if (event.key === 'Enter') { //nếu event nhận khí tự trên bàn phím là Enter
       // event.preventDefault()
-      if (event.target.value === '')
+      if (event.target.value === '') 
         return;
       else {
         console.log(event.target.value)
-        socket.emit('send-message', {
+        socket.emit('send-message', { //socket gữi lên server tín hiệu send-message và ...
           userName: this.state.userName,
           message: event.target.value,
           room: this.state.room
         })
       }
 
-      var today = new Date(),
+      var today = new Date(), //biền today chứa nội dung có thể trả ra thờ gian (Date())
         ddate = today.getFullYear() + '/' + (today.getMonth() + 1) + '/' + today.getDate(),
+        //biến ngày   //lấy năm trong Date() / (lấy tháng trong Date() + 1) / lấy ngày trong Date()
         ttime = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
-      if (today.getMinutes() < 10)
+        //biến giờ   //lấy giờ trong Date() : lấy phút trong Date() : lấy phút trong Date()
+      if (today.getMinutes() < 10) //nếu phút trong Date() < 10
         ttime = today.getHours() + ':0' + today.getMinutes() + ':' + today.getSeconds();
       else
         ttime = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
 
-      this.setState({
+      this.setState({ //liệt kê các biến có thể thay đổi
         message: '',
         date: ddate,
         time: ttime
       })
+      // state chì liệt kê các biến, mún thay đổi các biến thì phài sử dụng this.setState
     }
   }
 
-  onClick = event => {
-    let title = 'Join'
-    if (this.state.buttonTitle === 'Join') {
-      title = 'Leave'
-      this.join()
-    } else {
-      this.leave()
+  onClick = event => { //tạo event onClick, sử dụng khi click vào 1 đồi tượng
+    let title = 'Join' //gán text Join vào biền title
+    if (this.state.buttonTitle === 'Join') { //nếu giá trị text trong this.state.buttonTitle là text Join
+      title = 'Leave' //giá trị Leave (mới) được gán vào Join thay thế cho Join
+      this.join() //thực hiện hàm join()
+    } else { //ngược lại
+      this.leave() //thực hiện hàm leave()
     }
-    this.setState({
-      buttonTitle: title
+    this.setState({ //biến có thể thay đổi trong event
+      buttonTitle: title //giá trị trong title được gán vào buttonTitle
     })
   }
 
-  join() {
-    socket.emit('join', {
-      userName: this.state.userName,
+  join() { //gọi hàm join()
+    socket.emit('join', { //socket gửi cho server tính hiệu join và ...
+      userName: this.state.userName, 
       avatar: this.state.avatar
     })
   }
 
-  leave() {
-    socket.emit('leave', {
+  leave() { //gọi hàm leave()
+    socket.emit('leave', { //socket gửi cho server tín hiệu leave
       userName: this.state.userName
     })
   }
 
-  onChange = event => {
-    this.setState({
+  onChange = event => { //gọi event onChange, sử dụng cho đối tượng có sự thay đổi liên tục
+    this.setState({ //khai báo giá trị thay đổi trong event
       message: event.target.value
     })
 
-    this.setState({
+    this.setState({ 
       changeInput: '<span role="image" aria-label="slightly-smiling-face">&#x1f642</span>'
     })
 
-    socket.emit('typing', {
+    socket.emit('typing', { //socket gữi tín hiệu typing cho server
       userName: this.state.userName,
       text: event.target.value
     })
   }
 
-  render() {
+  render() { //nội dung html, front_end trong class
     return (
       <React.Fragment>
         <div className='send-message-field'>

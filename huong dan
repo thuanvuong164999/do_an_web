@@ -26,3 +26,15 @@ tạo API cho từng room
 
 socket.on() máy chủ gửi về socket
 socket.emit() socket gửi cho máy chủ
+
+=== : so sánh bằng giữa 2 giá trị có định dạng cùng loại
+!== : so sánh khác giữa 2 giá trị có định dạng 'cùng loại' ???
+
+
+io.on('connection', (socket) => {} ???
+io.in(room).emit() ???
+socket là link server ???
+
+this.state là nơi lưu các biến trong contructor(), mún thay đổi biến trong state thì phài sử dụng this.setState ???
+
+return ???

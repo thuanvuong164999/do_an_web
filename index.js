@@ -1,69 +1,70 @@
 const express = require('express')
-const app = express()
+const app = express() // module express, app hỗ trợ server
 const port = 5000
-const http = require('http')
+const http = require('http') // module http có sẳn trong react
 const socketIO = require('socket.io')
-const server = http.createServer(app)
+// module socket: sử dụng trong phần mềm cần gửi message giữa 2 bên, di chung với express
+const server = http.createServer(app) // tạo server http vào gán vào mục server
 const io = socketIO(server)
 const moment = require('moment')
 // const room = 'main'
-const cors = 'cors'
+const cors = 'cors' //module khắc lỗi
 
-const pg = require('pg')
-const env = require('dotenv').config()
-
+//khai báo khi conect postgresql
+const pg = require('pg') 
+const env = require('dotenv').config() 
 const config={
     user: process.env.DB_USER,
     database: process.env.DB_NAME,
     password: process.env.DB_PASS,
     port: process.env.DB_PORT
 }
+const pool = new pg.Pool(config) 
 // connect pgsql
 
-const pool = new pg.Pool(config)
-
-
 io.on('connection', (socket) => {
-    console.log('Connected')
-    socket.on('send-message', (value) => {
+    console.log('Connected') 
+    socket.on('send-message', (value) => { //máy chủ gửi cho socket tín hiệu send-message và value
         console.log(value)
-        let roomName = generrateRoom(value.room)
+        let roomName = generrateRoom(value.room) //truyền nội dung của generrateRoom(value.room) vào roomName
 
-        let msg = value.message
+        let msg = value.message 
         // value.message = msg.replace(/\:\)/g, '<li class="fas fa-smile"></li>')
         value.message = convert2Icon(msg)
         value.DaT = moment().format('MMMM Do YYYY, h:mm:ss a') //dataTime
         // value.message = convert2HTML(value.message)
+        
         //create avatar
         let ava = value.userName
         value.avatar = createAvatar(ava)
+
         //gửi tín hiệu cho receive-message
-        io.in(roomName).emit('receive-message', value)
-        save2DB(value,value.room)
+        io.in(roomName).emit('receive-message', value) 
+        save2DB(value, value.room) //thực hiện hàm save2DB
     })
     
-    socket.on('join', (value) => {
+    socket.on('join', (value) => { //máy chủ gửi cho socket tín hiệu join và value
         console.log(value)
 
-        let roomName = generrateRoom(value.room) //cho cả generrateRoom(value.room) vào room để khỏi viết nhìu
-        socket.join(roomName)
+        let roomName = generrateRoom(value.room) 
+        socket.join(roomName) //socket thực hiện hàm join() 
         io.in(roomname).emit('joined', value)
         console.log(`${value.userName} joined ${value.room}`) 
-        getOldDataFromDB(roomName, value.room) //truyền data của value.room sang roomName
+        getOldDataFromDB(roomName, value.room) //thực hiện hàm getOldDataFromDB()
     })
     
-    socket.on('leave', (value) => {
+    socket.on('leave', (value) => { //máy chủ gửi cho socket tín hiệu leave và value
         io.in(room).emit('leaved', value)
-        socket.leave(room)
+        socket.leave(room) //socket thực hiện hàm leave()
         console.log(`${value.userName} leaved`)
     })
 
-    socket.on('typing', (value) => {
+    socket.on('typing', (value) => { //máy chủ gửi cho socket tín hiệu typing và value
         console.log(`${value.userName} typing.....`)
         console.log(value)
         console.log(value.text == '')
-        if(value.text == '') {
-            io.in(room).emit('member_stop_typing', {
+        if(value.text == '') { //nếu giá trị text trong value = rỗng
+            io.in(room).emit('member_stop_typing', { 
                 userName: value.userName
             })    
         } else {
@@ -73,11 +74,11 @@ io.on('connection', (socket) => {
         }
     })
 
-    socket.on('disconnect', () => {
+    socket.on('disconnect', () => { //máy chủ gửi cho socket tín hiệu disconect
         console.log('Client disconnected.')
     })
 })
-app.get('/', (req, res) => {
+app.get('/', (req, res) => { 
     res.send('Hello World')
 })
 server.listen(port, () => {
@@ -86,7 +87,7 @@ server.listen(port, () => {
 
 
 // khai báo database trên API
-app.get('/api/room-list', cors(), (req, res) =>{
+app.get('/api/room-list', cors(), (req, res) =>{ 
     pool.connect(function(err, client,done) {
         client.query(`select * from chat`, function(err, result){
             done()
