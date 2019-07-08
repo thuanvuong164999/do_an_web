@@ -52,9 +52,9 @@ io.on('connection', (socket) => { //code mặt định
 
         let roomName = generrateRoom(value.room) 
         socket.join(roomName) //socket thực hiện hàm join() 
-        io.in(roomname).emit('joined', value)
+        io.in(roomName).emit('joined', value)
         console.log(`${value.userName} joined ${value.room}`) 
-        getOldDataFromDB(roomName, value.room) //thực hiện hàm getOldDataFromDB()
+        getOldDataFromDB(roomName, roomName) //thực hiện hàm getOldDataFromDB()
     })
     
     socket.on('leave', (value) => { //client -(tín hiệu)-> socket--server -(thực hiện lệnh)-> client
@@ -67,6 +67,7 @@ io.on('connection', (socket) => { //code mặt định
         console.log(`${value.userName} typing.....`)
         console.log(value)
         console.log(value.text == '')
+        let roomName = generrateRoom(value.room) 
         if(value.text == '') { //nếu giá trị text trong value = rỗng
             io.in(roomName).emit('member_stop_typing', { 
                 userName: value.userName
@@ -141,19 +142,21 @@ function convert2HTML(message) {
 
 function save2DB(value, room_id) {
     pool.connect(function(err, client, done) {
-        let sql = `insert into chat (sent_by, created_at, message) values(${value.userName}', '${value.create_at}', '${value.message}', '${room_id});`
+        let sql = `insert into chat (sent_by, created_at, message, room_id) values('${value.userName}', '${value.create_at}', '${value.message}', '${room_id}');`
         client.query(sql, function(err, result){
+            console.log(result)
+            // console.log(err) 
             done()
         })
     })
 }
 
 function getOldDataFromDB(roomName, room_id, userName){
-    pool.connect(function(err, client,done) {
+    pool.connect(function(err, client, done) {
         client.query(`select * from chat where room_id = ${room_id}`, function(err, result){
             done()
             if(!err){
-                io.in(room).emit(`histories-${userName}`, {
+                io.in(roomName).emit(`histories-${userName}`, {
                     room: room_id,
                     userName: userName,
                     rows: result.rows
