@@ -8,7 +8,7 @@ const server = http.createServer(app) // tạo server http vào gán vào mục 
 const io = socketIO(server)
 const moment = require('moment')
 // const room = 'main'
-const cors = 'cors' //module khắc lỗi
+const cors = require('cors') //module khắc lỗi
 
 //khai báo khi conect postgresql
 const pg = require('pg') 
@@ -19,8 +19,11 @@ const config={
     password: process.env.DB_PASS,
     port: process.env.DB_PORT
 }
+console.log(config)
 const pool = new pg.Pool(config) 
 // connect pgsql
+
+app.use(cors())
 
 io.on('connection', (socket) => {
     console.log('Connected') 
@@ -89,7 +92,7 @@ server.listen(port, () => {
 // khai báo database trên API
 app.get('/api/room-list', cors(), (req, res) =>{ 
     pool.connect(function(err, client,done) {
-        client.query(`select * from chat`, function(err, result){
+        client.query(`select * from rooms`, function(err, result){
             done()
             if(!err){
                 res.send({
