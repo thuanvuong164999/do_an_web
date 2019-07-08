@@ -40,6 +40,9 @@ this.state là nơi lưu tất cả các biến trong contructor(), mún thay đ
 --> chạy thực gian
 ** Lưu ý
 --> chuẫn bị, chạy thử, tập dợt trước 2h
+**thông tin:
+--> thời gian (3+1) tuần
+--> làm việc nhóm
 
 
 io.on('connection', (socket) => {} ???
