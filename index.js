@@ -35,7 +35,7 @@ io.on('connection', (socket) => { //code mặt định
         let msg = value.message 
         // value.message = msg.replace(/\:\)/g, '<li class="fas fa-smile"></li>')
         value.message = convert2Icon(msg)
-        value.DaT = moment().format('MMMM Do YYYY, h:mm:ss a') //dataTime
+        value.DaT = moment().format('MMMM Do YYYY, h:mm:ss a') //dataTime 1
         // value.message = convert2HTML(value.message)
         
         //create avatar
@@ -59,6 +59,7 @@ io.on('connection', (socket) => { //code mặt định
     })
     
     socket.on('leave', (value) => { //client -(tín hiệu)-> socket--server -(thực hiện lệnh)-> client
+        console.log(value)
         io.in(roomName).emit('leaved', value)
         socket.leave(roomName) //socket thực hiện hàm leave()
         console.log(`${value.userName} leaved`)
@@ -180,11 +181,11 @@ function save2DB(value, room_id) {
 }
 
 function getOldDataFromDB(roomName, room_id, userName){
-    console.log(`histories-${userName}`, roomName)
+    console.log(`histories-${userName}`, room_id, roomName)
     pool.connect(function(err, client, done) {
         client.query(`select * from histories where id_chanel = ${room_id}`, function(err, result){
-            console.log(result)
-            console.log(err)
+            // console.log(result)
+            // console.log(err)
             done()
             if(!err){
                 io.in(roomName).emit(`histories-${userName}`, {

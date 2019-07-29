@@ -46,7 +46,7 @@ class MessageList extends React.Component {
         ava: value.avatar,
         message: value.message,
         // createAt: value.created_at,
-        DaT: value.DaT, //using MomentJS to get Date and Time
+        DaT: value.DaT, //using MomentJS to get Date and Time, datatime 2
         // ci: this.state.changeInput,
         // emoji: this.state.emoji,
         time: this.state.time, //get manually
@@ -75,9 +75,10 @@ class MessageList extends React.Component {
         // sent_by lay tu database
         let item = {
           user: user,
-          avatar: value.sent_by,
+          avatar: value.username,
           message: value.message,
-          createAt: value.created_at,
+          // createAt: value.created_at,
+          created: value.DaT, //datatime 3, trả về
           fr: user === this.state.userName ? 'fr' : ''
         }
         items.push(item)
@@ -123,7 +124,7 @@ class MessageList extends React.Component {
           typing: true,
           users_typing: listUsers
         })
-        // this.setMessage(`${user.userName} typing ....`)
+        this.setMessage(`${user.userName} typing ....`)
       }
     })
   }
