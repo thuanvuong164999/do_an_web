@@ -43,7 +43,8 @@ io.on('connection', (socket) => { //code mặt định
         value.avatar = createAvatar(ava)
 
         //gửi tín hiệu cho receive-message
-        io.in(roomName).emit('receive-message', value) 
+        io.in(roomName).emit('receive-message', value)
+        console.log(value) 
         save2DB(value, value.room) //thực hiện hàm save2DB
     })
     
@@ -54,7 +55,7 @@ io.on('connection', (socket) => { //code mặt định
         socket.join(roomName) //socket thực hiện hàm join() 
         io.in(roomName).emit('joined', value)
         console.log(`${value.userName} joined ${value.room}`) 
-        getOldDataFromDB(roomName, roomName) //thực hiện hàm getOldDataFromDB()
+        getOldDataFromDB(roomName, value.room, value.userName) //thực hiện hàm getOldDataFromDB()
     })
     
     socket.on('leave', (value) => { //client -(tín hiệu)-> socket--server -(thực hiện lệnh)-> client
@@ -90,16 +91,43 @@ server.listen(port, () => {
     console.log(`Server started with port ${port}`)
 })
 
-
 // khai báo database trên API
 app.get('/api/room-list',cors() ,(req, res) =>{ 
     pool.connect(function(err, client,done) {
-        client.query(`select * from rooms`, function(err, result){
+        client.query(`select chanels.name, chanels.id, style_chanels.style from chanels, style_chanels where style_chanels.id = chanels.id_style;`, function(err, result){
             done()
             if(!err){
                 res.send({
                     status: 200,
                     data: result.rows
+                })
+            }
+        })
+    })
+})
+
+app.get('/api/room-list/chanels',cors(), (req,res) =>{
+    pool.connect(function(err, client, done){
+        client.query(`select chanels.name, chanels.id, style_chanels.style from chanels, style_chanels where style_chanels.id = chanels.id_style and chanels.id_style = 1;`, function(err, result){
+            done()
+            if(!err){
+                res.send({
+                    status:200,
+                    data:result.rows
+                })
+            }
+        })
+    })
+})
+
+app.get('/api/room-list/messengers',cors(), (req,res) =>{
+    pool.connect(function(err, client, done){
+        client.query(`select chanels.name, chanels.id, style_chanels.style from chanels, style_chanels where style_chanels.id = chanels.id_style and chanels.id_style = 2;`, function(err, result){
+            done()
+            if(!err){
+                res.send({
+                    status:200,
+                    data:result.rows
                 })
             }
         })
@@ -142,9 +170,9 @@ function convert2HTML(message) {
 
 function save2DB(value, room_id) {
     pool.connect(function(err, client, done) {
-        let sql = `insert into chat (sent_by, created_at, message, room_id) values('${value.userName}', '${value.create_at}', '${value.message}', '${room_id}');`
+        let sql = `insert into histories (username, datat, message, id_chanel) values('${value.userName}', '${value.created}', '${value.message}', '${room_id}');`
         client.query(sql, function(err, result){
-            console.log(result)
+            // console.log(result)
             // console.log(err) 
             done()
         })
@@ -152,8 +180,11 @@ function save2DB(value, room_id) {
 }
 
 function getOldDataFromDB(roomName, room_id, userName){
+    console.log(`histories-${userName}`, roomName)
     pool.connect(function(err, client, done) {
-        client.query(`select * from chat where room_id = ${room_id}`, function(err, result){
+        client.query(`select * from histories where id_chanel = ${room_id}`, function(err, result){
+            console.log(result)
+            console.log(err)
             done()
             if(!err){
                 io.in(roomName).emit(`histories-${userName}`, {

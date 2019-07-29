@@ -64,13 +64,14 @@ class MessageList extends React.Component {
   }
 
   receiveHistories() {
+    console.log(`histories-${this.state.userName}`)
     socket.on(`histories-${this.state.userName}`, (values) => { // server gửi về socket tín hiệu histories
 
-      // console.log(values)
+      console.log(values)
       let items = [] //ban đầu là trống
 
       values.rows.map((value, index) => {
-        let user = value.sent_by.trim()
+        let user = value.username.trim()
         // sent_by lay tu database
         let item = {
           user: user,

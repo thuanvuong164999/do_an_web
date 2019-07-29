@@ -7,6 +7,8 @@
     float: left;
     border-radius: 10px 0px 0px 10px;
     .chanels-list{
+        height: 40%;
+        width: 100%;
         ul{
             list-style: none;
             li{
@@ -25,16 +27,29 @@
             li:hover{
                 background-color: rgb(170, 170, 253);
             }
-            li:active{
-                background-color: burlywood;
+        }
+    }
+    .messengers-list{
+        height: 50%;
+        width: 100%;
+        ul{
+            list-style: none;
+            li{
+                height: 40px;
+                width: 90%;
+                text-align: left;
+                color: blueviolet;
+                line-height: 40px;
+                padding-left: 5px;
+                font-family: 'Times New Roman', Times, serif;
+                font-size: 1.2em;
+                font-weight: bold;
+                border:none;
+                border-bottom: 0.5px solid sienna;
+            }
+            li:hover{
+                background-color: rgb(170, 170, 253);
             }
         }
     }
-    // .messengers-list{
-
-    // }    
-}
-
-.test-li-bg:hover > .test-li {
-    width: 100%;
 }
