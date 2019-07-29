@@ -1,0 +1,28 @@
+tạo table chat chứa histories có:
+sent_by char(50), created_at char(100), message, room_id char(250) ;
+
+mặc định room_id là 2 (room common)
+
+tạo table rooms chứa danh sách các room
+id, name char(50), counter integer ;
+
+counter lưu giá trị 0 (mặc định)
+
+select chat.sent_by, chat.created_at, chat.message, rooms.sent_to from chat, rooms where chat.room_id = rooms.id ;
+
+select * from chat limit <room_id> ;
+
+công việc về nhà:
++) tạo frond_end:
+chia chat_bg thanhf 2 cột, 1 cột room_list, 1 cột room_chat
+
+tạo API cho từng room
+    app.get('/api/room-list', (req, res) =>{
+    })
+
+    lấy dữ liệu trong api
+        cài module axios : npm install axios --save (trong file client)
+        cài module cors : npm i cors --save (trong file client, để khắc phục lỗi)
+
+socket.on() máy chủ gửi về socket
+socket.emit() socket gửi cho máy chủ

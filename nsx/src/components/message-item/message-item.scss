@@ -1,0 +1,89 @@
+.message-list {
+    .message-item {
+        width: 100%;
+        position: relative;
+        padding: 5px;
+        float: left;
+        //border-bottom: 0.5px solid #a2a2a2;
+        &:last-child {
+            border-bottom: 0;
+        }
+        .message-item-avatar {
+            float: left;
+            &.fr {
+                float: right;
+                //margin-right: 10px;
+            }
+            width: 50px;
+            .avatar-img {
+                border-radius: 50%;
+                width: 50px;
+                height: 50px;
+                background: #f0b7a4;
+                .ava-text{
+                    color: #fff;
+                    font-size: 22px;
+                    font-style: bolder;
+                    margin-top: 10px;
+                    text-transform: uppercase;
+                }
+                
+            }
+        }
+    
+        .message-item-content {
+            float: left;
+            width: 90%;
+            .chat-user{
+                font-weight: bolder;
+                font-style:italic;
+                color: #263859;
+            }
+            &.fr {
+                float:right;
+                padding-right: 20px;
+                width: 90%;
+                text-align: right;
+                .content {
+                    background-color: #aee7e8;
+                    border-radius: 15px 0px 15px 15px;
+                    padding-top: 9px;
+                    padding-bottom: 10px;
+                    padding-right: 20px;
+                    .chat-content{
+                        width: 100%;
+                        word-wrap: break-word;
+                        //padding-right: 20px;
+                    }
+                }
+            }
+            .content {
+                .user-date{
+                    margin: 0;
+                    font-weight: lighter;
+                    font-size: 13px;
+                    color: #454d66;
+                }
+                background-color: #f2f4d1;
+                border-radius: 0px 15px 15px 15px;
+                padding-top: 9px;
+                padding-bottom: 10px;
+                padding-left: 20px;
+                .chat-content{
+                    width: 100%;
+                    word-wrap: break-word;
+                    //padding-left: 20px;
+                }
+            }
+            text-align: left;
+            padding-left: 20px;
+            margin-top: 5px;
+            color: #000;
+            //font-weight: bolder;
+            .created {
+                font-size: 12px;
+                color: #acacac;
+            }
+        }
+    }    
+}

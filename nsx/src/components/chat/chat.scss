@@ -1,0 +1,184 @@
+.Chat {
+  text-align: center;
+  background-color: #edeff2;
+  height: 100vh;
+  position: relative;
+  padding: 50px;
+  // bottom: 0;
+  .Chat-Container {
+    width: 70%;
+    // margin: auto;
+    float: right;
+    .chat-box {
+      width: 100%;
+      background-color: #f8f8f8;
+      border-radius: 10px;
+      box-shadow: 2px 3px 12px lightgray;
+      .receive-messages {
+        width: 100%;
+        textarea {
+          width: 100%;
+          height: 300px;
+          max-height: 300px;
+          min-height: 300px;
+        }
+      }
+      .send-message {
+        width: 100%;
+        height: 90px;
+        max-height: 90px;
+        min-height: 90px;
+        background-color: white;
+        border-radius: 0px 0px 10px 0px;
+        .send-message-field {
+          width: 100%;
+          padding: 20px;
+          float: left;
+        }
+        .send-message-action {
+          width: 20%;
+          padding: 20px;
+          float: left;
+
+          .join-leave-btn {
+            width: 80%;
+            height: calc(5000 / (100vh));
+            max-height: 50px;
+            min-height: 50px;
+            border-radius: 50px;
+            color: white;
+            border: 0px;
+            font-size: 16px;
+            background-color: #a3d063;
+            &:hover {
+              color: #a3d063;
+              width: 80%;
+              font-size: 16px;
+              border: 2px solid #a3d063;
+              background-color: white;
+              cursor: pointer;
+              text-align: center;
+              transition: all 0.2s linear;
+            }
+          }
+        }
+        .input-area {
+          width: 90%;
+          height: 50px;
+          border-radius: 50px;
+          border: 2px solid gray;
+          margin-left: 60px;
+          .emoji-btn-menu {
+            float: right;
+            width: 10%;
+            border: none;
+            background-color: transparent;
+
+            margin-top: 10px;
+            padding-right: 20px;
+            .emoji-menu {
+              float: right;
+              width: auto;
+              border: none;
+              cursor: pointer;
+              background-color: transparent;
+              padding: 0;
+              &:focus {
+                outline: none;
+              }
+              .far {
+                &.fa-smile {
+                  &.fa-2x {
+                    color: gray;
+                    &:hover {
+                      border-radius: 50%;
+                      background-color: #f6ef98;
+                      color: gray;
+                    }
+                    &:focus {
+                      border-radius: 50%;
+                      background-color: #f6ef98;
+                      color: gray;
+                    }
+                  }
+                }
+              }
+            }
+          }
+          .rta {
+            position: relative;
+            //border-left: 1px solid #ccc;
+            //display: flex;
+            //flex-direction: column;
+            .rta__autocomplete {
+              position: absolute;
+              width: 300px;
+              background-color: white;
+              border: 1px solid #ccc;
+              border-radius: 5px;
+              .rta__autocomplete,
+              ul {
+                list-style: none;
+                max-height: 300px;
+                overflow-y: auto;
+                padding-left: 20px;
+                padding-right: 20px;
+                text-align: left;
+                margin-bottom: 0;
+                list-style: none;
+                &::-webkit-scrollbar {
+                  width: 6px;
+                  background-color: #f5f5f5;
+                }
+                &::-webkit-scrollbar-thumb {
+                  background-color: #385170;
+                }
+                &::-webkit-scrollbar-track {
+                  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.3);
+                  background-color: #f5f5f5;
+                }
+              }
+              .rta__autocomplete,
+              li {
+                margin-bottom: 5px;
+                padding: 3px 20px;
+                cursor: pointer;
+                &:hover {
+                  border-radius: 10px;
+                  background-color: skyblue;
+                }
+                &:focus {
+                  outline: none;
+                }
+              }
+            }
+          }
+
+          .input {
+            float: left;
+            width: 90%;
+
+            resize: none;
+
+            height: 50px;
+            max-height: 50px;
+            min-height: 50px;
+            padding: 15px 10px 16px 20px;
+            border: none;
+            border-radius: 50px;
+            background-color: transparent;
+            text-align: start;
+            overflow: hidden;
+            font-size: 16px;
+            white-space: nowrap;
+            font-family: "Arial, SegoeUI";
+            outline: none;
+            &:focus {
+              outline: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}
