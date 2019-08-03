@@ -1,0 +1,19 @@
+.chat{
+    background-color: blueviolet;
+    height: 100vh;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    .roomlist-bg{
+        background-color: #3F0E40;
+        width: 20%;
+        height: 100%;
+        float: left;
+    }
+    .chat-box{
+        background-color: whitesmoke;
+        width: 80%;
+        height: 100%;
+        float: right;
+    }
+}

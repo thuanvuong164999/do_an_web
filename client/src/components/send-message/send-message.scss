@@ -1,0 +1,27 @@
+.send-message-bg{
+    background-color: whitesmoke;
+    width: 100%;
+    height: 10%;
+    padding-top: 10px;
+    .boder-bg{
+        background-color: white;
+        width: 95%;
+        height: 80%;
+        margin: 0px auto 0px auto;
+        border-radius: 8px;
+        border: 1px solid black;
+        .input-area{
+            background-color: blue;
+            width: 80%;
+            height: 80%;
+            margin-top: 4px;
+            margin-left: 40px;
+            input{
+                // background-color: whitesmoke;
+                height: 100%;
+                width: 100%;
+                border: none;
+            }
+        }
+    }
+}
