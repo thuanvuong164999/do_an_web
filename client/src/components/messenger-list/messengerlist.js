@@ -44,8 +44,8 @@ class MessList extends React.Component {
             <React.Fragment>
                 <div className='messengerlist-bg'>
                     <div className='title-chanels'>
-                        <p className='title'>Direct message</p>
-                        <p className='plus-icon'></p>
+                        <div className='title'>Direct message</div>
+                        <div className='plus-icon'></div>
                     </div>
                     <ul>
                         {

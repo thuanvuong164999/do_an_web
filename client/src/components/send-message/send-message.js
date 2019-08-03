@@ -1,6 +1,7 @@
 import React from 'react'
 import './send-message.scss'
 import { socket, userName } from '../../services/socket-service/socket-service'
+import EmojiMenu from '../emoji-menu/emoji';
 
 class SendMessage extends React.Component {
     constructor(props) {
@@ -9,11 +10,10 @@ class SendMessage extends React.Component {
         this.state = {
             DaT: '',
             receiveMessages: '',
-            userName: userName, //tuyền từ socketservice
+            userName: userName,
             message: '',
             avatar: '',
-            messages: [
-            ],
+            messages: [],
             room: 0,
             changeInput: '',
             text: ''
@@ -62,11 +62,11 @@ class SendMessage extends React.Component {
                     room: this.state.room
                 })
             }
+            this.setState({
+                message: ''
+            })
+            console.log(this.state.message)
         }
-
-        this.setState({
-            message: ''
-        })
     }
 
     onClick = event => {
@@ -108,8 +108,8 @@ class SendMessage extends React.Component {
                 <div className='send-message-bg'>
                     <div className='boder-bg'>
                         <div className='input-area'>
-                            <input onKeyPress={this.onKeyPress} onChange={this.onChange}></input>
-                            {/* tại sao value={this.state.message} bị lỗi */}
+                            <input onKeyPress={this.onKeyPress} onChange={this.onChange} value={this.state.message}></input>
+                            {/* <EmojiMenu></EmojiMenu> */}
                         </div>
                     </div>
                 </div>

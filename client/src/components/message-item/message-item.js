@@ -14,8 +14,7 @@ class MessageItem extends React.Component {
                     </div>
                     <div className={'message-item-content ' + this.props.value.fr}>
                         <div className='content'>
-                            <span className='chat-user'>
-                                {this.props.value.user}  <p className='user-date'>{this.props.value.DaT}</p></span>
+                            <span className='chat-user'>{this.props.value.user}</span>
                         </div>
                         <div className='created'>
                             {this.props.value.DaT}
