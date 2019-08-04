@@ -15,14 +15,21 @@ class HeadRoomList extends React.Component {
         return(
             <React.Fragment>
                 <div className='headroomlist-bg'>
+                    <div className='ic-bell'>
+                        <i class="fas fa-bell"></i>
+                    </div>
                     <div className='title-room'>
-                        WEB-D002
+                        WEB-D002 
                     </div>
                     <div className='input-username'>
                         <div className='status-user'></div>
-                        <div className='username'>{userName}</div>
+                        <div className='username'>
+                        <i class="fas fa-circle"></i>{userName}</div>
                     </div>
                 </div>
+                {/* <div className='icon-c'>
+                    <i class="fas fa-bell"></i>
+                </div> */}
             </React.Fragment>
         )
     }

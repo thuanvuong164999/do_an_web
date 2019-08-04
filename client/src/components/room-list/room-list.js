@@ -36,7 +36,7 @@ class RoomList extends React.Component {
         axios.get(`${serverEndPoint}/api/room-list/messengers`)
             .then(function (response) {
                 self.setState({
-                    rooms_messenger: response.data.data
+                    rooms: response.data.data
                 })
             })
             .catch(function (error) {
@@ -67,6 +67,9 @@ class RoomList extends React.Component {
                         <MessList></MessList>
                     }</li>
                 </ul>
+                <div class="scrollbar">
+                    <div class="force-overflow"></div>
+                </div>
             </React.Fragment>
         )
     }

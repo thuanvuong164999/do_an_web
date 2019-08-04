@@ -8,15 +8,15 @@ const axios = require('axios')
 class ChannelList extends React.Component {
     constructor(props) {
         super(props)
-
         this.state = {
-            room: []
+            room: [],
+            inRoomName: ''
         }
     }
 
     componentDidMount() {
         let self = this
-
+        
         axios.get(`${serverEndPoint}/api/room-list/chanels`)
             .then(function (response) {
                 self.setState({
@@ -30,13 +30,13 @@ class ChannelList extends React.Component {
 
             });
     }
-
-    onClick = (event, id) => {
+    
+    onClick = (event, id, name) => {
         console.log('Clicked', id)
-
         socket.emit('join', {
             userName: userName,
-            room: id
+            room: id,
+            inRoomName: name
         })
     }
 
@@ -44,15 +44,18 @@ class ChannelList extends React.Component {
         return (
             <React.Fragment>
                 <ul className='chanellist-bg'>
+                    <div className='addc'>
+                        <i class="fas fa-comment-alt">Threads</i>
+                    </div>
                     <li className='title-chanels'>
+                        <i class="fas fa-plus-circle"></i>
                         <div className='title'>Chanels</div>
-                        <div className='plus-icon'></div>
                     </li>
                     <li className='list'><ul>
                         {
                             this.state.room.map((value, index) => {
                                 return (
-                                    <li key={index} onClick={(e) => this.onClick(e, value.id)}>{value.name}</li>
+                                    <li key={index} onClick={(e) => this.onClick(e, value.id, value.name)}>{value.name}</li>
                                 )
                             })
                         }

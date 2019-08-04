@@ -19,9 +19,9 @@ class MessageItem extends React.Component {
                             <br></br>
                             <span className='chat-content'>{this.props.value.message}</span>
                         </div>
-                        <div className='created'>
-                            {this.props.value.DaT}
-                        </div>
+                    </div>
+                    <div className={'message-item-time ' + this.props.value.fr}>
+                        <div className='created'>{this.props.value.DaT}</div>
                     </div>
                 </div>
             </React.Fragment>

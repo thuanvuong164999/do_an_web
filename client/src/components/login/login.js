@@ -1,5 +1,6 @@
 import React from 'react'
 import './login.scss'
+import { socket } from '../../services/socket-service/socket-service';
 
 
 class LoginPages extends React.Component {
@@ -11,6 +12,10 @@ class LoginPages extends React.Component {
 
     componentDidMount() {
         
+    }
+
+    onClick = event => {
+        socket.emit('')
     }
 
     render() {

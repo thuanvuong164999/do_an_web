@@ -54,9 +54,9 @@ io.on('connection', (socket) => {
     })
 
     socket.on('typing', (value) => {
-        // console.log(value)
-        // console.log(`${value.userName} typing.....`)
-        // console.log(value.text == '')
+        console.log(value)
+        console.log(`${value.userName} typing.....`)
+        console.log(value.text == '')
         let roomName = generrateRoom(value.room)
 
         if (value.text == '') {
@@ -138,9 +138,9 @@ function save2DB(value, room_id) {
 function getOldDataFromDB(room_id, userName) {
     pool.connect(function (err, client, done) {
         // console.log(`histories-${userName}`, room_id)
-        let sql = `select * from histories where id_chanel = ${room_id};`
-        client.query(sql, function (err, result) {
-            // console.log(result) //underfined
+        let sql = `select * from histories where id_chanel = ${room_id}`
+        client.query(sql, function (err ,result) {
+            console.log(result) //underfined
             // console.log(err)
             done()
             if (!err) {

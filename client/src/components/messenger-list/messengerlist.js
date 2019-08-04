@@ -9,7 +9,8 @@ class MessList extends React.Component {
         super(props)
 
         this.state = {
-            room: []
+            room: [],
+            inRoomName:''
         }
     }
 
@@ -30,12 +31,13 @@ class MessList extends React.Component {
             });
     }
 
-    onClick = (event, id) => {
+    onClick = (event, id, name) => {
         console.log('Clicked', id)
 
         socket.emit('join', {
             userName: userName,
-            room: id
+            room: id,
+            inRoomName: name
         })
     }
 
@@ -43,9 +45,12 @@ class MessList extends React.Component {
         return (
             <React.Fragment>
                 <ul className='messengerlist-bg'>
+                    <div className='addb'>
+                        + Add the chanels
+                    </div>
                     <li className='title-chanels'>
+                        <i class="fas fa-plus-circle"></i>
                         <div className='title'>Direct message</div>
-                        <div className='plus-icon'></div>
                     </li>
                     <li className='list'><ul>
                         {

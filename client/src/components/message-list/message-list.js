@@ -74,7 +74,7 @@ class MessageList extends React.Component {
 
     onStopTyping() {
         socket.on('member_stop_typing', (user) => {
-            // console.log(user)
+            
             let listUsers = this.state.users_typing
             let index = listUsers.indexOf(user.userName)
             if (index !== -1) {
@@ -94,12 +94,14 @@ class MessageList extends React.Component {
 
     onTypingFromMember() {
         socket.on('member_typing', (user) => {
-            // console.log(user)
+            
             if (user.userName !== this.state.userName) {
                 let listUsers = this.state.users_typing
+
                 if (!listUsers.includes(user.userName)) {
                     listUsers.push(user.userName)
                 }
+
                 this.setState({
                     typing: true,
                     users_typing: listUsers

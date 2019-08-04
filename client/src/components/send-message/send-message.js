@@ -63,9 +63,9 @@ class SendMessage extends React.Component {
                 })
             }
             this.setState({
-                message: ''
+                message: '',
+                text:''
             })
-            console.log(this.state.message)
         }
     }
 
@@ -107,12 +107,11 @@ class SendMessage extends React.Component {
             <React.Fragment>
                 <div className='send-message-bg'>
                     <div className='boder-bg'>
-                        <div className='add-file-icon'></div>
                         <div className='input-area'>
-                            <input onKeyPress={this.onKeyPress} onChange={this.onChange} value={this.state.message}></input>
-                            {/* <EmojiMenu></EmojiMenu> */}
+                            <div className='send-enter-icon'></div>
+                            <input placeholder={`Message ${userName}`} onKeyPress={this.onKeyPress} onChange={this.onChange} value={this.state.message}></input>
+                            <div className='emoji-icon'></div>
                         </div>
-                        <div className='emoji-btn-menu'></div>
                     </div>
                 </div>
             </React.Fragment>
