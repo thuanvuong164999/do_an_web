@@ -43,12 +43,12 @@ class ChannelList extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <div className='chanellist-bg'>
-                    <div className='title-chanels'>
-                        <p className='title'>Chanels</p>
-                        <p className='plus-icon'></p>
-                    </div>
-                    <ul>
+                <ul className='chanellist-bg'>
+                    <li className='title-chanels'>
+                        <div className='title'>Chanels</div>
+                        <div className='plus-icon'></div>
+                    </li>
+                    <li className='list'><ul>
                         {
                             this.state.room.map((value, index) => {
                                 return (
@@ -56,8 +56,8 @@ class ChannelList extends React.Component {
                                 )
                             })
                         }
-                    </ul>
-                </div>
+                    </ul></li>
+                </ul>
             </React.Fragment>
         )
     }

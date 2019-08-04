@@ -59,14 +59,14 @@ class RoomList extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <div className='room-bg'>
-                    {
+                <ul className='room-bg'>
+                    <li>{
                         <ChannelList></ChannelList>
-                    }
-                    {
+                    }</li>
+                    <li>{
                         <MessList></MessList>
-                    }
-                </div>
+                    }</li>
+                </ul>
             </React.Fragment>
         )
     }

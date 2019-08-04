@@ -107,10 +107,12 @@ class SendMessage extends React.Component {
             <React.Fragment>
                 <div className='send-message-bg'>
                     <div className='boder-bg'>
+                        <div className='add-file-icon'></div>
                         <div className='input-area'>
                             <input onKeyPress={this.onKeyPress} onChange={this.onChange} value={this.state.message}></input>
                             {/* <EmojiMenu></EmojiMenu> */}
                         </div>
+                        <div className='emoji-btn-menu'></div>
                     </div>
                 </div>
             </React.Fragment>

@@ -18,6 +18,7 @@ const config = {
     port: process.env.DB_PORT
 }
 const pool = new pg.Pool(config)
+// console.log(config) //kiểm tra connect database
 
 app.use(cors())
 
@@ -136,9 +137,10 @@ function save2DB(value, room_id) {
 
 function getOldDataFromDB(room_id, userName) {
     pool.connect(function (err, client, done) {
-        // console.log(`histories-${userName}`)
-        client.query(`select * from histories where id_chanel = ${room_id}`, function (err, result) {
-            // console.log(result)
+        // console.log(`histories-${userName}`, room_id)
+        let sql = `select * from histories where id_chanel = ${room_id};`
+        client.query(sql, function (err, result) {
+            // console.log(result) //underfined
             // console.log(err)
             done()
             if (!err) {
@@ -152,7 +154,7 @@ function getOldDataFromDB(room_id, userName) {
     })
 }
 
-function generrateRoom(roomName, id) {
+function generrateRoom(id) {
     return `room ${id}`
 }
 

@@ -42,12 +42,12 @@ class MessList extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <div className='messengerlist-bg'>
-                    <div className='title-chanels'>
+                <ul className='messengerlist-bg'>
+                    <li className='title-chanels'>
                         <div className='title'>Direct message</div>
                         <div className='plus-icon'></div>
-                    </div>
-                    <ul>
+                    </li>
+                    <li className='list'><ul>
                         {
                             this.state.room.map((value, index) => {
                                 return (
@@ -55,8 +55,8 @@ class MessList extends React.Component {
                                 )
                             })
                         }
-                    </ul>
-                </div>
+                    </ul></li>
+                </ul>
             </React.Fragment>
         )
     }

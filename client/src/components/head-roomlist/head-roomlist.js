@@ -19,7 +19,8 @@ class HeadRoomList extends React.Component {
                         WEB-D002
                     </div>
                     <div className='input-username'>
-                        {userName}
+                        <div className='status-user'></div>
+                        <div className='username'>{userName}</div>
                     </div>
                 </div>
             </React.Fragment>
