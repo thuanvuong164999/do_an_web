@@ -5,22 +5,21 @@
     list-style-type: none;
     list-style-position: inside;
     list-style-image: none;
-    // overflow: visible;
     // overflow: scroll; //khác gì auto
-    // overflow: auto;
-    // overflow-x: hidden;
-    .room-bg::-webkit-scrollbar {
-        width: 1em;
-    }
+    overflow: auto;
+    overflow-x: hidden;
+    // .room-bg::-webkit-scrollbar {
+    //     width: 1em;
+    // }
      
     // .room-bg::-webkit-scrollbar-track {
     //     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
     // }
      
-    .room-bg::-webkit-scrollbar-thumb {
-      background-color: darkgrey;
-      outline: 1px solid slategrey;
-    }
+    // .room-bg::-webkit-scrollbar-thumb {
+    //   background-color: darkgrey;
+    //   outline: 1px solid slategrey;
+    // }
     
     li{
         width: 100%;
