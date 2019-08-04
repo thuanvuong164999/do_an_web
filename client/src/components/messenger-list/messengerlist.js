@@ -43,9 +43,12 @@ class MessList extends React.Component {
         return (
             <React.Fragment>
                 <ul className='messengerlist-bg'>
+                    <div className='addb'>
+                        + Add the chanels
+                    </div>
                     <li className='title-chanels'>
+                        <i class="fas fa-plus-circle"></i>
                         <div className='title'>Direct message</div>
-                        <div className='plus-icon'></div>
                     </li>
                     <li className='list'><ul>
                         {
@@ -63,4 +66,3 @@ class MessList extends React.Component {
 }
 
 export default MessList
-

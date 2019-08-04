@@ -1,15 +1,26 @@
 .messengerlist-bg{
-    background-color: whitesmoke;
+    // background-color: whitesmoke;
     width: 100%;
     list-style-type: none;
     list-style-position: inside;
     list-style-image: none;
     height: auto;
+    margin-top: 30px;
+    .addb {
+        width: 100%;
+        margin-left: 5px;
+        padding: 10px;
+        width: fit-content;
+        line-height: 0.5em;
+        text-align: left;
+        font-size: 1em;
+    }
     .title-chanels{
         // background-color: blue;
         width: 90%;
         margin: auto;
         height: 25px;
+        color: #95adbe;
         .title{
             // background-color: wheat;
             height: 100%;
@@ -17,25 +28,23 @@
             line-height: 1.5em;
             font-weight: bold;
             float: left;
+            margin-top: 20px;
+            font-size: 1.2em;
         }
-        .plus-icon{
-            // background-color: blue;
-            border: 1px solid black;
-            float: left;
-            width: 25px;
-            height: 25px;
-            margin: 0;
-            border-radius: 50%;
+        .fas {
+            float: right;
+            margin: 10px;
+            margin-top: 25px;
         }
         .title:hover{
-            color: aqua;
+            color: white;
         }
     }
     ul{
         // background-color: blue;
         list-style-type: none;
         list-style-position: inside;
-        list-style-image: url(../../icon/icon.png);
+        list-style-image: url(../../icon/circle.png);
         margin: 0;
         padding: 0;
         li{
@@ -44,10 +53,10 @@
             width: 100%;
             line-height: 30px;
             padding-left: 20px; 
-            border-bottom: 0.2px solid #ccc;
+            font-size: 1.22em;
         }
         li:hover{
-            background-color: aqua;
+            background-color: #574f7d;
         }
     }
 }

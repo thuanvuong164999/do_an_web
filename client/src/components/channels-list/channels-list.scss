@@ -1,15 +1,26 @@
 .chanellist-bg{
-    background-color: whitesmoke;
+    // background-color: whitesmoke;
     width: 100%;
     list-style-type: none;
     list-style-position: inside;
     list-style-image: none;
     height: auto;
+    margin-top: 40px;
+    .addc {
+        width: 100%;
+        margin-left: 5px;
+        padding: 20px;
+        width: fit-content;
+        line-height: 0.5em;
+        text-align: left;
+        font-size: 1em;
+    }
     .title-chanels{
         // background-color: blue;
         width: 90%;
         margin: auto;
         height: 25px;
+        color: #95adbe;
         .title{
             // background-color: wheat;
             height: 100%;
@@ -17,19 +28,15 @@
             line-height: 1.5em;
             font-weight: bold;
             float: left;
+            font-size: 1.2em;
         }
-        .plus-icon{
-            // background-color: blue;
-            border: 1px solid black;
-            float: left;
-            width: 25px;
-            height: 25px;
-            margin: 0;
-            border-radius: 50%;
-            
+        .fas {
+            width: fit-content;
+            float: right;
+            margin: 7px;
         }
         .title:hover{
-            color: aqua;
+            color: white;
         }
     }
     ul{
@@ -38,17 +45,18 @@
         list-style-position: inside;
         list-style-image: url(../../icon/icon.png);
         margin: 0;
-        padding: 0;
+        padding: 3px;
+        color: #95adbe;
         li{
             // background-color: blue;
             height: 20%;
             width: 100%;
             line-height: 30px;
             padding-left: 20px; 
-            border-bottom: 0.2px solid #ccc;
+            font-size: 1.2em;
         }
         li:hover{
-            background-color: aqua;
+            background-color: #574f7d;
         }
     }
 }

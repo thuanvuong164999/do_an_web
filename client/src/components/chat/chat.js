@@ -13,12 +13,17 @@ class Chat extends React.Component {
             <React.Fragment>
                 <div className="chat">
                     <div className='roomlist-bg'>
-                        {
-                            <HeadRoomList></HeadRoomList>
-                        }
-                        {
-                            <RoomList></RoomList>
-                        }
+                        <div>
+                            {
+                                <HeadRoomList></HeadRoomList>
+                            }
+                        </div>
+                        <div>
+                            {
+                                <RoomList></RoomList>
+                            }
+                        </div>
+                       
                     </div>
                     <div className='chat-box'>
                         {
