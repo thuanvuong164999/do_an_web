@@ -44,9 +44,6 @@ class ChannelList extends React.Component {
         return (
             <React.Fragment>
                 <ul className='chanellist-bg'>
-                    <div className='addc'>
-                        <i class="fas fa-comment-alt">Threads</i>
-                    </div>
                     <li className='title-chanels'>
                         <i class="fas fa-plus-circle"></i>
                         <div className='title'>Chanels</div>

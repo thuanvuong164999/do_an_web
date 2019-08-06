@@ -1,7 +1,6 @@
 import React from 'react'
 import './messengerlist.scss'
 import { serverEndPoint, socket, userName } from '../../services/socket-service/socket-service'
-
 const axios = require('axios');
 
 class MessList extends React.Component {
@@ -62,6 +61,7 @@ class MessList extends React.Component {
                         }
                     </ul></li>
                 </ul>
+                
             </React.Fragment>
         )
     }

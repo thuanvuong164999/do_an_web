@@ -18,7 +18,9 @@ function rotate() {
         head.style.transform = "rotate(-360deg)";
         flag = 1;
     }
-    rotationAudio.play();
+    if (rotationAudio) {
+        rotationAudio.play();
+    }
 }
 
 username.addEventListener("keydown", function () {
@@ -115,4 +117,3 @@ function whisle() {
 function removeWhistle() {
     mouth.classList.remove('emoji-mouth-whistle');
 }
-

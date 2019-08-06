@@ -5,15 +5,16 @@
     list-style-position: inside;
     list-style-image: none;
     height: auto;
-    margin-top: 30px;
+    margin-top: 40px;
     .addb {
         width: 100%;
         margin-left: 5px;
-        padding: 10px;
+        padding: 20px;
         width: fit-content;
         line-height: 0.5em;
         text-align: left;
         font-size: 1em;
+        color: #95adbe;
     }
     .title-chanels{
         // background-color: blue;
@@ -28,35 +29,38 @@
             line-height: 1.5em;
             font-weight: bold;
             float: left;
-            margin-top: 20px;
             font-size: 1.2em;
         }
         .fas {
+            width: fit-content;
             float: right;
-            margin: 10px;
-            margin-top: 25px;
+            margin: 7px;
         }
         .title:hover{
             color: white;
         }
     }
-    ul{
-        // background-color: blue;
-        list-style-type: none;
-        list-style-position: inside;
-        list-style-image: url(../../icon/circle.png);
-        margin: 0;
-        padding: 0;
-        li{
+    .list{
+        ul{
             // background-color: blue;
-            height: 20%;
-            width: 100%;
-            line-height: 30px;
-            padding-left: 20px; 
-            font-size: 1.22em;
-        }
-        li:hover{
-            background-color: #574f7d;
+            list-style-type: none;
+            list-style-position: inside;
+            list-style-image: url(../../icon/circle.png);
+            margin: 0;
+            padding: 3px;
+            color: #95adbe;
+            
+            li{
+                // background-color: blue;
+                height: 20%;
+                width: 100%;
+                line-height: 30px;
+                padding-left: 20px; 
+                font-size: 1.2em;
+            }
+            li:hover{
+                background-color: #574f7d;
+            }
         }
     }
 }

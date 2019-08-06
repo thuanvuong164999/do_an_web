@@ -3,6 +3,7 @@ import './room-list.scss'
 import { serverEndPoint, socket, userName } from '../../services/socket-service/socket-service'
 import ChannelList from '../channels-list/channels-list';
 import MessList from '../messenger-list/messengerlist';
+import Serch from '../serch/serch'
 
 const axios = require('axios');
 
@@ -59,6 +60,9 @@ class RoomList extends React.Component {
     render() {
         return (
             <React.Fragment>
+                <div>
+                    <Serch></Serch>
+                </div>
                 <ul className='room-bg'>
                     <li>{
                         <ChannelList></ChannelList>
