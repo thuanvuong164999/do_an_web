@@ -14,6 +14,8 @@ class MessList extends React.Component {
     }
 
     componentDidMount() {
+        this.onJoin()
+
         let self = this
 
         axios.get(`${serverEndPoint}/api/room-list/messengers`)
@@ -28,6 +30,12 @@ class MessList extends React.Component {
             .finally(function () {
 
             });
+    }
+
+    onJoin() {
+        socket.on('joinApp', (value) => {
+            console.log(value)
+        })
     }
 
     onClick = (event, id, name) => {
@@ -55,7 +63,7 @@ class MessList extends React.Component {
                         {
                             this.state.room.map((value, index) => {
                                 return (
-                                    <li key={index} onClick={(e) => this.onClick(e, value.id)}>{value.name}</li>
+                                    <li key={index} onClick={(e) => this.onClick(e, value.id, value.name)}>{value.name}</li>
                                 )
                             })
                         }

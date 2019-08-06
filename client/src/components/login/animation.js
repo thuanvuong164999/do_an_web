@@ -42,13 +42,13 @@ password.addEventListener("focus", function () {
 password.addEventListener("blur", function () {
     removeWhistle();
     focus();
-    whistleAudio.pause();
+   // whistleAudio.pause();
 });
 
 async function closeOpenEyes() {
     closeEyes();
     await sleep(100);
-    winkAudio.play();
+    //winkAudio.play();
     openEyes();
 }
 

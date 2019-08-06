@@ -8,7 +8,7 @@ class SendMessage extends React.Component {
         super(props)
 
         this.state = {
-            DaT: '',
+            dat: '',
             receiveMessages: '',
             userName: userName,
             message: '',
@@ -61,10 +61,14 @@ class SendMessage extends React.Component {
                     message: event.target.value,
                     room: this.state.room
                 })
+                socket.emit('typing', {
+                    userName: this.state.userName,
+                    text: '',
+                    room: this.state.room
+                })
             }
             this.setState({
-                message: '',
-                text:''
+                message: ''
             })
         }
     }

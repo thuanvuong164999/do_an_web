@@ -1,17 +1,18 @@
 import React from 'react'
 import './login.scss'
-import { socket } from '../../services/socket-service/socket-service';
-import {Button, ButtonToolbar} from 'react-bootstrap'
+import { socket, userName } from '../../services/socket-service/socket-service';
+import { Button, ButtonToolbar } from 'react-bootstrap'
 
 class LoginPages extends React.Component {
     constructor() {
         super()
         this.state = {
-            flag: 1
+            flag: 1,
+            userName: userName
         }
     }
 
-    componentDidMount () {
+    componentDidMount() {
         const eyes = document.getElementsByClassName("emoji-eye");
         const pupils = document.getElementsByClassName("emoji-pupil");
         const username = document.getElementById("login-form-username");
@@ -21,17 +22,17 @@ class LoginPages extends React.Component {
         const winkAudio = document.getElementById("wink-audio");
         const rotationAudio = document.getElementById("rotation-audio");
         const head = document.getElementById("emoji");
-        console.log(username)        
+        console.log(username)
         username.addEventListener("focus", function () {
             console.log('Hello')
         });
-        
+        this.onClick()
     }
-    componentWillMount(){
-        
+    componentWillMount() {
+
     }
 
-    onClick = event => {
+    onClick = (event, userName) => {
         socket.emit('')
     }
 
@@ -55,7 +56,8 @@ class LoginPages extends React.Component {
                     <input id="login-form-username" className="login-form-control login-form-text" type="text" placeholder="USERNAME"></input>
                     <input id="login-form-password" className="login-form-control login-form-text" type="password"
                         placeholder="PASSWORD"></input>
-                    <a href='/chat'><button className="login-form-control login-form-button" type='submit' value='LOGIN'>LOGIN</button></a>
+                    <Button href='/chat'>Login</Button>
+                    {/* <a href='/chat'><button className="login-form-control login-form-button" type='submit' value='LOGIN'>LOGIN</button></a> */}
                     <a className="login-form-link" href="/chat">LOST YOUR PASSWORD ?</a>
                     {/* <audio id="whistle-audio" src="audio/whistle.wav" loop></audio> */}
                     {/* <audio id="wink-audio" src="audio/wink.wav"></audio> */}
