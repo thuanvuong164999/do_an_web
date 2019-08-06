@@ -1,34 +1,49 @@
 import React from 'react'
 import './head-chatbox.scss'
-import {userName, socket} from '../../services/socket-service/socket-service'
+import { socket } from '../../services/socket-service/socket-service'
 
 class HeadChatBox extends React.Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            roomName:''
+            roomName: 'Web-D002'
         }
     }
 
     componentDidMount() {
-        // this.inRoomName()
+        this.inRoomName()
     }
 
-    // inRoomName(){
-    //     socket.on('join', (value) =>{
-    //         this.setState({
-    //             roomName: value.inRoomName
-    //         })
-    //     })
-    // }
+    inRoomName() {
 
-    render(){
-        return(
+    }
+
+    render() {
+        return (
             <React.Fragment>
                 <div className='headchatbox-bg'>
-                    <div className='name-room'>
-                        <div className='input-name'>{this.state.roomName}</div>
+                    <div className='bg-status-room'>
+                        <div className='name-room'>
+                            <div className='input-name'>{this.state.roomName}</div>
+                        </div>
+                    </div>
+                    <div className='bg-list-icon'>
+                        <div className='icon-info-room'>
+                            <i class="fas fa-info-circle"></i>
+                        </div>
+                        <div className='icon-setting'>
+                            <i class="fas fa-cog"></i>
+                            <div className='dropdown-setting'>
+                                
+                            </div>
+                        </div>
+                        <div className='search-box'>
+                            <input className='search-txt' type='text' name='' placeholder='Search...'></input>
+                            <div className='search-btn' href='#'>
+                                <i class="fas fa-search"></i>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </React.Fragment>

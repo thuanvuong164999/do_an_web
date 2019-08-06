@@ -24,7 +24,7 @@ class MessList extends React.Component {
                 })
             })
             .catch(function (error) {
-                console.log(error);
+                // console.log(error);
             })
             .finally(function () {
 
@@ -56,7 +56,7 @@ class MessList extends React.Component {
                         {
                             this.state.room.map((value, index) => {
                                 return (
-                                    <li key={index} onClick={(e) => this.onClick(e, value.id)}>{value.name}</li>
+                                    <li key={index} onClick={(e) => this.onClick(e, value.id, value.name)}>{value.name}</li>
                                 )
                             })
                         }

@@ -21,7 +21,7 @@ class MessageItem extends React.Component {
                         </div>
                     </div>
                     <div className={'message-item-time ' + this.props.value.fr}>
-                        <div className='created'>{this.props.value.DaT}</div>
+                        <div className='created'>{this.props.value.dat}</div>
                     </div>
                 </div>
             </React.Fragment>

@@ -10,7 +10,7 @@ class ChannelList extends React.Component {
         super(props)
         this.state = {
             room: [],
-            inRoomName: ''
+            roomName: ''
         }
     }
 
@@ -24,7 +24,7 @@ class ChannelList extends React.Component {
                 })
             })
             .catch(function (error) {
-                console.log(error);
+                // console.log(error);
             })
             .finally(function () {
 
@@ -33,10 +33,13 @@ class ChannelList extends React.Component {
     
     onClick = (event, id, name) => {
         console.log('Clicked', id)
+        console.log(name)
         socket.emit('join', {
             userName: userName,
-            room: id,
-            inRoomName: name
+            room: id
+        })
+        socket.emit('join-room', {
+            roomName: name
         })
     }
 

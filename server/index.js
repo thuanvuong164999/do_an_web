@@ -30,7 +30,8 @@ io.on('connection', (socket) => {
         let roomName = generrateRoom(value.room)
         let msg = value.message
         value.message = convert2Icon(msg)
-        value.DaT = moment().format('MMMM Do YYYY, h:mm:ss a')
+        value.dat = moment().format('LTS')
+        value.daday = moment().format('LL')
         let ava = value.userName
         value.avatar = createAvatar(ava)
         io.in(roomName).emit('receive-message', value)
@@ -54,9 +55,9 @@ io.on('connection', (socket) => {
     })
 
     socket.on('typing', (value) => {
-        console.log(value)
-        console.log(`${value.userName} typing.....`)
-        console.log(value.text == '')
+        // console.log(value)
+        // console.log(`${value.userName} typing.....`)
+        // console.log(value.text == '')
         let roomName = generrateRoom(value.room)
 
         if (value.text == '') {
@@ -126,7 +127,7 @@ app.get('/api/room-list/messengers', cors(), (req, res) => {
 
 function save2DB(value, room_id) {
     pool.connect(function (err, client, done) {
-        let sql = `insert into histories (username, datatime, message, id_chanel) values('${value.userName}', '${value.DaT}', '${value.message}', '${room_id}');`
+        let sql = `insert into histories (username, dat, message, id_chanel) values('${value.userName}', '${value.dat}', '${value.message}', '${room_id}')`
         client.query(sql, function (err, result) {
             // console.log(result)
             // console.log(err) 
@@ -138,13 +139,15 @@ function save2DB(value, room_id) {
 function getOldDataFromDB(room_id, userName) {
     pool.connect(function (err, client, done) {
         // console.log(`histories-${userName}`, room_id)
-        let sql = `select * from histories where id_chanel = ${room_id}`
+        let sql = `select * from histories where id_chanel = '${room_id}'`
+        // console.log(sql)
         client.query(sql, function (err ,result) {
-            console.log(result) //underfined
-            // console.log(err)
+            //console.log(result) //underfined thì xem sql
+            // console.log(result.rows)
+            //console.log(err) //ra null là đúng
             done()
-            if (!err) {
-                io.in(roomName).emit(`histories-${userName}`, {
+            if (!err) { //err == null
+                io.in(room_id).emit(`histories-${userName}`, {
                     room: room_id,
                     userName: userName,
                     rows: result.rows
@@ -155,7 +158,7 @@ function getOldDataFromDB(room_id, userName) {
 }
 
 function generrateRoom(id) {
-    return `room ${id}`
+    return `${id}`
 }
 
 function convert2Icon(message) {

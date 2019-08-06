@@ -8,7 +8,8 @@ class SendMessage extends React.Component {
         super(props)
 
         this.state = {
-            DaT: '',
+            dat: '',
+            daday:'',
             receiveMessages: '',
             userName: userName,
             message: '',
@@ -27,7 +28,7 @@ class SendMessage extends React.Component {
 
     onJoined() {
         socket.on('joined', (user) => {
-            console.log('Joined: ', user)
+            // console.log('Joined: ', user)
             this.setMessage(`User ${user.userName} joined ${user.room}`)
             this.setState({
                 room: user.room
@@ -37,7 +38,7 @@ class SendMessage extends React.Component {
 
     onLeaved() {
         socket.on('leaved', (user) => {
-            console.log('Leaved: ', user)
+            // console.log('Leaved: ', user)
             this.setMessage(`User ${user.userName} leaved ${user.room}`)
         })
     }
@@ -61,16 +62,16 @@ class SendMessage extends React.Component {
                     message: event.target.value,
                     room: this.state.room
                 })
+                socket.emit('typing', {
+                    userName: this.state.userName,
+                    text: '',
+                    room: this.state.room
+                })
             }
             this.setState({
-                message: '',
-                text:''
+                message: ''
             })
         }
-    }
-
-    onClick = event => {
-
     }
 
     join() {
@@ -90,15 +91,13 @@ class SendMessage extends React.Component {
         // console.log(event.target.value)
         this.setState({
             message: event.target.value,
-        })
-
-        this.setState({
             changeInput: '<span role="image" aria-label="slightly-smiling-face">&#x1f642</span>'
         })
 
         socket.emit('typing', {
             userName: this.state.userName,
-            text: event.target.value
+            text: event.target.value,
+            room: this.state.room
         })
     }
 
@@ -108,9 +107,13 @@ class SendMessage extends React.Component {
                 <div className='send-message-bg'>
                     <div className='boder-bg'>
                         <div className='input-area'>
-                            <div className='send-enter-icon'></div>
-                            <input placeholder={`Message ${userName}`} onKeyPress={this.onKeyPress} onChange={this.onChange} value={this.state.message}></input>
-                            <div className='emoji-icon'></div>
+                            <div className='plus-foder-icon'>
+                                <i class="fas fa-folder-plus"></i>
+                            </div>
+                            <input className='input-txt' placeholder={`Message ${userName}`} onKeyPress={this.onKeyPress} onChange={this.onChange} value={this.state.message}></input>
+                            <div className='emoji-icon'>
+                                <i class="far fa-smile"></i>
+                            </div>
                         </div>
                     </div>
                 </div>

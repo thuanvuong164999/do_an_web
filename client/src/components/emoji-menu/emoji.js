@@ -17,7 +17,6 @@ class EmojiMenu extends React.Component {
                                 <div className='emoji-input-container'>
                                     <i class="fas fa-search"></i>
                                     <input className='input-emoji-name' type='text' placeholder='Search Emoji' ></input>
-
                                 </div>
                                 <div className='emoji-container-list'>
 

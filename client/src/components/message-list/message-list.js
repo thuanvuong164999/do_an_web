@@ -9,7 +9,8 @@ class MessageList extends React.Component {
         super(props)
 
         this.state = {
-            DaT: '',
+            dat: '',
+            daday:'',
             receiveMessages: '',
             userName: userName,
             message: '',
@@ -34,7 +35,8 @@ class MessageList extends React.Component {
                 user: value.userName,
                 ava: value.avatar,
                 message: value.message,
-                DaT: value.DaT,
+                dat: value.dat,
+                daday:value.daday,
                 fr: value.userName === this.state.userName ? 'fr' : ''
             }
             let items = this.state.messages
@@ -48,7 +50,7 @@ class MessageList extends React.Component {
     receiveHistories() {
         // console.log(`histories-${this.state.userName}`)
         socket.on(`histories-${this.state.userName}`, (values) => {
-            console.log(values)
+            // console.log(values)
             let items = []
             values.rows.map((value, index) => {
                 // console.log(value)
@@ -57,7 +59,8 @@ class MessageList extends React.Component {
                     user: user,
                     avatar: value.username,
                     message: value.message,
-                    DaT: value.DaT,
+                    dat: value.dat,
+                    daday:value.daday,
                     fr: user === this.state.userName ? 'fr' : ''
                 }
                 items.push(item)
