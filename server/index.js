@@ -25,6 +25,20 @@ app.use(cors())
 io.on('connection', (socket) => {
     console.log('Connected')
 
+    socket.on('type-room', (value)=> {
+        // console.log(value)
+        let roomName = generrateRoom(value.room)
+        let ava = value.userName
+        value.avatar = createAvatar(ava)
+        io.in(roomName).emit('type-in-room', value)
+    })
+
+    socket.on('join-room',(value) => {
+        // console.log(value)
+        let roomName = generrateRoom(value.room)
+        io.in(roomName).emit('join-in-room', value)
+    })
+
     socket.on('send-message', (value) => {
         // console.log(value)
         let roomName = generrateRoom(value.room)

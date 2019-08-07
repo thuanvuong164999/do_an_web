@@ -10,7 +10,9 @@ class MessList extends React.Component {
 
         this.state = {
             room: [],
-            inRoomName:''
+            roomName:'',
+            avatar:'',
+            typeroom: 'messenger'
         }
     }
 
@@ -32,12 +34,21 @@ class MessList extends React.Component {
     }
 
     onClick = (event, id, name) => {
-        console.log('Clicked', id)
-
+        // console.log('Clicked', id)
+        // console.log(name)
         socket.emit('join', {
             userName: userName,
-            room: id,
-            inRoomName: name
+            room: id
+        })
+        socket.emit('join-room', {
+            roomName: name,
+            room: id
+        })
+        socket.emit('type-room', {
+            room:id,
+            avatar: this.state.avatar,
+            userName: userName,
+            typeroom: this.state.typeroom
         })
     }
 
