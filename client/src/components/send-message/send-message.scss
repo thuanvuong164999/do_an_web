@@ -26,11 +26,12 @@
                 // background-color: yellow;
                 float: left;
                 height: 100%;
-                width: 80%;
+                width: 90%;
                 border: none;
                 margin-block-start: 0px;
                 margin-block-end: 0px;
                 line-height: 1em;
+                overflow: hidden;
                 &.input-txt:focus{
                     border: none;
                     background: none;

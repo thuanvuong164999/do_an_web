@@ -16,7 +16,7 @@ class HeadRoomList extends React.Component {
             <React.Fragment>
                 <div className='headroomlist-bg'>
                     <div className='ic-bell'>
-                        <i class="fas fa-bell"></i>
+                        <a href='/login'><i class="fas fa-sign-out-alt"></i></a>
                     </div>
                     <div className='title-room'>
                         WEB-D002 

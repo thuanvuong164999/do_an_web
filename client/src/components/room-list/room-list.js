@@ -37,6 +37,9 @@ class RoomList extends React.Component {
     render() {
         return (
             <React.Fragment>
+                {
+                    <Serch></Serch>
+                }
                 <ul className='room-bg'>
                     <li>{
                         <ChannelList></ChannelList>

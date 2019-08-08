@@ -1,9 +1,7 @@
 import React from 'react'
-import './emoji.scss'
 
 class EmojiMenu extends React.Component {
-    
-
+   
     render() {
         return (
             <React.Fragment>
