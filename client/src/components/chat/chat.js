@@ -5,6 +5,7 @@ import SendMessage from '../send-message/send-message';
 import RoomList from '../room-list/room-list';
 import HeadChatBox from '../head-chatbox/head-chatbox';
 import HeadRoomList from '../head-roomlist/head-roomlist';
+import DetailRoom from '../details-conversation/details-conversation'
 
 class Chat extends React.Component {
 
@@ -29,6 +30,9 @@ class Chat extends React.Component {
                         }
                         {
                             <SendMessage></SendMessage>
+                        }
+                        {
+                            <DetailRoom></DetailRoom>
                         }
                     </div>
                 </div>

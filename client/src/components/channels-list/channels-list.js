@@ -12,11 +12,14 @@ class ChannelList extends React.Component {
             room: [],
             roomName: '',
             avatar:'',
-            typeroom: 'channel'
+            typeroom: 'channel',
+            openList: ''
         }
     }
 
     componentDidMount() {
+        this.openList()
+
         let self = this
         
         axios.get(`${serverEndPoint}/api/room-list/chanels`)
@@ -31,6 +34,26 @@ class ChannelList extends React.Component {
             .finally(function () {
 
             });
+    }
+
+    openList(){
+        socket.on('open-list1', (value) => {
+            if(this.state.openList==='') {
+                this.setState({
+                    openList: 'open-list1'
+                })
+            } else {
+                this.setState({
+                    openList: ''
+                })
+            }
+        })
+    }
+
+    onClick1 = (event) => {
+        socket.emit('appear-list1', {
+            openList: ''
+        })
     }
     
     onClick = (event, id, name) => {
@@ -54,21 +77,31 @@ class ChannelList extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <ul className='chanellist-bg'>
-                    <li className='title-chanels'>
-                        <i class="fas fa-plus-circle"></i>
+                <div className='chanellist-bg'>
+                    <div className='title-chanels'>
                         <div className='title'>Chanels</div>
-                    </li>
-                    <li className='list'><ul>
-                        {
-                            this.state.room.map((value, index) => {
-                                return (
-                                    <li key={index} onClick={(e) => this.onClick(e, value.id, value.name)}>{value.name}</li>
-                                )
-                            })
-                        }
-                    </ul></li>
-                </ul>
+                        <div className='icon'>
+                        <i className={"plus-icon fas fa-plus-circle " + this.state.openList} onClick={(e) => this.onClick1(e)}></i>
+                        <i className={"minus-icon fas fa-minus-circle " + this.state.openList} onClick={(e) => this.onClick1(e)}></i>
+                        </div>
+                    </div>
+                    <div className={'list-bg ' + this.state.openList}>
+                        <ul className='list'>
+                            {
+                                this.state.room.map((value, index) => {
+                                    return (
+                                        <li key={index} onClick={(e) => this.onClick(e, value.id, value.name)}>
+                                            <div className='type-room-icon'>
+                                                <i className="fas fa-hashtag"></i>
+                                            </div>
+                                            {value.name}
+                                        </li>
+                                    )
+                                })
+                            }
+                        </ul>
+                    </div>
+                </div>
             </React.Fragment>
         )
     }

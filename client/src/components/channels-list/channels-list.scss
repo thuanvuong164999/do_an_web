@@ -1,63 +1,73 @@
 .chanellist-bg{
     // background-color: whitesmoke;
     width: 100%;
-    list-style-type: none;
-    list-style-position: inside;
-    list-style-image: none;
-    height: auto;
-    .addc {
-        width: 100%;
-        margin-left: 5px;
-        padding: 20px;
-        width: fit-content;
-        line-height: 0.5em;
-        text-align: left;
-        font-size: 1em;
-        color: #95adbe;
-    }
     .title-chanels{
         // background-color: blue;
         width: 90%;
         margin: auto;
         height: 25px;
-        color: #95adbe;
         .title{
             // background-color: wheat;
             height: 100%;
-            width: 80%;
+            width: 90%;
             line-height: 1.5em;
             font-weight: bold;
             float: left;
+            text-align: left;
             font-size: 1.2em;
+            color: #95adbe;
+            &.title:hover{
+                color: white;
+            }
         }
-        .fas {
-            width: fit-content;
-            float: right;
-            margin: 7px;
-        }
-        .title:hover{
-            color: white;
+        .icon{
+            height: 100%;
+            width: 10%;
+            float: left;
+            .plus-icon{
+                visibility: visible;
+                color: #95adbe;
+                margin-top: 7px; 
+                font-size: 16px;
+                &.open-list1{
+                    visibility: hidden !important;
+                    font-size: 0;
+                }
+            }
+            .minus-icon{
+                visibility: hidden;
+                color: #95adbe;
+                float: none;
+                margin-top: 7px;
+                font-size: 0;
+                &.open-list1{
+                    visibility: visible !important;
+                    font-size: 16px;
+                }
+            }
         }
     }
-    .list{
-        ul{
-            // background-color: blue;
+    .list-bg{
+        position: absolute;
+        top: -999999px;
+        left: -99999px;
+        &.open-list1{
+            position: unset;
+            margin: auto;
+            top:unset;
+            left: unset;
+            width: 90%;
+        }
+        .list{
             list-style-type: none;
             list-style-position: inside;
-            list-style-image: url(../../icon/icon.png);
-            margin: 0;
-            padding: 3px;
-            color: #95adbe;
             li{
-                // background-color: blue;
-                height: 20%;
-                width: 100%;
-                line-height: 30px;
-                padding-left: 20px; 
+                color: #95adbe;
                 font-size: 1.2em;
             }
-            li:hover{
-                background-color: #574f7d;
+            .type-room-icon{
+                float: left;
+                margin-right: 5px;
             }
         }
     }

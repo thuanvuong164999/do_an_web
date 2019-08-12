@@ -6,7 +6,7 @@ class Serch extends React.Component {
         return (
             <React.Fragment>
                 <div className='bg-serch'>
-                    <input class="search__input" type="text" placeholder="Search"></input>
+                    <input className="search__input" type="text" placeholder="Search"></input>
                 </div>
             </React.Fragment>
         )

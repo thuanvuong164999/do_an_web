@@ -14,10 +14,12 @@
             float: left;
             line-height: 1em;
             font-size: 30px;
-            transform: translateY(50%)
+            transform: translateY(50%);
+            // margin-left: 10px;
         }
         i{
-            color: whitesmoke;
+            color: blue;
+            visibility: hidden;
         }
         .type1{
             // background-color: burlywood;
@@ -32,6 +34,7 @@
             i{
                 color: black;
                 font-size: 30px;
+                visibility: visible;
             }
         }
         .type2{
@@ -46,6 +49,7 @@
             align-items: center;
             i{
                 color: burlywood;
+                visibility: visible;
             }
         }
     }

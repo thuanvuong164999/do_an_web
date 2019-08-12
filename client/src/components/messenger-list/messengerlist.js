@@ -12,11 +12,16 @@ class MessList extends React.Component {
             room: [],
             roomName:'',
             avatar:'',
-            typeroom: 'messenger'
+            typeroom: 'messenger',
+            openList: '',
+            // online: ''
         }
     }
 
     componentDidMount() {
+        // this.loginJoin()
+        this.openList()
+
         let self = this
 
         axios.get(`${serverEndPoint}/api/room-list/messengers`)
@@ -31,6 +36,32 @@ class MessList extends React.Component {
             .finally(function () {
 
             });
+    }
+
+    // loginJoin() {
+    //     socket.on('login-join', (value) => {
+    //         console.log(value)
+    //     })
+    // }
+
+    openList() {
+        socket.on('open-list2', (value) => {
+            if (this.state.openList === '') {
+                this.setState({
+                    openList: 'open-list2'
+                })
+            } else {
+                this.setState({
+                    openList: ''
+                })
+            }
+        })
+    }
+
+    onClick1 = (event) => {
+        socket.emit('appear-list2', {
+            openList: ''
+        })
     }
 
     onClick = (event, id, name) => {
@@ -55,24 +86,32 @@ class MessList extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <ul className='messengerlist-bg'>
-                    <div className='addb'>
-                        + Add the chanels
-                    </div>
-                    <li className='title-chanels'>
-                        <i class="fas fa-plus-circle"></i>
+                <div className='messengerlist-bg'>
+                    <div className='title-chanels'>
                         <div className='title'>Direct message</div>
-                    </li>
-                    <li className='list'><ul>
-                        {
-                            this.state.room.map((value, index) => {
-                                return (
-                                    <li key={index} onClick={(e) => this.onClick(e, value.id, value.name)}>{value.name}</li>
-                                )
-                            })
-                        }
-                    </ul></li>
-                </ul>
+                        <div className='icon'>
+                        <i className={'plus-icon fas fa-plus-circle ' + this.state.openList} onClick={(e) => this.onClick1(e)}></i>
+                        <i className={'minus-icon fas fa-minus-circle ' + this.state.openList} onClick={(e) => this.onClick1(e)}></i>
+                        </div>
+                    </div>
+                    <div className={'list-bg ' + this.state.openList}>
+                        <ul className='list'>
+                            {
+                                this.state.room.map((value, index) => {
+                                    return (
+                                        <li key={index} onClick={(e) => this.onClick(e, value.id, value.name)}>
+                                            <div className='type-room-icon'>
+                                                <i className="far fa-circle"></i>
+                                                {/* <i class="fas fa-circle"></i> */}
+                                            </div>
+                                            {value.name}
+                                        </li>
+                                    )
+                                })
+                            }
+                        </ul>
+                    </div>
+                </div>
             </React.Fragment>
         )
     }

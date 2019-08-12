@@ -40,14 +40,12 @@ class RoomList extends React.Component {
                 {
                     <Serch></Serch>
                 }
-                <ul className='room-bg'>
-                    <li>{
-                        <ChannelList></ChannelList>
-                    }</li>
-                    <li>{
-                        <MessList></MessList>
-                    }</li>
-                </ul>
+                {
+                    <ChannelList></ChannelList>
+                }
+                {
+                    <MessList></MessList>
+                }
             </React.Fragment>
         )
     }

@@ -3,6 +3,7 @@ import './message-list.scss'
 import MessageItem from '../message-item/message-item';
 import ScrollToBottom from 'react-scroll-to-bottom';
 import { socket, userName } from '../../services/socket-service/socket-service'
+import detailRoom from '../details-conversation/details-conversation';
 
 class MessageList extends React.Component {
     constructor(props) {
@@ -17,7 +18,9 @@ class MessageList extends React.Component {
             avatar: '',
             messages: [],
             typing: false,
-            users_typing: []
+            users_typing: [],
+            openInfo: '',
+            ofInfo: ''
         }
     }
 
@@ -26,6 +29,34 @@ class MessageList extends React.Component {
         this.receiveHistories()
         this.onStopTyping()
         this.onTypingFromMember()
+        this.openInfoRoom()
+        this.ofInfoRoom()
+    }
+
+    ofInfoRoom() {
+        socket.on('off-info', (value) => {
+            this.setState({
+                openInfo:'',
+                ofInfo: value.ofInfo
+            })
+        })
+    }
+
+    openInfoRoom() {
+        socket.on('info-in-room', (value) => {
+            // console.log(value)
+            if(value.openInfo === this.state.openInfo){
+                this.setState({
+                    openInfo: ''
+                })
+            } else {
+                this.setState({
+                    openInfo: 'open-info',
+                    room: value.room,
+                    ofInfo:''
+                })
+            }
+        })
     }
 
     onReceived() {
@@ -125,7 +156,7 @@ class MessageList extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <div className='receive-message-bg'>
+                <div className={'receive-message-bg ' + this.state.openInfo + this.state.ofInfo}>
                     <ScrollToBottom className='message-list-container'>
                         <div className='message-list'>
                             {
@@ -141,6 +172,7 @@ class MessageList extends React.Component {
                         <div>{this.state.users_typing.join(',') + ' typing ...'}</div>
                     </div>
                 </div>
+
             </React.Fragment>
         )
     }

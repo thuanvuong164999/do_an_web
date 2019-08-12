@@ -8,13 +8,15 @@ class HeadChatBox extends React.Component {
 
         this.state = {
             roomName: 'Web-D002',
+            room:'',
             avatar:'',
             typeRoom: [],
             userName:userName,
             typeRoom1: 'channel',
             typeRoom2: 'messenger',
             type1:'',
-            type2:''
+            type2:'',
+            openInfo: 'open-info'
         }
     }
 
@@ -26,7 +28,8 @@ class HeadChatBox extends React.Component {
         socket.on('join-in-room', (value) => {
             // console.log(value)
             this.setState({
-                roomName: value.roomName
+                roomName: value.roomName,
+                room: value.room
             })
         })
         socket.on('type-in-room', (value) => {
@@ -46,28 +49,38 @@ class HeadChatBox extends React.Component {
         })
     }
 
+    onClick = (event) => {
+        socket.emit('info-room', {
+            userName: userName,
+            avatar: this.state.avatar,
+            roomName: this.state.roomName,
+            room: this.state.room,
+            openInfo: this.state.openInfo
+        })
+    }
+
     render() {
         return (
             <React.Fragment>
                 <div className='headchatbox-bg'>
                     <div className='bg-status-room'>
                         {/* <div className={'type-room ' + this.state.type1 + this.state.type2}></div> */}
-                        <span className={this.state.type1}><i class="fas fa-hashtag"></i></span>
-                        <span className={this.state.type2}><i class="fas fa-circle"></i></span>
+                        <span className={this.state.type1}><i className="fas fa-hashtag"></i></span>
+                        <span className={this.state.type2}><i className="fas fa-circle"></i></span>
                         <div className='input-name'>{this.state.roomName}</div>
                     </div>
                     <div className='bg-list-icon'>
                         <div className='info-room'>
-                            <div className='icon-info-room'>
-                                <i class="fas fa-info-circle"></i>
+                            <div className='icon-info-room' onClick={(e) => this.onClick(e)}>
+                                <i className="fas fa-info-circle"></i>
                             </div>
-                            <span class="tooltiptext">View Details</span>
+                            <span className="tooltiptext">View Details</span>
                         </div>
                         <div className='setting'>
                             <div className='icon-setting'>
-                                <i class="fas fa-cog"></i>
+                                <i className="fas fa-cog"></i>
                             </div>
-                            <span class="tooltiptext">Settings</span>
+                            <span className="tooltiptext">Settings</span>
                             {/* <span class="dropdown-setting">
                                 <p>Hello World!</p>
                             </span> */}
@@ -75,7 +88,7 @@ class HeadChatBox extends React.Component {
                         <div className='search-box'>
                             <input className='search-txt' type='text' name='' placeholder='Search...'></input>
                             <div className='search-btn' href='#'>
-                                <i class="fas fa-search"></i>
+                                <i className="fas fa-search"></i>
                             </div>
                         </div>
                     </div>

@@ -22,7 +22,9 @@ class SendMessage extends React.Component {
             text: '',
             open: false,
             changeInput:'',
-            emoji:''
+            emoji:'',
+            openInfo: '',
+            ofInfo: ''
         }
     }
 
@@ -33,8 +35,35 @@ class SendMessage extends React.Component {
         // this.closeEmojiMenu()
         // this.setZindexMenuON()
         // this.setZindexMenuOFF()
+        this.openInfoRoom()
+        this.ofInfoRoom()
     }
 
+    ofInfoRoom() {
+        socket.on('off-info', (value) => {
+            this.setState({
+                openInfo:'',
+                ofInfo: value.ofInfo
+            })
+        })
+    }
+
+    openInfoRoom() {
+        socket.on('info-in-room', (value) => {
+            // console.log(value)
+            if(value.openInfo === this.state.openInfo){
+                this.setState({
+                    openInfo: ''
+                })
+            } else {
+                this.setState({
+                    openInfo: 'open-info',
+                    room: value.room,
+                    ofInfo:''
+                })
+            }
+        })
+    }
     onJoined() {
         socket.on('joined', (user) => {
             // console.log('Joined: ', user)
@@ -146,11 +175,11 @@ class SendMessage extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <div className='send-message-bg'>
+                <div className={'send-message-bg ' + this.state.openInfo + this.state.ofInfo}>
                     <div className='boder-bg'>
                         <div className='input-area'>
                             <div className='plus-foder-icon'>
-                                <i class="fas fa-folder-plus"></i>
+                                <i className="fas fa-folder-plus"></i>
                             </div>
                             <input className='input-txt' placeholder={`Message ${userName}`} onKeyPress={this.onKeyPress} onChange={this.onChange} value={this.state.message}></input>
                             {/* <ReactTextareaAutocomplete
@@ -182,7 +211,7 @@ class SendMessage extends React.Component {
                                 </button>
                             </div> */}
                             <div className='emoji-icon'>
-                                <i class="far fa-smile"></i>
+                                <i className="far fa-smile"></i>
                             </div>
                         </div>
                     </div>

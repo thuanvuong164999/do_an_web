@@ -25,6 +25,26 @@ app.use(cors())
 io.on('connection', (socket) => {
     console.log('Connected')
 
+    socket.on('appear-list1', (value) => {
+        io.emit('open-list1', value)
+    })
+
+    socket.on('appear-list2', (value) => {
+        io.emit('open-list2', value)
+    })
+
+    socket.on('off-info-room', (value) => {
+        // console.log(value)
+        let roomName = generrateRoom(value.room)
+        io.in(roomName).emit('off-info', value)
+    })
+
+    socket.on('info-room', (value) => {
+        // console.log(value)
+        let roomName = generrateRoom(value.room)
+        io.in(roomName).emit('info-in-room', value)
+    })
+
     socket.on('type-room', (value)=> {
         // console.log(value)
         let roomName = generrateRoom(value.room)
