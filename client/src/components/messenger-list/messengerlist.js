@@ -77,7 +77,7 @@ class MessList extends React.Component {
         })
     }
 
-    onClick1 = (event) => {
+    onClick2 = (event) => {
         socket.emit('appear-list', {
             openList: ''
         })
@@ -94,7 +94,7 @@ class MessList extends React.Component {
                     </div>
                 </div>
                 <div className={'list-bg ' + this.state.openList}>
-                    <li className='list'><ul>
+                    <ul className='list'>
                         {
                             this.state.room.map((value, index) => {
                                 return (
@@ -108,7 +108,7 @@ class MessList extends React.Component {
                                 )
                             })
                         }
-                    </ul></li>    
+                    </ul>
                 </div>           
             </React.Fragment>
         )

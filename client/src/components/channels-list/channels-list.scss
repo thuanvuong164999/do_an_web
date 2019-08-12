@@ -33,11 +33,10 @@
         .minus-icon{
             visibility: hidden;
             color: #95adbe;
-            float: right;
             margin-top: 7px;
             &.open-list{
                 visibility: visible !important;
-                float: none !important;
+                float: right !important;
             }
         }
     }

@@ -25,6 +25,16 @@ app.use(cors())
 io.on('connection', (socket) => {
     console.log('Connected')
 
+    // socket.on('login', (value) => {
+    //     // console.log(value)
+    //     io.emit('login-join', value)
+    // })
+
+    socket.on('appear-list', (value) => {
+        // console.log(value)
+        io.emit('open-list', value)
+    })
+
     socket.on('type-room', (value)=> {
         // console.log(value)
         let roomName = generrateRoom(value.room)
