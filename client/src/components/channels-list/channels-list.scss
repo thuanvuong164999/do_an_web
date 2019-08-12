@@ -1,26 +1,12 @@
 .chanellist-bg{
     // background-color: whitesmoke;
     width: 100%;
-    list-style-type: none;
-    list-style-position: inside;
-    list-style-image: none;
     height: auto;
-    .addc {
-        width: 100%;
-        margin-left: 5px;
-        padding: 20px;
-        width: fit-content;
-        line-height: 0.5em;
-        text-align: left;
-        font-size: 1em;
-        color: #95adbe;
-    }
     .title-chanels{
         // background-color: blue;
         width: 90%;
         margin: auto;
         height: 25px;
-        color: #95adbe;
         .title{
             // background-color: wheat;
             height: 100%;
@@ -29,35 +15,52 @@
             font-weight: bold;
             float: left;
             font-size: 1.2em;
+            color: #95adbe;
+            &.title:hover{
+                color: white;
+            }
         }
-        .fas {
-            width: fit-content;
+        .plus-icon{
+            visibility: visible;
+            color: #95adbe;
             float: right;
-            margin: 7px;
+            margin-top: 7px; 
+            &.open-list{
+                visibility: hidden !important;
+                float: none !important;
+            }
         }
-        .title:hover{
-            color: white;
+        .minus-icon{
+            visibility: hidden;
+            color: #95adbe;
+            float: right;
+            margin-top: 7px;
+            &.open-list{
+                visibility: visible !important;
+                float: none !important;
+            }
         }
     }
-    .list{
-        ul{
-            // background-color: blue;
-            list-style-type: none;
-            list-style-position: inside;
-            list-style-image: url(../../icon/icon.png);
-            margin: 0;
-            padding: 3px;
-            color: #95adbe;
+    .list-bg{
+        // background-color: #95adbe;
+        width: 90%;
+        margin: auto;
+        visibility: hidden;
+        height: 0;
+        &.open-list{
+            visibility: visible !important;
+            height: auto !important;
+        }
+        .list{
             li{
-                // background-color: blue;
-                height: 20%;
-                width: 100%;
-                line-height: 30px;
-                padding-left: 20px; 
+                list-style-type: none;
+                list-style-position: inside;
+                color: #95adbe;
                 font-size: 1.2em;
             }
-            li:hover{
-                background-color: #574f7d;
+            .type-room-icon{
+                float: left;
+                margin-right: 5px;
             }
         }
     }

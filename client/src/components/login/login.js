@@ -1,6 +1,6 @@
 import React from 'react'
 import './login.scss'
-import { socket } from '../../services/socket-service/socket-service';
+import { socket,userName } from '../../services/socket-service/socket-service';
 import {Button, ButtonToolbar} from 'react-bootstrap'
 
 
@@ -8,6 +8,8 @@ class LoginPages extends React.Component {
     constructor() {
         super()
         this.state = {
+            userName: userName,
+            // userId: userId
         }
     }
 
@@ -15,9 +17,12 @@ class LoginPages extends React.Component {
         
     }
 
-    onClick = event => {
-        socket.emit('')
-    }
+    // onClick = event => {
+    //     socket.emit('login', {
+    //         userName: this.state.userName,
+    //         userId: this.state.userId
+    //     })
+    // }
 
     render() {
         return (
@@ -40,7 +45,7 @@ class LoginPages extends React.Component {
                     <input id="login-form-password" className="login-form-control login-form-text" type="password"
                         placeholder="PASSWORD"></input>
                     <ButtonToolbar>
-                        <Button href='/chat' type='button' variant="primary" >LOGIN</Button>
+                        <Button href='/chat' type='button' variant="primary" onClick={(e) => this.onClick(e)}>LOGIN</Button>
                     </ButtonToolbar>
                     {/* <a href='/chat'><button className="login-form-control login-form-button" type='submit' value='LOGIN'>LOGIN</button></a> */}
                     <a className="login-form-link" href="/chat">LOST YOUR PASSWORD ?</a>
