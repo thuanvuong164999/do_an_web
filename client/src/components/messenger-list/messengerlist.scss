@@ -6,6 +6,7 @@
         width: 90%;
         margin: auto;
         height: 25px;
+        margin-top: 20px;
         .title{
             // background-color: wheat;
             height: 100%;
@@ -28,7 +29,7 @@
                 visibility: visible;
                 color: #95adbe;
                 margin-top: 7px; 
-                font-size: 16px;
+                font-size: 13px;
                 &.open-list2{
                     font-size: 0 !important;
                     visibility: hidden !important;
@@ -40,7 +41,7 @@
                 font-size: 0;
                 margin-top: 7px;
                 &.open-list2{
-                    font-size: 16px !important;
+                    font-size: 13px !important;
                     visibility: visible !important;
                 }
             }
@@ -60,9 +61,14 @@
         .list{
             list-style-type: none;
             list-style-position: inside;
+            margin-top: 10px;
             li{
                 color: #95adbe;
                 font-size: 1.2em;
+                margin-top: 5px;
+                &:hover {
+                    background-color: #574f7d;
+                }
             }
             .type-room-icon{
                 float: left;

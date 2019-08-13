@@ -1,6 +1,7 @@
 import React from 'react'
 import './channels-list.scss'
 import { serverEndPoint, socket, userName } from '../../services/socket-service/socket-service'
+import Overlay from 'react-bootstrap/Overlay'
 
 const axios = require('axios')
 
@@ -11,7 +12,7 @@ class ChannelList extends React.Component {
         this.state = {
             room: [],
             roomName: '',
-            avatar:'',
+            avatar: '',
             typeroom: 'channel',
             openList: ''
         }
@@ -21,7 +22,7 @@ class ChannelList extends React.Component {
         this.openList()
 
         let self = this
-        
+
         axios.get(`${serverEndPoint}/api/room-list/chanels`)
             .then(function (response) {
                 self.setState({
@@ -36,9 +37,9 @@ class ChannelList extends React.Component {
             });
     }
 
-    openList(){
+    openList() {
         socket.on('open-list1', (value) => {
-            if(this.state.openList==='') {
+            if (this.state.openList === '') {
                 this.setState({
                     openList: 'open-list1'
                 })
@@ -55,7 +56,7 @@ class ChannelList extends React.Component {
             openList: ''
         })
     }
-    
+
     onClick = (event, id, name) => {
         // console.log('Clicked', id)
         socket.emit('join', {
@@ -67,7 +68,7 @@ class ChannelList extends React.Component {
             room: id
         })
         socket.emit('type-room', {
-            room:id,
+            room: id,
             avatar: this.state.avatar,
             userName: userName,
             typeroom: this.state.typeroom
@@ -81,8 +82,8 @@ class ChannelList extends React.Component {
                     <div className='title-chanels'>
                         <div className='title'>Chanels</div>
                         <div className='icon'>
-                        <i className={"plus-icon fas fa-plus-circle " + this.state.openList} onClick={(e) => this.onClick1(e)}></i>
-                        <i className={"minus-icon fas fa-minus-circle " + this.state.openList} onClick={(e) => this.onClick1(e)}></i>
+                            <i className={"plus-icon fas fa-plus-circle " + this.state.openList} onClick={(e) => this.onClick1(e)}></i>
+                            <i className={"minus-icon fas fa-minus-circle " + this.state.openList} onClick={(e) => this.onClick1(e)}></i>
                         </div>
                     </div>
                     <div className={'list-bg ' + this.state.openList}>
