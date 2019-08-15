@@ -1,0 +1,80 @@
+.chanellist-bg{
+    // background-color: whitesmoke;
+    width: 100%;
+    .title-chanels{
+        // background-color: blue;
+        width: 90%;
+        margin: auto;
+        height: 25px;
+        margin-top: 20px;
+        .title{
+            // background-color: wheat;
+            height: 100%;
+            width: 90%;
+            line-height: 1.5em;
+            font-weight: bold;
+            float: left;
+            text-align: left;
+            font-size: 1.2em;
+            color: #95adbe;
+            &.title:hover{
+                color: white;
+            }
+        }
+        .icon{
+            height: 100%;
+            width: 10%;
+            float: left;
+            .plus-icon{
+                visibility: visible;
+                color: #95adbe;
+                margin-top: 7px; 
+                font-size: 13px;
+                &.open-list1{
+                    visibility: hidden !important;
+                    font-size: 0;
+                }
+            }
+            .minus-icon{
+                visibility: hidden;
+                color: #95adbe;
+                float: none;
+                margin-top: 7px;
+                font-size: 0;
+                &.open-list1{
+                    visibility: visible !important;
+                    font-size: 13px;
+                }
+            }
+        }
+    }
+    .list-bg{
+        position: absolute;
+        top: -999999px;
+        left: -99999px;
+        &.open-list1{
+            position: unset;
+            margin: auto;
+            top:unset;
+            left: unset;
+            width: 90%;
+        }
+        .list{
+            list-style-type: none;
+            list-style-position: inside;
+            margin-top: 10px;
+            li{
+                color: #95adbe;
+                font-size: 1.2em;
+                margin-top: 5px;
+                &:hover {
+                    background-color: #574f7d;
+                }
+            }
+            .type-room-icon{
+                float: left;
+                margin-right: 5px;
+            }
+        }
+    }
+}

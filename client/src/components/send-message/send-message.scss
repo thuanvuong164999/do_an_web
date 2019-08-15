@@ -1,0 +1,81 @@
+.send-message-bg{
+    // background-color: blue;
+    background-color: whitesmoke;
+    width: 100%;
+    height: 10%;
+    padding-top: 1%;
+    &.open-info{
+        width: 70% !important;
+    }
+    &.off-info-room{
+        width: 100% !important;
+    }
+    .boder-bg{
+        background-color: white;
+        width: 95%;
+        height: 72%;
+        margin: 0px auto 0px auto;
+        border-radius: 5px;
+        border: 1px solid black;
+        .input-area{
+            // background-color: blue;
+            width: 100%;
+            height: 100%;
+            .send-enter-icon{
+                background-color: blue;
+                border-radius: 50%;
+                width: 30px;
+                height: 30px;
+                float: left;
+            }
+            .input-txt{
+                // background-color: yellow;
+                display: inline-block;
+                word-wrap: break-word;
+                max-inline-size: 940px;
+                // float: left;
+                height: 100%;
+                width: 90%;
+                border: none;
+                margin: 0;
+                line-height: 1em;
+                overflow: hidden;
+                &.input-txt:focus{
+                    border: none;
+                    background: none;
+                    outline: none;
+                }
+            }
+
+            .emoji-icon{
+                background-color: white;
+                float: right;
+                height: 32px;
+                width: 32px;
+                border-radius: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                transform: translateY(10%);
+                // margin-right: 5px;
+                &.emoji-icon:hover{
+                    color: blueviolet;
+                }
+            }
+            .plus-foder-icon{
+                background-color: white;
+                float: left;
+                height: 32px;
+                width: 32px;
+                border-radius: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                transform: translateY(10%);
+                &.plus-foder-icon:hover{
+                    color: blueviolet;
+                }
+            }
+        }
+    }
+}

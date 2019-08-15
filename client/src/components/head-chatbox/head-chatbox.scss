@@ -1,0 +1,153 @@
+.headchatbox-bg{
+    background-color: whitesmoke;
+    width: 100%;
+    height: 10%;
+    .bg-status-room{
+        // background-color: blue;
+        width: auto;
+        height: 100%;
+        float: left;
+        .bg-icon-type{
+            height: 32px;
+            width: 32px;
+            float: left;
+            border-radius: 50%;
+            transform: translateY(50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            .fa-hashtag{
+                font-size: 30px;
+                color: black;
+                &.type2{
+                    font-size: 0px !important;
+                }
+            }
+            .fa-circle{
+                font-size: 0px;
+                color: burlywood;
+                &.type2{
+                    font-size: 18px !important;
+                }
+            }
+        }
+        .input-name{
+            // background-color: blue;
+            width: auto;
+            height: 50%;
+            float: left;
+            line-height: 1em;
+            font-size: 30px;
+            transform: translateY(50%);
+            // margin-left: 10px;
+        }
+    }
+    .bg-list-icon{
+        // background-color: blue;
+        width: auto;
+        height: 100%;
+        float: right;
+        padding-right: 22px; 
+        .setting{
+            position: relative;
+            display: block;
+            float: right;
+            .icon-setting{
+                background-color: white;
+                z-index: 0;
+                float: right;
+                height: 32px;
+                width: 32px;
+                border-radius: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                transform: translateY(50%);
+                margin-right: 5px;
+                &.icon-setting:hover{
+                    color: blueviolet;
+                }
+            }
+            .dropdown-setting{
+                visibility: hidden;
+            }
+            &.setting:hover > .dropdown-setting {
+                visibility: visible;
+            }
+            .tooltiptext{
+                    visibility: hidden;
+                    width: 120px;
+                    background-color: black;
+                    color: #fff;
+                    text-align: center;
+                    border-radius: 6px;
+                    padding: 5px 0;
+                    position: absolute;
+                    z-index: 1;
+                    top: 175%;
+                    left: -50%; 
+                    margin-left: -60px;
+                &.tooltiptext::after {
+                    content: " ";
+                    position: absolute;
+                    bottom: 100%;
+                    left: 80%;
+                    margin-left: -5px;
+                    border-width: 5px;
+                    border-style: solid;
+                    border-color: transparent transparent black transparent;
+                }
+            }
+            &.setting:hover > .tooltiptext{
+                    visibility: visible;
+            }
+        }
+        .search-box{
+            visibility: hidden;
+            &.appear-search{
+                visibility: visible !important;
+                background: white;
+                float: left;
+                height: 32px;
+                border-radius: 16px;
+                transform: translateY(50%); 
+                margin-right: 5px;
+                .search-txt{
+                    border: none;
+                    background: none;
+                    outline: none;
+                    float: left;
+                    padding: 0;
+                    color: black;
+                    font: 14px sans-serif;
+                    transition: 0.4s;
+                    line-height: 1em;
+                    width: 0;
+                    margin-left: 0px;
+                    height: 100%;
+                }
+                &.search-box:hover > .search-txt{
+                    margin-left: 8px;
+                    transition: width 0.25s;
+                    width: 150px;
+                }
+                &.search-box:hover > .search-btn{
+                    color: blueviolet;
+                }
+                .search-btn{
+                    // background: blue;
+                    float: right;
+                    margin: 0;
+                    // margin:5px 0px 5px 0px;
+                    width: 32px;
+                    height: 32px;
+                    border-radius: 50%;
+                    background: white;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+            }
+        }
+    }
+}
