@@ -8,11 +8,11 @@
     }
     .message-item-avatar{
         float: left;
+        width: 50px;
         &.fr {
             float: right;
             //margin-right: 10px;
         }
-        width: 50px;
         .avatar-img{
             border-radius: 50%;
             width: 50px;
@@ -28,7 +28,8 @@
         color: #000;
         .content{
             background-color: #f2f4d1;
-            border-radius: 0px 10px 10px 10px;
+            // border-radius: 0px 10px 10px 10px;
+            border-radius: 10px; 
             padding: 5px 8px 5px 8px;
             display: table;
             float: left;
@@ -45,6 +46,15 @@
                 width: 100%;
                 word-wrap: break-word;
             }
+            &.content::after {
+                content: " ";
+                position: absolute;
+                top: 25px;
+                left: 55px;
+                border-width: 5px;
+                border-style: solid;
+                border-color: transparent #f2f4d1 transparent transparent;
+            }
         }
         &.fr {
             float:right;
@@ -53,7 +63,8 @@
             text-align: right;
             .content {
                 background-color: #aee7e8;
-                border-radius: 10px 0px 10px 10px;
+                // border-radius: 10px 0px 10px 10px;
+                border-radius: 10px;
                 padding: 5px 8px 5px 8px;
                 float: right;
                 .chat-content{
@@ -63,19 +74,48 @@
                     word-wrap: break-word;
                     //padding-right: 20px;
                 }
+                &.content::after {
+                    content: " ";
+                    position: absolute;
+                    top: 25px;
+                    left: unset;
+                    right: 55px;
+                    border-width: 5px;
+                    border-style: solid;
+                    border-color: transparent transparent transparent #aee7e8;
+                }
             }
         }
-        .created{
-            font-size: 14px;
-            color: #acacac;
-            float: left;
-            margin-left: 5px;
-        }
+        // .created{
+        //     font-size: 14px;
+        //     color: #acacac;
+        //     float: left;
+        //     margin-left: 5px;
+        // }
+        // &.fr{
+        //     .created{
+        //         float: right;
+        //         margin-right: 5px;
+        //     }
+        // }
+    }
+    .created{
+        visibility: hidden;
+        height: 0;
+        width: 100%;
+        // text-align: left;
+        font-size: 12px;
+        color: #acacac;
+        float: left;
+        padding-left: 60px;
         &.fr{
-            .created{
-                float: right;
-                margin-right: 5px;
-            }
+            text-align: right;
+            float: right;
+            padding-right: 60px; 
         }
+    }
+    &.message-item:hover > .created{
+        visibility: visible;
+        height: unset;
     }
 }

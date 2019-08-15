@@ -8,6 +8,9 @@ class MessageItem extends React.Component {
         return (
             <React.Fragment>
                 <div className='message-item'>
+                    {/* <div className={'created ' + this.props.value.fr}>
+                        {this.props.value.dat}
+                    </div> */}
                     <div className={'message-item-avatar ' + this.props.value.fr}>
                         <div className='avatar-img'>
                             <Avatar name={this.props.value.user} size="50" maxInitials={2} round={true} />
@@ -19,12 +22,12 @@ class MessageItem extends React.Component {
                             <br></br>
                             <span className='chat-content'>{this.props.value.message}</span>
                         </div>
-                        <div className={'created ' + this.props.value.fr}>
+                        {/* <div className={'created ' + this.props.value.fr}>
                             {this.props.value.dat}
-                        </div>
-                        {/* <div className={'message-item-time ' + this.props.value.fr}>
-                            <div className='created'>{this.props.value.dat}</div>
                         </div> */}
+                    </div>
+                    <div className={'created ' + this.props.value.fr}>
+                        {this.props.value.dat}
                     </div>
                 </div>
             </React.Fragment>

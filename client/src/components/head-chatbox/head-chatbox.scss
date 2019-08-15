@@ -68,12 +68,6 @@
                     color: blueviolet;
                 }
             }
-            .dropdown-setting{
-                visibility: hidden;
-            }
-            &.setting:hover > .dropdown-setting {
-                visibility: visible;
-            }
             .tooltiptext{
                     visibility: hidden;
                     width: 120px;
