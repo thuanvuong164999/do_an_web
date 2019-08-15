@@ -13,7 +13,7 @@ class Serch extends React.Component {
                             className='search-box'
                         />
                         <InputGroup.Append>
-                            <Button variant="outline-secondary"><i class="fas fa-search"></i></Button>
+                            <Button variant="outline-secondary" className='ic-search'><i class="fas fa-search"></i></Button>
                         </InputGroup.Append>
                     </InputGroup>
                 </div>

@@ -30,6 +30,9 @@
                 color: #95adbe;
                 margin-top: 7px; 
                 font-size: 13px;
+                &:hover {
+                    color: white;
+                }
                 &.open-list1{
                     visibility: hidden !important;
                     font-size: 0;
@@ -41,6 +44,9 @@
                 float: none;
                 margin-top: 7px;
                 font-size: 0;
+                &:hover {
+                    color: white;
+                }
                 &.open-list1{
                     visibility: visible !important;
                     font-size: 13px;
