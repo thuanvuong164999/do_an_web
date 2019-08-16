@@ -65,16 +65,17 @@ io.on('connection', (socket) => {
         let roomName = generrateRoom(value.room)
         socket.join(roomName)
         io.in(roomName).emit('joined', value)
+        io.in(roomName).emit('typing-stop', value)
         io.in(roomName).emit('join-in-room', value)
         getOldDataFromDB(roomName, value.userName)
     })
 
-    socket.on('leave', (value) => {
-        // console.log(value)
-        console.log(`${value.userName} leaved`)
-        io.in(roomName).emit('leaved', value)
-        socket.leave(roomName)
-    })
+    // socket.on('leave', (value) => {
+    //     // console.log(value)
+    //     console.log(`${value.userName} leaved`)
+    //     io.in(roomName).emit('leaved', value)
+    //     socket.leave(roomName)
+    // })
 
     socket.on('typing', (value) => {
         // console.log(value)

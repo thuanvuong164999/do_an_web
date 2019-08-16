@@ -93,6 +93,12 @@ class MessageList extends React.Component {
                 users_typing: listUsers
             })
         })
+        socket.on('typing-stop', (value) => {
+            this.setState({
+                typing: false,
+                users_typing: []
+            })
+        })
     }
 
     onTypingFromMember() {

@@ -63,6 +63,7 @@ class ChannelList extends React.Component {
         socket.emit('join', {
             userName: userName,
             roomName: name,
+            avatar: this.state.avatar,
             room: id
         })
         socket.emit('type-room', {

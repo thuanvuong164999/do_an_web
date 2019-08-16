@@ -11,7 +11,7 @@
             height: 32px;
             width: 32px;
             float: left;
-            border-radius: 50%;
+            border-radius: 8px;
             transform: translateY(50%);
             display: flex;
             align-items: center;
@@ -58,7 +58,7 @@
                 float: right;
                 height: 32px;
                 width: 32px;
-                border-radius: 50%;
+                border-radius: 8px;
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -103,7 +103,7 @@
                 background: white;
                 float: left;
                 height: 32px;
-                border-radius: 16px;
+                border-radius: 8px;
                 transform: translateY(50%); 
                 margin-right: 5px;
                 .search-txt{
@@ -135,7 +135,7 @@
                     // margin:5px 0px 5px 0px;
                     width: 32px;
                     height: 32px;
-                    border-radius: 50%;
+                    border-radius: 8px;
                     background: white;
                     display: flex;
                     justify-content: center;

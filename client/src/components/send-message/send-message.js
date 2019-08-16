@@ -21,7 +21,6 @@ class SendMessage extends React.Component {
             changeInput: '',
             text: '',
             open: false,
-            changeInput:'',
             emoji:''
         }
     }
@@ -31,7 +30,7 @@ class SendMessage extends React.Component {
         this.onLeaved()
     }
 
-    onJoined() {
+    onJoined() { //kiểm tra lại, suy nghĩ áp dụng thông báo người tham gia room
         socket.on('joined', (user) => {
             // console.log('Joined: ', user)
             this.setMessage(`User ${user.userName} joined ${user.room}`)
@@ -41,7 +40,7 @@ class SendMessage extends React.Component {
         })
     }
 
-    onLeaved() {
+    onLeaved() { //kiểm tra lại, suy nghĩ thông báo người thoát room
         socket.on('leaved', (user) => {
             // console.log('Leaved: ', user)
             this.setMessage(`User ${user.userName} leaved ${user.room}`)
@@ -79,12 +78,12 @@ class SendMessage extends React.Component {
         }
     }
 
-    join() {
-        socket.emit('join', {
-            userName: this.state.userName,
-            avatar: this.state.avatar
-        })
-    }
+    // join() {
+    //     socket.emit('join', {
+    //         userName: this.state.userName,
+    //         avatar: this.state.avatar
+    //     })
+    // }
 
     leave() {
         socket.emit('leave', {
@@ -95,8 +94,7 @@ class SendMessage extends React.Component {
     onChange = event => {
         // console.log(event.target.value)
         this.setState({
-            message: event.target.value,
-            changeInput: '<span role="image" aria-label="slightly-smiling-face">&#x1f642</span>'
+            message: event.target.value
         })
 
         socket.emit('typing', {
