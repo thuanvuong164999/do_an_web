@@ -1,7 +1,7 @@
 import React from 'react'
 import './channels-list.scss'
 import { serverEndPoint, socket, userName } from '../../services/socket-service/socket-service'
-import Overlay from 'react-bootstrap/Overlay'
+import {Tooltip, ButtonToolbar, OverlayTrigger} from 'react-bootstrap'
 
 const axios = require('axios')
 
@@ -78,7 +78,21 @@ class ChannelList extends React.Component {
             <React.Fragment>
                 <div className='chanellist-bg'>
                     <div className='title-chanels'>
-                        <div className='title'>Chanels</div>
+                    <ButtonToolbar className='title'>
+                        {['top'].map(placement => (
+                            <OverlayTrigger
+                                key={placement}
+                                placement={placement}
+                                overlay={
+                                    <Tooltip id={`tooltip-${placement}`}>
+                                        <strong>Browse all channels</strong>
+                                    </Tooltip>
+                                }
+                            >
+                                <div>Chanels</div>
+                            </OverlayTrigger>
+                        ))}
+                    </ButtonToolbar>
                         <div className='icon'>
                             <i className={"plus-icon fas fa-plus-circle " + this.state.openList} onClick={(e) => this.onClick1(e)}></i>
                             <i className={"minus-icon fas fa-minus-circle " + this.state.openList} onClick={(e) => this.onClick1(e)}></i>

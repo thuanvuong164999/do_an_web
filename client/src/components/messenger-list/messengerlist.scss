@@ -1,12 +1,13 @@
 .messengerlist-bg{
     // background-color: whitesmoke;
     width: 100%;
+    margin-top: 40px;
     .title-chanels{
         // background-color: blue;
         width: 90%;
         margin: auto;
         height: 25px;
-        margin-top: 20px;
+        // margin-top: 20px;
         .title{
             // background-color: wheat;
             height: 100%;
@@ -82,6 +83,8 @@
             .type-room-icon{
                 float: left;
                 margin-right: 5px;
+                font-size: 13px;
+                margin-top: 5px; 
             }
         }
     }

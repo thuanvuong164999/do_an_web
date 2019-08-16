@@ -1,6 +1,8 @@
 import React from 'react'
 import './messengerlist.scss'
 import { serverEndPoint, socket, userName } from '../../services/socket-service/socket-service'
+import {Tooltip, ButtonToolbar, OverlayTrigger} from 'react-bootstrap'
+
 
 const axios = require('axios');
 
@@ -86,7 +88,22 @@ class MessList extends React.Component {
             <React.Fragment>
                 <div className='messengerlist-bg'>
                     <div className='title-chanels'>
-                        <div className='title'>Direct message</div>
+                    <ButtonToolbar className='title'>
+                        {['top'].map(placement => (
+                            <OverlayTrigger
+                                key={placement}
+                                placement={placement}
+                                overlay={
+                                    <Tooltip id={`tooltip-${placement}`}>
+                                        <strong>Open a dirct message</strong>
+                                    </Tooltip>
+                                }
+                            >
+                                <div>Direct message</div>
+                            </OverlayTrigger>
+                        ))}
+                    </ButtonToolbar>
+                        
                         <div className='icon'>
                         <i className={'plus-icon fas fa-plus-circle ' + this.state.openList} onClick={(e) => this.onClick1(e)}></i>
                         <i className={'minus-icon fas fa-minus-circle ' + this.state.openList} onClick={(e) => this.onClick1(e)}></i>

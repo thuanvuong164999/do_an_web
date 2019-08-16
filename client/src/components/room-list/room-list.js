@@ -41,14 +41,14 @@ class RoomList extends React.Component {
                 {
                     <Serch></Serch>
                 }
-                <ScrollToBottom>
+                {/* <ScrollToBottom> */}
                     {
                         <ChannelList></ChannelList>
                     }
                     {
                         <MessList></MessList>
                     }
-                </ScrollToBottom>
+                {/* </ScrollToBottom> */}
             </React.Fragment>
         )
     }
