@@ -16,7 +16,7 @@ class HeadRoomList extends React.Component {
             <React.Fragment>
                 <div className='headroomlist-bg'>
                     <ButtonToolbar className='ic-bell'>
-                        {['top'].map(placement => (
+                        {['bottom'].map(placement => (
                             <OverlayTrigger
                                 key={placement}
                                 placement={placement}

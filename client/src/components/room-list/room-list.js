@@ -4,6 +4,7 @@ import { serverEndPoint, socket, userName } from '../../services/socket-service/
 import ChannelList from '../channels-list/channels-list';
 import MessList from '../messenger-list/messengerlist';
 import Serch from '../serch/serch'
+import ScrollToBottom from 'react-scroll-to-bottom';
 
 const axios = require('axios');
 
@@ -40,12 +41,14 @@ class RoomList extends React.Component {
                 {
                     <Serch></Serch>
                 }
-                {
-                    <ChannelList></ChannelList>
-                }
-                {
-                    <MessList></MessList>
-                }
+                <ScrollToBottom>
+                    {
+                        <ChannelList></ChannelList>
+                    }
+                    {
+                        <MessList></MessList>
+                    }
+                </ScrollToBottom>
             </React.Fragment>
         )
     }
