@@ -26,11 +26,11 @@ io.on('connection', (socket) => {
     console.log('Connected')
 
     socket.on('appear-list1', (value) => {
-        io.emit('open-list1', value)
+        io.emit(`open-list1-${value.userName}`, value)
     })
 
     socket.on('appear-list2', (value) => {
-        io.emit('open-list2', value)
+        io.emit(`open-list2-${value.userName}`, value)
     })
 
     socket.on('type-room', (value)=> {

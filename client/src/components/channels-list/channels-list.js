@@ -38,7 +38,7 @@ class ChannelList extends React.Component {
     }
 
     openList() {
-        socket.on('open-list1', (value) => {
+        socket.on(`open-list1-${userName}`, (value) => {
             if (this.state.openList === '') {
                 this.setState({
                     openList: 'open-list1'
@@ -53,7 +53,8 @@ class ChannelList extends React.Component {
 
     onClick1 = (event) => {
         socket.emit('appear-list1', {
-            openList: ''
+            openList: '',
+            userName: userName
         })
     }
 

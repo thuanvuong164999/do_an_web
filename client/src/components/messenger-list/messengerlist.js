@@ -45,7 +45,7 @@ class MessList extends React.Component {
     // }
 
     openList() {
-        socket.on('open-list2', (value) => {
+        socket.on(`open-list2-${userName}`, (value) => {
             if (this.state.openList === '') {
                 this.setState({
                     openList: 'open-list2'
@@ -60,7 +60,8 @@ class MessList extends React.Component {
 
     onClick1 = (event) => {
         socket.emit('appear-list2', {
-            openList: ''
+            openList: '',
+            userName: userName
         })
     }
 
