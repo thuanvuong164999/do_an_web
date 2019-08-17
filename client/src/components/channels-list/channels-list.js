@@ -77,7 +77,7 @@ class ChannelList extends React.Component {
         return (
             <React.Fragment>
                 <div className='chanellist-bg'>
-                    <div className='title-chanels'>
+                    <div className='title-chanels' onClick={(e) => this.onClick1(e)}>
                     <ButtonToolbar className='title'>
                         {['top'].map(placement => (
                             <OverlayTrigger
@@ -94,8 +94,8 @@ class ChannelList extends React.Component {
                         ))}
                     </ButtonToolbar>
                         <div className='icon'>
-                            <i className={"plus-icon fas fa-plus-circle " + this.state.openList} onClick={(e) => this.onClick1(e)}></i>
-                            <i className={"minus-icon fas fa-minus-circle " + this.state.openList} onClick={(e) => this.onClick1(e)}></i>
+                            <i className={"plus-icon fas fa-plus-circle " + this.state.openList} ></i>
+                            <i className={"minus-icon fas fa-minus-circle " + this.state.openList}></i>
                         </div>
                     </div>
                     <div className={'list-bg ' + this.state.openList}>
