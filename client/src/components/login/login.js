@@ -9,11 +9,40 @@ class LoginPages extends React.Component {
         super()
         this.state = {
             userName: '',
-            password: ''
+            password: '',
+            infoUser: []
         }
     }
 
     componentDidMount() {
+        this.getUser()
+        this.noInfoUser()
+    }
+
+    noInfoUser() {
+        socket.on('no-username',(value) => {
+            console.log('bạn đã nhập thiếu thông tin, xin kiểm tra lại')
+        })
+    }
+
+    getUser(){
+        socket.on('user-login',(values) => {
+            // console.log(values)
+            let items = []
+            values.rows.map((value, index) =>{
+                let item = {
+                    userName: value.username,
+                    password: value.password,
+                    userId: value.id
+                }
+                items.push(item)
+            })
+            // console.log(items)
+            this.setState({
+                infoUser: items
+            })
+            this.checkUser()
+        })
     }
 
     onUserName = event => {
@@ -28,11 +57,15 @@ class LoginPages extends React.Component {
         })
     }
 
-    onClick = event => {
+    onClick = (event) => {
         socket.emit('user-pass', {
             userName: this.state.userName,
             password: this.state.password
         })
+    }
+
+    checkUser() {
+        console.log('kiểm tra')
     }
 
     render() {
@@ -56,7 +89,7 @@ class LoginPages extends React.Component {
                     <input id="login-form-password" className="login-form-control login-form-text" type="password" placeholder="PASSWORD" onChange={this.onPassWord} value={this.state.password}></input>
                     <ButtonToolbar>
                         <Button href='/chat' type='button' variant="primary" onClick={this.onClick}>LOGIN</Button>
-                        {/* <Button type='button' variant="primary" onClick={this.onClick}>LOGIN</Button> */}
+                        {/* <Button type='button' variant="primary" onClick={(e) => this.onClick(e)}>LOGIN</Button> */}
                     </ButtonToolbar>
                     {/* <a href='/chat'><button className="login-form-control login-form-button" type='submit' value='LOGIN'>LOGIN</button></a> */}
                     <a className="login-form-link" href="/chat">LOST YOUR PASSWORD ?</a>
