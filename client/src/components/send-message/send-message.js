@@ -95,8 +95,7 @@ class SendMessage extends React.Component {
     onChange = event => {
         // console.log(event.target.value)
         this.setState({
-            message: event.target.value,
-            changeInput: '<span role="image" aria-label="slightly-smiling-face">&#x1f642</span>'
+            message: event.target.value
         })
 
         socket.emit('typing', {

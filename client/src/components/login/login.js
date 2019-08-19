@@ -8,11 +8,24 @@ class LoginPages extends React.Component {
     constructor() {
         super()
         this.state = {
+            userName: '',
+            password: ''
         }
     }
 
     componentDidMount() {
-        
+    }
+
+    onUserName = event => {
+        this.setState({
+            userName: event.target.value
+        })
+    }
+
+    onPassWord = event => {
+        this.setState({
+            password: event.target.value
+        })
     }
 
     onClick = event => {
@@ -36,9 +49,8 @@ class LoginPages extends React.Component {
                             </div>
                         </div>
                     </div>
-                    <input id="login-form-username" className="login-form-control login-form-text" type="text" placeholder="USERNAME"></input>
-                    <input id="login-form-password" className="login-form-control login-form-text" type="password"
-                        placeholder="PASSWORD"></input>
+                    <input id="login-form-username" className="login-form-control login-form-text" type="text" placeholder="USERNAME" onChange={this.onUserName} value={this.state.userName}></input>
+                    <input id="login-form-password" className="login-form-control login-form-text" type="password" placeholder="PASSWORD" onChange={this.onPassWord} value={this.state.password}></input>
                     <ButtonToolbar>
                         <Button href='/chat' type='button' variant="primary" >LOGIN</Button>
                     </ButtonToolbar>
