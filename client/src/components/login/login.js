@@ -29,7 +29,10 @@ class LoginPages extends React.Component {
     }
 
     onClick = event => {
-        socket.emit('')
+        socket.emit('user-pass', {
+            userName: this.state.userName,
+            password: this.state.password
+        })
     }
 
     render() {
@@ -52,7 +55,8 @@ class LoginPages extends React.Component {
                     <input id="login-form-username" className="login-form-control login-form-text" type="text" placeholder="USERNAME" onChange={this.onUserName} value={this.state.userName}></input>
                     <input id="login-form-password" className="login-form-control login-form-text" type="password" placeholder="PASSWORD" onChange={this.onPassWord} value={this.state.password}></input>
                     <ButtonToolbar>
-                        <Button href='/chat' type='button' variant="primary" >LOGIN</Button>
+                        <Button href='/chat' type='button' variant="primary" onClick={this.onClick}>LOGIN</Button>
+                        {/* <Button type='button' variant="primary" onClick={this.onClick}>LOGIN</Button> */}
                     </ButtonToolbar>
                     {/* <a href='/chat'><button className="login-form-control login-form-button" type='submit' value='LOGIN'>LOGIN</button></a> */}
                     <a className="login-form-link" href="/chat">LOST YOUR PASSWORD ?</a>

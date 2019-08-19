@@ -25,6 +25,11 @@ app.use(cors())
 io.on('connection', (socket) => {
     console.log('Connected')
 
+    socket.on('user-pass', (value) => {
+        console.log(value)
+        saveUser(value.userName, value.password)
+    })
+
     socket.on('appear-list1', (value) => {
         io.emit(`open-list1-${value.userName}`, value)
     })
@@ -39,11 +44,6 @@ io.on('connection', (socket) => {
         let ava = value.userName
         value.avatar = createAvatar(ava)
         io.in(roomName).emit('type-in-room', value)
-    })
-
-    socket.on('join-room',(value) => {
-        // console.log(value)
-        let roomName = generrateRoom(value.room)
     })
 
     socket.on('send-message', (value) => {
@@ -104,6 +104,30 @@ app.get('/', (req, res) => {
 server.listen(port, () => {
     console.log(`Server started with port ${port}`)
 })
+
+app.get('/api/user-password', cors(), (req, res) => {
+    pool.connect(function (err, client, done) {
+        client.query(`select * from users;`, function (err, result) {
+            done()
+            if(!err){
+                res.send({
+                    status: 200,
+                    data: result.rows
+                })
+            }
+        })
+    })
+})
+
+function saveUser(userName, password) {
+    pool.connect(function (err, client, done) {
+        let spl = `select username, id from users where users.username = '${userName}' and users.password = '${password}';`
+        console.log(spl)
+        client.query(spl , function (err, result) {
+            done()
+        })
+    })
+}
 
 app.get('/api/room-list', cors(), (req, res) => {
     pool.connect(function (err, client, done) {
