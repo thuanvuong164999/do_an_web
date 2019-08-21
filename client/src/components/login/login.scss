@@ -12,6 +12,19 @@ body {
     background-color: #cccccc;
     background-repeat: no-repeat;
     background-position: center;
+    height: 100vh;
+    background-size: cover;
+}
+
+.login-btn{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    box-sizing: border-box;
+    text-decoration: none;
+    text-align: center;
+    text-decoration: none;
+
 }
 
 #login-form {
@@ -217,4 +230,9 @@ body {
     right: 0;
     margin: auto;
     transition: .5s ease-in-out;
+}
+.icon-face{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
