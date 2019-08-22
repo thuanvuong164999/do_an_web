@@ -128,14 +128,14 @@ app.get('/api/user-password', cors(), (req, res) => {
 function saveUser(userName, password) {
     pool.connect(function (err, client, done) {
         let spl = `select username, password, id from users where (users.username = '${userName}' and users.password = '${password}');`
-        // console.log(spl)
+        console.log(spl)
         client.query(spl , function (err, result) {
-            // console.log(result) //[]
+            console.log(result) //[]
             // console.log(err)
             done()
             if (!err) { //err == null
                 if((userName === '') || (password === '')){ //??
-                    io.emit('no-username')
+                    io.emit('no-input')
                 } else {
                     io.emit('user-login', {
                         rows: result.rows

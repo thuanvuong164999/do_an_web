@@ -10,41 +10,62 @@ class LoginPages extends React.Component {
         this.state = {
             userName: '',
             password: '',
-            infoUser: []
+            th: '0'
         }
     }
 
     componentDidMount() {
         this.getUser()
         this.noInfoUser()
+        // console.log(this.state.th)
     }
 
     noInfoUser() {
-        socket.on('no-username',(value) => {
-            console.log('bạn đã nhập thiếu thông tin, xin kiểm tra lại')
+        socket.on('no-input',(value) => {
+            // console.log('bạn đã nhập thiếu thông tin, xin kiểm tra lại')
+            alert('Bạn đã nhập thiếu thông tin \nXin kiểm tra lại')
         })
     }
 
     getUser(){
         socket.on('user-login',(values) => {
             // console.log(values)
-            let items = []
-            values.rows.map((value, index) =>{
-                let item = {
-                    userName: value.username,
-                    password: value.password,
-                    userId: value.id
-                }
-                items.push(item)
-            })
-            // console.log(items)
-            this.setState({
-                infoUser: items
-            })
-            this.checkUser()
-        })
-    }
+            values.rows.map((value, index) =>{})})}
+                // console.log(value)
+            //     if(value.userName !== ''){
+            //         this.setState({
+            //             th: '1'
+            //         })
+            //     }
+            //     if(this.state.th === '1'){
+            //         let item = {
+            //             userName: value.username,
+            //             password: value.password,
+            //             userId: value.id
+            //         }
+            //         // console.log(item)
+            //     } else{
+            //         let item = {
+            //             userName: '',
+            //             password: ''
+            //         }
+            //         console.log(item)
+            //     }
+            // })
 
+            // let userName1 = this.state.userName
+            // let userName2 = this.item.userName
+            // let password1 = this.state.password
+            // let password2 = this.item.password
+            
+            // if((userName1 !== userName2) || (password1 !== password2)) {
+            //     alert('Bạn đã nhập sai thông tin. \nXin kiểm tra lại.')
+            // } else{
+            //     alert('Đăng nhập thành công')
+            // }
+    //     })
+    // }
+    
     onUserName = event => {
         this.setState({
             userName: event.target.value
@@ -62,10 +83,6 @@ class LoginPages extends React.Component {
             userName: this.state.userName,
             password: this.state.password
         })
-    }
-
-    checkUser() {
-        console.log('kiểm tra')
     }
 
     render() {
@@ -88,7 +105,7 @@ class LoginPages extends React.Component {
                     <input id="login-form-username" className="login-form-control login-form-text" type="text" placeholder="USERNAME" onChange={this.onUserName} value={this.state.userName}></input>
                     <input id="login-form-password" className="login-form-control login-form-text" type="password" placeholder="PASSWORD" onChange={this.onPassWord} value={this.state.password}></input>
                    
-                    <div className="login-btn">LOGIN</div>
+                    <div className="login-btn" onClick={(e) => this.onClick(e)}>LOGIN</div>
                     {/* <ButtonToolbar>
                         <Button href='/chat' type='button' variant="primary" onClick={this.onClick}>LOGIN</Button>
                         <Button type='button' variant="primary" onClick={(e) => this.onClick(e)}>LOGIN</Button>
