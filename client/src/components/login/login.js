@@ -50,7 +50,6 @@ class LoginPages extends React.Component {
                     infoUser : item,
                     id: '/chat'
                 })
-                this.onClick()
             })
         })
     }
@@ -67,11 +66,21 @@ class LoginPages extends React.Component {
         })
     }
 
+    // onClick() {
+    //     socket.emit('user-pass', {
+    //         userName: this.state.userName,
+    //         password: this.state.password
+    //     })
+    // }
+
     onClick = (event) => {
         socket.emit('user-pass', {
             userName: this.state.userName,
             password: this.state.password
         })
+        if(this.state.id == '/chat'){
+            
+        }
     }
 
     render() {
@@ -96,7 +105,7 @@ class LoginPages extends React.Component {
                    
                     <div className="login-btn"> 
                         {/* onClick={this.onClick()} hàm onClick lun chạy, dù không click */}
-                        <a onClick={(e) => this.onClick(e)} href={`${this.state.id}`}>LOGIN</a>
+                        <a id='login-btn' onClick={(e) => this.onClick()} href={`${this.state.id}`}>LOGIN</a>
                     </div>
                     {/* <ButtonToolbar>
                         <Button href='/chat' type='button' variant="primary" onClick={this.onClick}>LOGIN</Button>
@@ -106,9 +115,9 @@ class LoginPages extends React.Component {
                     <a className="login-form-link" href={`${this.state.id}`}>LOST YOUR PASSWORD ?</a>
                     <div className='icon-bg'>
                         <div className='icon-list'>
-                                <i class="fab fa-facebook"></i>
-                                <i class="fab fa-google-plus"></i>
-                                <i class="fab fa-instagram"></i>
+                            <i class="fab fa-facebook"></i>
+                            <i class="fab fa-google-plus"></i>
+                            <i class="fab fa-instagram"></i>
                         </div>
                     </div>
                 </div>

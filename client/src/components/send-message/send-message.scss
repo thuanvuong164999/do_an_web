@@ -56,8 +56,6 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                transform: translateY(10%);
-                // margin-right: 5px;
                 &.emoji-icon:hover{
                     color: blueviolet;
                 }
@@ -71,7 +69,6 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                transform: translateY(10%);
                 &.plus-foder-icon:hover{
                     color: blueviolet;
                 }
