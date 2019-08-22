@@ -27,21 +27,7 @@ io.on('connection', (socket) => {
 
     socket.on('user-pass', (value) => {
         // console.log(value)
-        // if((value.userName === '') || (value.password === '')){
-        //     console.log('bạn nhập thiếu thông tin, xin kiểm tra lại')
-        //     io.emit('infor-deficiencies', value)
-        // } else {
-        //     saveUser(value.userName, value.password)
-        // }
         saveUser(value.userName, value.password)
-    })
-
-    socket.on('appear-list1', (value) => {
-        io.emit(`open-list1-${value.userName}`, value)
-    })
-
-    socket.on('appear-list2', (value) => {
-        io.emit(`open-list2-${value.userName}`, value)
     })
 
     socket.on('type-room', (value)=> {
@@ -127,30 +113,21 @@ app.get('/api/user-password', cors(), (req, res) => {
 
 function saveUser(userName, password) {
     pool.connect(function (err, client, done) {
-        let spl = `select username, password, id from users where (users.username = '${userName}' and users.password = '${password}');`
-        console.log(spl)
+        let spl = `select * from users where (users.username = '${userName}' and users.password = '${password}');`
+        // console.log(spl)
         client.query(spl , function (err, result) {
-            console.log(result) //[]
+            console.log(result.rowCount) 
             // console.log(err)
             done()
-            if (!err) { //err == null
-                if((userName === '') || (password === '')){ //??
-                    io.emit('no-input')
-                } else {
-                    io.emit('user-login', {
-                        rows: result.rows
-                    })
-                }
+            if((userName === '') || (password === '')){ 
+                io.emit('no-input')
+            } else if(result.rowCount == '1') {
+                io.emit('user-pass-true', {
+                    rows: result.rows
+                })
+            } else {
+                io.emit('user-pass-false')
             }
-            // let rows = result.rows
-            // if (!err) { //err == null
-            //     if((rows.username === userName) && (rows.password === password)){
-            //         io.emit(`logined`)
-            //     } else {
-            //         console.log('bạn đã nhập sai thông tin, xin kiểm tra lại')
-            //         io.emit('err-login')
-            //     }
-            // }
         })
     })
 }

@@ -10,14 +10,21 @@ class LoginPages extends React.Component {
         this.state = {
             userName: '',
             password: '',
-            th: '0'
+            infoUser: [],
+            id: '#'
         }
     }
 
     componentDidMount() {
         this.getUser()
         this.noInfoUser()
-        // console.log(this.state.th)
+        this.falseUserPass()
+    }
+
+    falseUserPass() {
+        socket.on('user-pass-false', (value)=>{
+            alert('Bạn đã nhập sai USERNAME hoặc PASSWORD.\nXin kiểm tra lại.')
+        })
     }
 
     noInfoUser() {
@@ -28,44 +35,26 @@ class LoginPages extends React.Component {
     }
 
     getUser(){
-        socket.on('user-login',(values) => {
+        socket.on('user-pass-true',(values) => {
             // console.log(values)
-            values.rows.map((value, index) =>{})})}
+            // alert('đăng nhập thành công')
+            values.rows.map((value, index) => {
                 // console.log(value)
-            //     if(value.userName !== ''){
-            //         this.setState({
-            //             th: '1'
-            //         })
-            //     }
-            //     if(this.state.th === '1'){
-            //         let item = {
-            //             userName: value.username,
-            //             password: value.password,
-            //             userId: value.id
-            //         }
-            //         // console.log(item)
-            //     } else{
-            //         let item = {
-            //             userName: '',
-            //             password: ''
-            //         }
-            //         console.log(item)
-            //     }
-            // })
+                let item = {
+                    userName: value.username,
+                    password: value.password,
+                    userId: value.id
+                }
+                // console.log(item)
+                this.setState({
+                    infoUser : item,
+                    id: '/chat'
+                })
+                this.onClick()
+            })
+        })
+    }
 
-            // let userName1 = this.state.userName
-            // let userName2 = this.item.userName
-            // let password1 = this.state.password
-            // let password2 = this.item.password
-            
-            // if((userName1 !== userName2) || (password1 !== password2)) {
-            //     alert('Bạn đã nhập sai thông tin. \nXin kiểm tra lại.')
-            // } else{
-            //     alert('Đăng nhập thành công')
-            // }
-    //     })
-    // }
-    
     onUserName = event => {
         this.setState({
             userName: event.target.value
@@ -105,13 +94,16 @@ class LoginPages extends React.Component {
                     <input id="login-form-username" className="login-form-control login-form-text" type="text" placeholder="USERNAME" onChange={this.onUserName} value={this.state.userName}></input>
                     <input id="login-form-password" className="login-form-control login-form-text" type="password" placeholder="PASSWORD" onChange={this.onPassWord} value={this.state.password}></input>
                    
-                    <div className="login-btn" onClick={(e) => this.onClick(e)}>LOGIN</div>
+                    <div className="login-btn"> 
+                        {/* onClick={this.onClick()} hàm onClick lun chạy, dù không click */}
+                        <a onClick={(e) => this.onClick(e)} href={`${this.state.id}`}>LOGIN</a>
+                    </div>
                     {/* <ButtonToolbar>
                         <Button href='/chat' type='button' variant="primary" onClick={this.onClick}>LOGIN</Button>
                         <Button type='button' variant="primary" onClick={(e) => this.onClick(e)}>LOGIN</Button>
                     </ButtonToolbar>  */}
                     {/* <a href='/chat'><button className="login-form-control login-form-button" type='submit' value='LOGIN'>LOGIN</button></a> */} 
-                    <a className="login-form-link" href="/chat">LOST YOUR PASSWORD ?</a>
+                    <a className="login-form-link" href={`${this.state.id}`}>LOST YOUR PASSWORD ?</a>
                     <div className='icon-bg'>
                         <div className='icon-list'>
                                 <i class="fab fa-facebook"></i>

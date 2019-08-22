@@ -15,15 +15,11 @@ class MessList extends React.Component {
             roomName:'',
             avatar:'',
             typeroom: 'messenger',
-            openList: '',
-            // online: ''
+            openList: ''
         }
     }
 
     componentDidMount() {
-        // this.loginJoin()
-        this.openList()
-
         let self = this
 
         axios.get(`${serverEndPoint}/api/room-list/messengers`)
@@ -40,31 +36,16 @@ class MessList extends React.Component {
             });
     }
 
-    // loginJoin() {
-    //     socket.on('login-join', (value) => {
-    //         console.log(value)
-    //     })
-    // }
-
-    openList() {
-        socket.on(`open-list2-${userName}`, (value) => {
-            if (this.state.openList === '') {
-                this.setState({
-                    openList: 'open-list2'
-                })
-            } else {
-                this.setState({
-                    openList: ''
-                })
-            }
-        })
-    }
-
     onClick1 = (event) => {
-        socket.emit('appear-list2', {
-            openList: '',
-            userName: userName
-        })
+        if (this.state.openList === '') {
+            this.setState({
+                openList: 'open-list2'
+            })
+        } else {
+            this.setState({
+                openList: ''
+            })
+        }
     }
 
     onClick = (event, id, name) => {

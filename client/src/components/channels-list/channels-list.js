@@ -19,8 +19,6 @@ class ChannelList extends React.Component {
     }
 
     componentDidMount() {
-        this.openList()
-
         let self = this
 
         axios.get(`${serverEndPoint}/api/room-list/chanels`)
@@ -37,25 +35,16 @@ class ChannelList extends React.Component {
             });
     }
 
-    openList() {
-        socket.on(`open-list1-${userName}`, (value) => {
-            if (this.state.openList === '') {
-                this.setState({
-                    openList: 'open-list1'
-                })
-            } else {
-                this.setState({
-                    openList: ''
-                })
-            }
-        })
-    }
-
     onClick1 = (event) => {
-        socket.emit('appear-list1', {
-            openList: '',
-            userName: userName
-        })
+        if (this.state.openList === '') {
+            this.setState({
+                openList: 'open-list1'
+            })
+        } else {
+            this.setState({
+                openList: ''
+            })
+        }
     }
 
     onClick = (event, id, name) => {
