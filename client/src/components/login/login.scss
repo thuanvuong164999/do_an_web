@@ -16,15 +16,70 @@ body {
     background-size: cover;
 }
 
-.login-btn{
-    display: flex;
-    justify-content: center;
-    align-content: center;
+.login-btn{    
     box-sizing: border-box;
     text-decoration: none;
     text-align: center;
-    text-decoration: none;
+    background-color: #3088c2;
+    border-radius: 8px;
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    font-size: 16px;
+    text-transform: uppercase;
+    margin: 7px auto 0 auto;
+    height: 24px;
+    }
 
+
+
+.icon-face{
+    font-size: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin: 5px;
+    touch-action: manipulation;
+    box-sizing: initial;
+    &.icon-face:hover{
+        text-decoration: none;
+    }    
+}
+
+.icon-gg{
+    font-size: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin: 5px;
+    touch-action: manipulation;
+    box-sizing: initial;
+    &.icon-face:hover{
+        text-decoration: none;
+    }    
+}
+
+.icon-ins{
+    font-size: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin: 5px;
+    touch-action: manipulation;
+    box-sizing: initial;
+    &.icon-face:hover{
+        text-decoration: none;
+    }    
 }
 
 #login-form {
@@ -46,14 +101,15 @@ body {
 
 .login-form-control {
     border: 0px;
-    margin-top: 10px;
+    margin:10px auto 10px auto;
     display: block;
-    width: 100%;
-    height: 50px;
+    width: 85%;
+    height: 40px;
     font-size: 20px;
     text-align: center;
     background-color: #ECF0F0;
-    border-radius: 5px;
+    border-radius: 8px;
+    justify-content: center;
 }
 
 .login-form-button {
@@ -68,8 +124,11 @@ body {
 
 .login-form-link {
     font-size: 10px;
-    text-decoration: underline;
+    // text-decoration: underline;
     color: #777777;
+    &.login-form-link:hover{
+        text-decoration: none;
+    }
 }
 
 #login-form-emoji-zone {
@@ -88,7 +147,7 @@ body {
     position: absolute;
     left: 0;
     right: 0;
-    margin: auto;
+    margin: 0 auto 3px auto;
     animation: breathing 2s ease infinite;
     transition: .5s ease;
 }
@@ -230,6 +289,7 @@ body {
     right: 0;
     margin: auto;
     transition: .5s ease-in-out;
+    margin-top: 10px;
 }
 .icon-face{
     display: flex;
