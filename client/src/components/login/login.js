@@ -112,15 +112,11 @@ class LoginPages extends React.Component {
                     </ButtonToolbar>  */}
                     {/* <a href='/chat'><button className="login-form-control login-form-button" type='submit' value='LOGIN'>LOGIN</button></a> */} 
                     <a className="login-form-link" href="/chat">LOST YOUR PASSWORD ?</a>
-                    <div>
-                        <div className='icon-face'>
-                            <i class="fab fa-facebook"></i>
-                        </div>
-                        <div className='icon-gg'>
-                            <i class="fab fa-google-plus"></i>
-                        </div>
-                        <div className='icon-ins'>
-                            <a><i class="fab fa-instagram"></i></a>
+                    <div className='icon-bg'>
+                        <div className='icon-list'>
+                                <i class="fab fa-facebook"></i>
+                                <i class="fab fa-google-plus"></i>
+                                <i class="fab fa-instagram"></i>
                         </div>
                     </div>
                 </div>

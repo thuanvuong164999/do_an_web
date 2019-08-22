@@ -138,6 +138,28 @@ body {
         text-decoration: none;
     }
 }
+.icon-bg{
+    // background-color: blue;
+    width: 100%;
+    height: auto;
+    .icon-list{
+        margin: auto;
+        i{
+            font-size: 50px;
+            // height: 50px;
+            // width: 50px;
+            &.fa-facebook{
+                margin-right: 5px;
+            }
+            &.fa-google-plus{
+                margin: none;
+            }
+            &.fa-instagram{
+                margin-left: 5px;
+            }
+        }
+    }
+}
 
 #login-form-emoji-zone {
     width: 200px;
