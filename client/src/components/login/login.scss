@@ -32,7 +32,15 @@ body {
     height: 24px;
     }
 
-
+.icon-border{
+    box-sizing: border-box;
+    justify-content: center;
+    text-align: center;
+    display: flex;
+    align-content: center;
+    margin: 0px;
+    padding: 0px;
+}
 
 .icon-face{
     font-size: 50px;
