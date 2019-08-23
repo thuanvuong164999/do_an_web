@@ -42,53 +42,53 @@ body {
     padding: 0px;
 }
 
-.icon-face{
-    font-size: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin: 5px;
-    touch-action: manipulation;
-    box-sizing: initial;
-    &.icon-face:hover{
-        text-decoration: none;
-    }    
-}
+// .icon-face{
+//     font-size: 50px;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     width: 50px;
+//     height: 50px;
+//     border-radius: 50%;
+//     margin: 5px;
+//     touch-action: manipulation;
+//     box-sizing: initial;
+//     &.icon-face:hover{
+//         text-decoration: none;
+//     }    
+// }
 
-.icon-gg{
-    font-size: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin: 5px;
-    touch-action: manipulation;
-    box-sizing: initial;
-    &.icon-face:hover{
-        text-decoration: none;
-    }    
-}
+// .icon-gg{
+//     font-size: 50px;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     width: 50px;
+//     height: 50px;
+//     border-radius: 50%;
+//     margin: 5px;
+//     touch-action: manipulation;
+//     box-sizing: initial;
+//     &.icon-face:hover{
+//         text-decoration: none;
+//     }    
+// }
 
-.icon-ins{
-    font-size: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin: 5px;
-    touch-action: manipulation;
-    box-sizing: initial;
-    &.icon-face:hover{
-        text-decoration: none;
-    }    
-}
+// .icon-ins{
+//     font-size: 50px;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     width: 50px;
+//     height: 50px;
+//     border-radius: 50%;
+//     margin: 5px;
+//     touch-action: manipulation;
+//     box-sizing: initial;
+//     &.icon-face:hover{
+//         text-decoration: none;
+//     }    
+// }
 
 #login-form {
     width: 50%;
@@ -126,36 +126,77 @@ body {
     color: #fff;
 }
 
-.login-form-button:hover {
-    background-color: #3088c2;
-}
-
 .login-form-link {
     font-size: 10px;
     // text-decoration: underline;
     color: #777777;
     &.login-form-link:hover{
         text-decoration: none;
+        cursor: pointer;
     }
 }
+
+// .icon {
+   
+//     font-size: 25px;
+   
+//     text-align: center;
+//     text-decoration: none;
+//     margin: 5px 2px;
+//     border-radius: 50%;
+// }
+ 
+// .icon:hover {
+//     opacity: 0.5;
+
 .icon-bg{
+    font-size: 25px;
+    text-align: center;
+    text-decoration: none;
+    margin: 5px 2px;
+    border-radius: 50%;
     // background-color: blue;
     width: 100%;
     height: auto;
     .icon-list{
-        margin: auto;
+        margin: 15px auto 0 auto;
         i{
             font-size: 50px;
             // height: 50px;
             // width: 50px;
             &.fa-facebook{
                 margin-right: 5px;
+                background-color: whitesmoke;
+                border-radius: 50%;
+                color: #3088c2;
+                margin-right: 25px;
+                &.fa-facebook:hover{
+                    background-color: blue;
+                    cursor: pointer;
+                }
             }
             &.fa-google-plus{
                 margin: none;
+                background-color: whitesmoke;
+                border-radius: 50%;
+                color: #ff5858;
+                &.fa-google-plus:hover{
+                    background-color:red;
+                    cursor: pointer;
+                } 
             }
             &.fa-instagram{
                 margin-left: 5px;
+                background-color: whitesmoke;
+                border-radius: 50%;
+                color: #f638dc;
+                margin-left: 25px;
+                &.fa-:hover{
+                    background-color: violet;}
+                    cursor: pointer;
+            }
+            &.icon-list:hover {
+                opacity: 0.5;
             }
         }
     }
@@ -320,9 +361,4 @@ body {
     margin: auto;
     transition: .5s ease-in-out;
     margin-top: 10px;
-}
-.icon-face{
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
