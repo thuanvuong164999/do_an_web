@@ -16,20 +16,28 @@ body {
     background-size: cover;
 }
 
-.login-btn{    
-    box-sizing: border-box;
-    text-decoration: none;
+.login-form-a{
+    color:white;
+    font-size: 20px;
+}
+
+.login1{    
+    // box-sizing: border-box;
     text-align: center;
-    background-color: #3088c2;
-    border-radius: 8px;
+    background: url("12485.jpg");
+    border-radius: 30px;
     width: 150px;
     display: flex;
     justify-content: center;
     align-content: center;
     font-size: 16px;
-    text-transform: uppercase;
+    // text-transform: uppercase;
     margin: 7px auto 0 auto;
-    height: 24px;
+    height: 40px;
+    width: 85%;
+    color: white;   
+    padding-top: 10px;
+    text-decoration: none;
     &.checked{
         margin-left:100px; 
     }
@@ -40,7 +48,7 @@ body {
     float: right;
     &.checked{
         font-size: 16px !important;
-        color: #3088c2;
+        color:#3088c2;
     }
 }
 
@@ -134,8 +142,18 @@ body {
 
 .login-form-button {
     background-color: #3088c2;
-    cursor: pointer;
     color: #fff;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    &login-form-button:hover{
+        cursor: pointer;
+
+    }
 }
 
 .login-form-link {
@@ -148,18 +166,6 @@ body {
     }
 }
 
-// .icon {
-   
-//     font-size: 25px;
-   
-//     text-align: center;
-//     text-decoration: none;
-//     margin: 5px 2px;
-//     border-radius: 50%;
-// }
- 
-// .icon:hover {
-//     opacity: 0.5;
 
 .icon-bg{
     font-size: 25px;
@@ -176,24 +182,24 @@ body {
             font-size: 50px;
             // height: 50px;
             // width: 50px;
-            &.fa-facebook{
+            &.fa-facebook-square{
                 margin-right: 5px;
                 background-color: whitesmoke;
                 border-radius: 50%;
                 color: #3088c2;
                 margin-right: 25px;
-                &.fa-facebook:hover{
-                    background-color: blue;
+                &.fa-facebook-square:hover{
+                    color: black;
                     cursor: pointer;
                 }
             }
-            &.fa-google-plus{
+            &.fa-google-plus-square{
                 margin: none;
                 background-color: whitesmoke;
-                border-radius: 50%;
+                border-radius: 5px;
                 color: #ff5858;
-                &.fa-google-plus:hover{
-                    background-color:red;
+                &.fa-google-plus-square:hover{
+                    color:black;
                     cursor: pointer;
                 } 
             }
@@ -203,9 +209,9 @@ body {
                 border-radius: 50%;
                 color: #f638dc;
                 margin-left: 25px;
-                &.fa-:hover{
-                    background-color: violet;}
-                    cursor: pointer;
+                &.fa-instagram:hover{
+                    color: black;
+                    cursor: pointer;}
             }
             &.icon-list:hover {
                 opacity: 0.5;
