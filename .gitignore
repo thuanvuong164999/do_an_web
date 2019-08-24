@@ -6,6 +6,7 @@
 /.pnp
 .pnp.js
 /ngrok.exe
+/ngrok.exe.old
 
 # testing
 /coverage
