@@ -30,7 +30,19 @@ body {
     text-transform: uppercase;
     margin: 7px auto 0 auto;
     height: 24px;
+    &.checked{
+        margin-left:100px; 
     }
+}
+
+.fa-user-check{
+    font-size: 0px;
+    float: right;
+    &.checked{
+        font-size: 16px !important;
+        color: #3088c2;
+    }
+}
 
 .icon-border{
     box-sizing: border-box;

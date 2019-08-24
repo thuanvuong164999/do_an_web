@@ -11,7 +11,8 @@ class LoginPages extends React.Component {
             userName: '',
             password: '',
             infoUser: [],
-            id: '#'
+            id: '#',
+            check: ''
         }
     }
 
@@ -48,7 +49,8 @@ class LoginPages extends React.Component {
                 // console.log(item)
                 this.setState({
                     infoUser : item,
-                    id: '/chat'
+                    id: '/chat',
+                    check:'checked'
                 })
             })
         })
@@ -103,7 +105,8 @@ class LoginPages extends React.Component {
                     <input id="login-form-username" className="login-form-control login-form-text" type="text" placeholder="USERNAME" onChange={this.onUserName} value={this.state.userName}></input>
                     <input id="login-form-password" className="login-form-control login-form-text" type="password" placeholder="PASSWORD" onChange={this.onPassWord} value={this.state.password}></input>
                    
-                    <div className="login-btn"> 
+                    <i class={"fas fa-user-check " + this.state.check}></i>
+                    <div className={"login-btn " + this.state.check}> 
                         {/* onClick={this.onClick()} hàm onClick lun chạy, dù không click */}
                         <a id='login-btn' onClick={(e) => this.onClick()} href={`${this.state.id}`}>LOGIN</a>
                     </div>
