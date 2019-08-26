@@ -2,7 +2,7 @@
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
-    font-family: 'PT Sans', sans-serif;
+    font-family: 'Lato';
 }
 
 body {
@@ -20,6 +20,9 @@ body {
     color:white;
     font-size: 20px;
 }
+.fa-user{
+    float: left;
+}
 
 .login1{    
     // box-sizing: border-box;
@@ -33,11 +36,12 @@ body {
     font-size: 16px;
     // text-transform: uppercase;
     margin: 7px auto 0 auto;
-    height: 40px;
-    width: 85%;
+    height: 35px;
+    width: 40%;
     color: white;   
-    padding-top: 10px;
+    padding-top: 6px;
     text-decoration: none;
+    margin-top: 20px;
     &.checked{
         margin-left:100px; 
     }
@@ -136,8 +140,12 @@ body {
     font-size: 20px;
     text-align: center;
     background-color: #ECF0F0;
-    border-radius: 8px;
+    border-radius: 15px;
     justify-content: center;
+    &:focus {
+        outline: none; 
+        
+    }
 }
 
 .login-form-button {

@@ -1,6 +1,10 @@
 import React from 'react'
 import './head-chatbox.scss'
 import { socket, userName } from '../../services/socket-service/socket-service'
+import { DropdownButton, Dropdown } from 'react-bootstrap'
+import DropdownToggle from 'react-bootstrap/DropdownToggle';
+import DropdownMenu from 'react-bootstrap/DropdownMenu';
+import DropdownItem from 'react-bootstrap/DropdownItem';
 
 class HeadChatBox extends React.Component {
     constructor(props) {
@@ -8,14 +12,14 @@ class HeadChatBox extends React.Component {
 
         this.state = {
             roomName: 'Introduce My Project',
-            room:'',
-            avatar:'',
+            room: '',
+            avatar: '',
             typeRoom: [],
-            userName:userName,
+            userName: userName,
             typeRoom1: 'channel',
             typeRoom2: 'messenger',
-            type1:'',
-            type2:'',
+            type1: '',
+            type2: '',
             appearSearch: ''
         }
     }
@@ -68,9 +72,16 @@ class HeadChatBox extends React.Component {
                     </div>
                     <div className='bg-list-icon'>
                         <div className='setting'>
-                            <div className='icon-setting'>
-                                <i className="fas fa-cog"></i>
-                            </div>
+                            <Dropdown>
+                                <DropdownToggle>
+                                    <div className='icon-setting'>
+                                        <i className="fas fa-cog"></i>
+                                    </div>
+                                </DropdownToggle>
+                                <DropdownMenu>
+                                    <DropdownItem>Jum too date...</DropdownItem>
+                                </DropdownMenu>
+                            </Dropdown>
                             <span className="tooltiptext">Settings</span>
                             {/* <span class="dropdown-setting">
                                 <p>Hello World!</p>

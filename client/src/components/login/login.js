@@ -102,8 +102,8 @@ class LoginPages extends React.Component {
                             </div>
                         </div>
                     </div>
-                    <input id="login-form-username" className="login-form-control login-form-text" type="text" placeholder="USERNAME" onChange={this.onUserName} value={this.state.userName}></input>
-                    <input id="login-form-password" className="login-form-control login-form-text" type="password" placeholder="PASSWORD" onChange={this.onPassWord} value={this.state.password}></input>
+                    <input id="login-form-username" className="login-form-control login-form-text" type="text" placeholder="Username" onChange={this.onUserName} value={this.state.userName}></input>
+                    <input id="login-form-password" className="login-form-control login-form-text" type="password" placeholder="Password" onChange={this.onPassWord} value={this.state.password}></input>
 
                     <i class={"fas fa-user-check " + this.state.check}></i>
                     <div className={"login-btn" + this.state.check}>
