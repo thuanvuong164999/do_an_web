@@ -60,7 +60,7 @@ class MessageList extends React.Component {
                     user: user,
                     avatar: value.username,
                     message: value.message,
-                    dat: value.dat,
+                    dat: value.datime,
                     daday:value.daday,
                     fr: user === this.state.userName ? 'fr' : ''
                 }
