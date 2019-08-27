@@ -1,9 +1,6 @@
 import React from 'react'
-import ReactTextareaAutocomplete from '@webscopeio/react-textarea-autocomplete';
-import { Picker, emojiIndex } from 'emoji-mart';
 import './send-message.scss'
-import { socket, userName } from '../../services/socket-service/socket-service'
-import EmojiMenu from '../emoji-menu/emoji'
+import { socket, userName, userId } from '../../services/socket-service/socket-service'
 
 class SendMessage extends React.Component {
     constructor(props) {
@@ -21,8 +18,8 @@ class SendMessage extends React.Component {
             changeInput: '',
             text: '',
             open: false,
-            changeInput:'',
-            emoji:''
+            emoji:'',
+            userId: userId
         }
     }
 
@@ -63,6 +60,7 @@ class SendMessage extends React.Component {
                 return;
             else {
                 socket.emit('send-message', {
+                    userId: this.state.userId,
                     userName: this.state.userName,
                     message: event.target.value,
                     room: this.state.room

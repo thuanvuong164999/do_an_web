@@ -1,14 +1,28 @@
 import React from 'react'
 import './head-roomlist.scss'
-import { userName } from '../../services/socket-service/socket-service';
 import {Tooltip, ButtonToolbar, OverlayTrigger} from 'react-bootstrap'
+import { socket } from '../../services/socket-service/socket-service';
 
 class HeadRoomList extends React.Component {
     constructor(props) {
         super(props)
 
         this.state = {
+            userName: ''
         }
+    }
+
+    componentDidMount(){
+        // this.loginChat()
+    }
+
+    loginChat() {
+        // socket.on('login-chat1', (user) => {
+        //     console.log(user)
+        //     this.state({
+        //         userName: user.userName
+        //     })
+        // })
     }
 
     render() {
@@ -41,7 +55,7 @@ class HeadRoomList extends React.Component {
                     <div className='input-username'>
                         <div className='status-user'></div>
                         <div className='username'>
-                            <i className="fas fa-circle"></i>{userName}</div>
+                            <i className="fas fa-circle"></i>{this.state.userName}</div>
                     </div>
                 </div>
                 {/* <div className='icon-c'>

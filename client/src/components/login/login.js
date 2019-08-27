@@ -1,16 +1,16 @@
 import React from 'react'
 import './login.scss'
 import { socket } from '../../services/socket-service/socket-service';
-import { Button, ButtonToolbar } from 'react-bootstrap'
-
 
 class LoginPages extends React.Component {
     constructor() {
         super()
         this.state = {
-            userName: '',
+            userRoom:'',
+            email: '',
             password: '',
             infoUser: [],
+            userId: '',
             id: '#',
             check: ''
         }
@@ -43,12 +43,13 @@ class LoginPages extends React.Component {
                 // console.log(value)
                 let item = {
                     userName: value.username,
-                    password: value.password,
-                    userId: value.id
+                    userId: value.user_id
                 }
                 // console.log(item)
                 this.setState({
                     infoUser: item,
+                    userRoom: value.username,
+                    userId: value.user_id,
                     id: '/chat',
                     check: 'checked'
                 })
@@ -56,9 +57,9 @@ class LoginPages extends React.Component {
         })
     }
 
-    onUserName = event => {
+    onEmail = event => {
         this.setState({
-            userName: event.target.value
+            email: event.target.value
         })
     }
 
@@ -68,20 +69,16 @@ class LoginPages extends React.Component {
         })
     }
 
-    // onClick() {
-    //     socket.emit('user-pass', {
-    //         userName: this.state.userName,
-    //         password: this.state.password
-    //     })
-    // }
-
     onClick = (event) => {
         socket.emit('user-pass', {
-            userName: this.state.userName,
+            userName: this.state.email,
             password: this.state.password
         })
-        if (this.state.id == '/chat') {
-
+        if(this.state.id === '/chat'){
+            socket.emit('login-chat', {
+                userName: this.state.userRoom,
+                userId: this.state.userId
+            })
         }
     }
 
@@ -102,7 +99,7 @@ class LoginPages extends React.Component {
                             </div>
                         </div>
                     </div>
-                    <input id="login-form-username" className="login-form-control login-form-text" type="text" placeholder="USERNAME" onChange={this.onUserName} value={this.state.userName}></input>
+                    <input id="login-form-username" className="login-form-control login-form-text" type="text" placeholder="EMAIL" onChange={this.onEmail} value={this.state.email}></input>
                     <input id="login-form-password" className="login-form-control login-form-text" type="password" placeholder="PASSWORD" onChange={this.onPassWord} value={this.state.password}></input>
 
                     <i class={"fas fa-user-check " + this.state.check}></i>

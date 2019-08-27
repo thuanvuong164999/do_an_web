@@ -49,6 +49,7 @@ class MessageList extends React.Component {
 
     receiveHistories() {
         // console.log(`histories-${this.state.userName}`)
+
         socket.on(`histories-${this.state.userName}`, (values) => {
             // console.log(values)
             let items = []

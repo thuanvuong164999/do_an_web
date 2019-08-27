@@ -25,6 +25,11 @@ app.use(cors())
 io.on('connection', (socket) => {
     console.log('Connected')
 
+    socket.on('login-chat', (user) => {
+        // console.log(user)
+        io.in().emit('login-chat1', user)
+    })
+
     socket.on('user-pass', (value) => {
         // console.log(value)
         saveUser(value.userName, value.password)
@@ -56,9 +61,17 @@ io.on('connection', (socket) => {
         // console.log(`${value.userName} joined ${value.room}`)
         let roomName = generrateRoom(value.room)
         socket.join(roomName)
-        io.in(roomName).emit('joined', value)
+        io.in(roomName).emit('joined', value) //send-message
         io.in(roomName).emit('join-in-room', value)
         getOldDataFromDB(roomName, value.userName)
+    })
+
+    socket.on('join-userroom', (value) => {
+        let roomName = generrateRoom(value.room)
+        socket.join(roomName)
+        io.in(roomName).emit('joined', value)
+        io.in(roomName).emit('join-in-room', value)
+        getDataFromUserRoom(roomName, value.userId, value.userName)
     })
 
     socket.on('leave', (value) => {
@@ -113,10 +126,10 @@ app.get('/api/user-password', cors(), (req, res) => {
 
 function saveUser(userName, password) {
     pool.connect(function (err, client, done) {
-        let spl = `select * from users where (users.username = '${userName}' and users.password = '${password}');`
+        let spl = `select * from users where (users.email = '${userName}' and users.password = '${password}');`
         // console.log(spl)
         client.query(spl , function (err, result) {
-            console.log(result.rowCount) 
+            // console.log(result.rowCount) 
             // console.log(err)
             done()
             if((userName === '') || (password === '')){ 
@@ -134,7 +147,7 @@ function saveUser(userName, password) {
 
 app.get('/api/room-list', cors(), (req, res) => {
     pool.connect(function (err, client, done) {
-        client.query(`select chanels.name, chanels.id, style_chanels.style from chanels, style_chanels where style_chanels.id = chanels.id_style;`, function (err, result) {
+        client.query(`select rooms.name, rooms.id, chanelstyles.style from rooms, chanelstyles where chanelstyles.id = rooms.id_style;`, function (err, result) {
             done()
             if (!err) {
                 res.send({
@@ -148,7 +161,7 @@ app.get('/api/room-list', cors(), (req, res) => {
 
 app.get('/api/room-list/chanels', cors(), (req, res) => {
     pool.connect(function (err, client, done) {
-        client.query(`select chanels.name, chanels.id, style_chanels.style from chanels, style_chanels where style_chanels.id = chanels.id_style and chanels.id_style = 1;`, function (err, result) {
+        client.query(`select rooms.roomname, rooms.id from rooms where rooms.id_style = '1';`, function (err, result) {
             done()
             if (!err) {
                 res.send({
@@ -160,9 +173,9 @@ app.get('/api/room-list/chanels', cors(), (req, res) => {
     })
 })
 
-app.get('/api/room-list/messengers', cors(), (req, res) => {
+app.get('/api/room-list/user-rooms', cors(), (req, res) => {
     pool.connect(function (err, client, done) {
-        client.query(`select chanels.name, chanels.id, style_chanels.style from chanels, style_chanels where style_chanels.id = chanels.id_style and chanels.id_style = 2;`, function (err, result) {
+        client.query(`select rooms.roomname, rooms.id, users.user_id from rooms, users where (rooms.id_style = '2') and (rooms.roomname = users.username);`, function (err, result) {
             done()
             if (!err) {
                 res.send({
@@ -176,7 +189,7 @@ app.get('/api/room-list/messengers', cors(), (req, res) => {
 
 function save2DB(value, room_id) {
     pool.connect(function (err, client, done) {
-        let sql = `insert into histories (username, dat, message, id_chanel) values('${value.userName}', '${value.dat}', '${value.message}', '${room_id}')`
+        let sql = `insert into histories (username, user_id, datime, message, room_id) values('${value.userName}', '${value.userId}', '${value.dat}', '${value.message}', '${room_id}')`
         client.query(sql, function (err, result) {
             // console.log(result)
             // console.log(err) 
@@ -188,8 +201,28 @@ function save2DB(value, room_id) {
 function getOldDataFromDB(room_id, userName) {
     pool.connect(function (err, client, done) {
         // console.log(`histories-${userName}`, room_id)
-        let sql = `select * from histories where id_chanel = '${room_id}'`
-        // console.log(sql)
+        let sql = `select * from histories where room_id = '${room_id}';`
+        console.log(sql)
+        client.query(sql, function (err ,result) {
+            //console.log(result) //underfined thì xem sql
+            // console.log(result.rows)
+            //console.log(err) //ra null là đúng
+            done()
+            if (!err) { //err == null
+                io.in(room_id).emit(`histories-${userName}`, {
+                    room: room_id,
+                    userName: userName,
+                    rows: result.rows
+                })
+            }
+        })
+    })
+}
+
+function getDataFromUserRoom(room_id, user_id, userName) {
+    pool.connect(function (err, client, done) {
+        let sql = `select * from histories where (user_id = '${user_id}' and room_id = '${room_id}') or (user_id = '${room_id}' and room_id = '${user_id}');`
+        console.log(sql)
         client.query(sql, function (err ,result) {
             //console.log(result) //underfined thì xem sql
             // console.log(result.rows)

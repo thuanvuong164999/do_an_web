@@ -1,10 +1,9 @@
 import React from 'react'
 import './room-list.scss'
-import { serverEndPoint, socket, userName } from '../../services/socket-service/socket-service'
+import { serverEndPoint} from '../../services/socket-service/socket-service'
 import ChannelList from '../channels-list/channels-list';
 import MessList from '../messenger-list/messengerlist';
 import Serch from '../serch/serch'
-import ScrollToBottom from 'react-scroll-to-bottom';
 
 const axios = require('axios');
 

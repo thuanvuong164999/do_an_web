@@ -92,11 +92,11 @@ class ChannelList extends React.Component {
                             {
                                 this.state.room.map((value, index) => {
                                     return (
-                                        <li key={index} onClick={(e) => this.onClick(e, value.id, value.name)}>
+                                        <li key={index} onClick={(e) => this.onClick(e, value.id, value.roomname)}>
                                             <div className='type-room-icon'>
                                                 <i className="fas fa-hashtag"></i>
                                             </div>
-                                            {value.name}
+                                            {value.roomname}
                                         </li>
                                     )
                                 })

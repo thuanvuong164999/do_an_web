@@ -1,6 +1,6 @@
 import React from 'react'
 import './messengerlist.scss'
-import { serverEndPoint, socket, userName } from '../../services/socket-service/socket-service'
+import { serverEndPoint, socket, userName, userId } from '../../services/socket-service/socket-service'
 import {Tooltip, ButtonToolbar, OverlayTrigger} from 'react-bootstrap'
 
 
@@ -22,7 +22,7 @@ class MessList extends React.Component {
     componentDidMount() {
         let self = this
 
-        axios.get(`${serverEndPoint}/api/room-list/messengers`)
+        axios.get(`${serverEndPoint}/api/room-list/user-rooms`)
             .then(function (response) {
                 self.setState({
                     room: response.data.data
@@ -49,9 +49,10 @@ class MessList extends React.Component {
     }
 
     onClick = (event, id, name) => {
-        // console.log('Clicked', id)
+        console.log('Clicked', id)
         // console.log(name)
-        socket.emit('join', {
+        socket.emit('join-userroom', {
+            userId: userId,
             userName: userName,
             roomName: name,
             room: id
@@ -95,12 +96,12 @@ class MessList extends React.Component {
                             {
                                 this.state.room.map((value, index) => {
                                     return (
-                                        <li key={index} onClick={(e) => this.onClick(e, value.id, value.name)}>
+                                        <li key={index} onClick={(e) => this.onClick(e, value.id, value.roomname)}>
                                             <div className='type-room-icon'>
                                                 <i className="far fa-circle"></i>
                                                 {/* <i class="fas fa-circle"></i> */}
                                             </div>
-                                            {value.name}
+                                            {value.roomname}
                                         </li>
                                     )
                                 })
