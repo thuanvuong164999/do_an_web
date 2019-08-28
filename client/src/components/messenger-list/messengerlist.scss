@@ -29,43 +29,43 @@
             float: left;
             cursor: pointer;
             .plus-icon{
-                visibility: visible;
-                color: #95adbe;
-                margin-top: 7px; 
-                font-size: 13px;
+                font-size: 0;
+                visibility: hidden;
                 &:hover {
                     color: white;
                 }
                 &.open-list2{
-                    font-size: 0 !important;
-                    visibility: hidden !important;
+                    visibility: visible !important;
+                    color: #95adbe;
+                    margin-top: 7px; 
+                    font-size: 13px !important;
                 }
             }
             .minus-icon{
-                visibility: hidden;
+                font-size: 13px;
+                visibility: visible;
                 color: #95adbe;
-                font-size: 0;
-                margin-top: 7px;
                 &:hover {
                     color: white;
                 }
                 &.open-list2{
-                    font-size: 13px !important;
-                    visibility: visible !important;
+                    visibility: hidden !important;
+                    font-size: 0 !important;
+                    margin-top: 7px;
                 }
             }
         }
     }
     .list-bg{
-        position: absolute;
-        top: -99999px;
-        left: -999999px;
+        position: unset;
+        top: unset;
+        left: unset;
+        margin: auto;
+        width: 90%;
         &.open-list2{
-            position: unset;
-            top: unset;
-            left: unset;
-            margin: auto;
-            width: 90%;
+            position: absolute;
+            top: -99999px;
+            left: -999999px;
         }
         .list{
             list-style-type: none;

@@ -29,44 +29,43 @@
             float: left;
             cursor: pointer;
             .plus-icon{
-                visibility: visible;
-                color: #95adbe;
-                margin-top: 7px; 
-                font-size: 13px;
-                &:hover {
-                    color: white;
-                }
-                &.open-list1{
-                    visibility: hidden !important;
-                    font-size: 0;
-                }
-            }
-            .minus-icon{
-                visibility: hidden;
-                color: #95adbe;
-                float: none;
-                margin-top: 7px;
                 font-size: 0;
+                visibility: hidden;
                 &:hover {
                     color: white;
                 }
                 &.open-list1{
                     visibility: visible !important;
-                    font-size: 13px;
+                    color: #95adbe;
+                    margin-top: 7px; 
+                    font-size: 13px !important;
+                }
+            }
+            .minus-icon{
+                font-size: 13px;
+                visibility: visible;
+                color: #95adbe;
+                &:hover {
+                    color: white;
+                }
+                &.open-list1{
+                    visibility: hidden !important;
+                    font-size: 0 !important;
+                    margin-top: 7px;
                 }
             }
         }
     }
     .list-bg{
-        position: absolute;
-        top: -999999px;
-        left: -99999px;
+        position: unset;
+        margin: auto;
+        top:unset;
+        left: unset;
+        width: 90%;
         &.open-list1{
-            position: unset;
-            margin: auto;
-            top:unset;
-            left: unset;
-            width: 90%;
+            position: absolute;
+            top: -999999px;
+            left: -99999px;
         }
         .list{
             list-style-type: none;

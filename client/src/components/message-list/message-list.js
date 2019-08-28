@@ -27,6 +27,16 @@ class MessageList extends React.Component {
         this.receiveHistories()
         this.onStopTyping()
         this.onTypingFromMember()
+        this.join()
+    }
+
+    join() {
+        socket.on('joined', (value) => {
+            // console.log(value)
+            this.setState({
+                roomId: value.room
+            })
+        })
     }
 
     onReceived() {
