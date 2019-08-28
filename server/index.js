@@ -44,15 +44,22 @@ io.on('connection', (socket) => {
     })
 
     socket.on('send-message', (value) => {
-        // console.log(value)
+        console.log(value)
         let roomName = generrateRoom(value.room)
+        let roomUser = generrateRoom(value.userId)
+        console.log(roomName)
         let msg = value.message
         value.message = convert2Icon(msg)
         value.dat = moment().format('LT')
         value.daday = moment().format('LL')
         let ava = value.userName
         value.avatar = createAvatar(ava)
-        io.in(roomName).emit('receive-message', value)
+        if(roomName === roomUser){
+            io.in(roomName).emit('receive-message', value)
+        } else {   
+            io.in(roomName).emit('receive-message', value)
+            io.in(roomUser).emit('receive-message', value) 
+        }
         save2DB(value, value.room)
     })
 

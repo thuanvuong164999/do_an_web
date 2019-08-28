@@ -62,7 +62,7 @@ class MessageList extends React.Component {
                     message: value.message,
                     dat: value.datime,
                     daday:value.daday,
-                    fr: user === this.state.userName ? 'fr' : ''
+                    fr: user === this.state.userName ? 'fr' : '',
                 }
                 items.push(item)
             })
