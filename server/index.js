@@ -54,12 +54,13 @@ io.on('connection', (socket) => {
         value.daday = moment().format('LL')
         let ava = value.userName
         value.avatar = createAvatar(ava)
-        if(roomName === roomUser){
-            io.in(roomName).emit('receive-message', value)
-        } else {   
-            io.in(roomName).emit('receive-message', value)
-            io.in(roomUser).emit('receive-message', value) 
-        }
+        io.in(roomName).emit('receive-message', value)
+        // if(roomName === roomUser){
+        //     io.in(roomName).emit('receive-message', value)
+        // } else {   
+        //     io.in(roomName).emit('receive-message', value)
+        //     io.in(roomUser).emit('receive-message', value) 
+        // }
         save2DB(value, value.room)
     })
 

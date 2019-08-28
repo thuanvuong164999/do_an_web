@@ -17,7 +17,8 @@ class MessageList extends React.Component {
             avatar: '',
             messages: [],
             typing: false,
-            users_typing: []
+            users_typing: [],
+            roomId: '',
         }
     }
 
