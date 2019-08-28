@@ -1,7 +1,7 @@
 import React from 'react'
 import './head-roomlist.scss'
 import {Tooltip, ButtonToolbar, OverlayTrigger} from 'react-bootstrap'
-import { socket } from '../../services/socket-service/socket-service';
+import { socket, userName } from '../../services/socket-service/socket-service';
 
 class HeadRoomList extends React.Component {
     constructor(props) {
@@ -53,9 +53,7 @@ class HeadRoomList extends React.Component {
                         WEB-D002
                     </div>
                     <div className='input-username'>
-                        <div className='status-user'></div>
-                        <div className='username'>
-                            <i className="fas fa-circle"></i>{this.state.userName}</div>
+                        <i className="fas fa-circle"></i>{userName}
                     </div>
                 </div>
                 {/* <div className='icon-c'>

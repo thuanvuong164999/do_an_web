@@ -14,6 +14,7 @@
         margin-left: 15px;
     }
     .input-username{
+        text-transform: capitalize;
         // background-color: wheat;
         width: fit-content;
         height: 50%;
@@ -21,7 +22,7 @@
         text-align: left;
         margin-left: 20px;
         // color: ;
-        padding: 7px;
+        padding-top: 10px;
         font-size: 1.1em;
         color: #95adbe;
         .fas {

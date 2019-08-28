@@ -26,8 +26,8 @@ io.on('connection', (socket) => {
     console.log('Connected')
 
     socket.on('login-chat', (user) => {
-        // console.log(user)
-        io.in().emit('login-chat1', user)
+        console.log(user)
+        io.emit('login-chat1', user)
     })
 
     socket.on('user-pass', (value) => {
