@@ -17,12 +17,12 @@ class HeadRoomList extends React.Component {
     }
 
     loginChat() {
-        // socket.on('login-chat1', (user) => {
-        //     console.log(user)
-        //     this.state({
-        //         userName: user.userName
-        //     })
-        // })
+        socket.on('login-chat1', (user) => {
+            console.log(user)
+            this.state({
+                userName: user.userName
+            })
+        })
     }
 
     render() {

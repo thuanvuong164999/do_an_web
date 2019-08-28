@@ -8,7 +8,7 @@ const MainRouter = () => (
     <main>
         <BrowserRouter>
             <Switch>
-                <Route exact path='/' render={
+                <Route exact path='/chat' render={
                     () => (
                         <Auth orRedirectTo='/login' orRender={
                             <Chat></Chat>
@@ -16,7 +16,7 @@ const MainRouter = () => (
                     )
                 }></Route>
                 <Route path='/login' component={LoginPages}></Route>
-                <Route path='/' component={Chat}></Route>
+                <Route path='/chat' component={Chat}></Route>
             </Switch>
         </BrowserRouter>
     </main>

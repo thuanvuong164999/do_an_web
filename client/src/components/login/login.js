@@ -54,6 +54,7 @@ class LoginPages extends React.Component {
                     check: 'checked'
                 })
             })
+            console.log(this.state)
         })
     }
 
@@ -70,16 +71,18 @@ class LoginPages extends React.Component {
     }
 
     onClick = (event) => {
+
         socket.emit('user-pass', {
             userName: this.state.email,
             password: this.state.password
         })
-        if(this.state.id === '/chat'){
-            socket.emit('login-chat', {
-                userName: this.state.userRoom,
-                userId: this.state.userId
-            })
-        }
+        console.log(this.state)
+        // if(this.state.id === '/chat'){
+        //     socket.emit('login-chat', {
+        //         userName: this.state.userRoom,
+        //         userId: this.state.userId
+        //     })
+        // }
     }
 
     render() {
@@ -106,7 +109,7 @@ class LoginPages extends React.Component {
                     <div className={"login-btn" + this.state.check}>
                         {/* <button type='button' id='login-btn' className='login-btn1' onClick={(e) => this.onClick()} href={`${this.state.id}`}>login</button> */}
                         {/* onClick={this.onClick()} hàm onClick lun chạy, dù không click */}
-                        <a id='login-btn' className='login1' onClick={(e) => this.onClick()} href={`${this.state.id}`}>LOGIN</a>
+                        <a id='login-btn' className='login1' onClick={(e) => this.onClick()}>LOGIN</a>
                     </div>
                     {/* <ButtonToolbar>
                         <Button href='/chat' type='button' variant="primary" onClick={this.onClick}>LOGIN</Button>

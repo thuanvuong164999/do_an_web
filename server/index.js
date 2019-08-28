@@ -124,6 +124,22 @@ app.get('/api/user-password', cors(), (req, res) => {
     })
 })
 
+// app.post('/api/login', cors(), (req, res) => {
+//     console.log(req.body.user, req.body.pass)
+//     pool.connect(function (err, client, done) {
+//         let sql = `select * from users where (users.email = '${userName}' and users.password = '${password}');`
+//         client.query(sql, function (err, result) {
+//             done()
+//             if(!err){
+//                 res.send({
+//                     status: 200,
+//                     data: result.rows
+//                 })
+//             }
+//         })
+//     })
+// })
+
 function saveUser(userName, password) {
     pool.connect(function (err, client, done) {
         let spl = `select * from users where (users.email = '${userName}' and users.password = '${password}');`
