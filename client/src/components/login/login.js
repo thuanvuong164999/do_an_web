@@ -102,14 +102,14 @@ class LoginPages extends React.Component {
                             </div>
                         </div>
                     </div>
-                    <input id="login-form-username" className="login-form-control login-form-text" type="text" placeholder="EMAIL" onChange={this.onEmail} value={this.state.email}></input>
-                    <input id="login-form-password" className="login-form-control login-form-text" type="password" placeholder="PASSWORD" onChange={this.onPassWord} value={this.state.password}></input>
+                    <input id="login-form-username" className="login-form-control" type="text" placeholder="EMAIL" onChange={this.onEmail} value={this.state.email}></input>
+                    <input id="login-form-password" className="login-form-control" type="password" placeholder="PASSWORD" onChange={this.onPassWord} value={this.state.password}></input>
 
                     <i class={"fas fa-user-check " + this.state.check}></i>
                     <div className={"login-btn" + this.state.check}>
                         {/* <button type='button' id='login-btn' className='login-btn1' onClick={(e) => this.onClick()} href={`${this.state.id}`}>login</button> */}
                         {/* onClick={this.onClick()} hàm onClick lun chạy, dù không click */}
-                        <a id='login-btn' className='login1' onClick={(e) => this.onClick()}>LOGIN</a>
+                        <a id='login-btn' className='login1' onClick={(e) => this.onClick()} href={`${this.state.id}`}>LOGIN</a>
                     </div>
                     {/* <ButtonToolbar>
                         <Button href='/chat' type='button' variant="primary" onClick={this.onClick}>LOGIN</Button>
