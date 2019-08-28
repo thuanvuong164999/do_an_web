@@ -90,33 +90,7 @@ class LoginPages extends React.Component {
             <React.Fragment>
                 <div id="login-form">
                     <div id="login-form-emoji-zone">
-                        <div id="emoji">
-                            <div id="emoji-head">
-                                <div className="emoji-eye">
-                                    <div className="emoji-pupil"></div>
-                                </div>
-                                <div className="emoji-eye">
-                                    <div className="emoji-pupil"></div>
-                                </div>
-                                <div id="emoji-mouth" className="emoji-mouth"></div>
-                            </div>
-                        </div>
                     </div>
-                    <input id="login-form-username" className="login-form-control" type="text" placeholder="EMAIL" onChange={this.onEmail} value={this.state.email}></input>
-                    <input id="login-form-password" className="login-form-control" type="password" placeholder="PASSWORD" onChange={this.onPassWord} value={this.state.password}></input>
-
-                    <i class={"fas fa-user-check " + this.state.check}></i>
-                    <div className={"login-btn" + this.state.check}>
-                        {/* <button type='button' id='login-btn' className='login-btn1' onClick={(e) => this.onClick()} href={`${this.state.id}`}>login</button> */}
-                        {/* onClick={this.onClick()} hàm onClick lun chạy, dù không click */}
-                        <a id='login-btn' className='login1' onClick={(e) => this.onClick()} href={`${this.state.id}`}>LOGIN</a>
-                    </div>
-                    {/* <ButtonToolbar>
-                        <Button href='/chat' type='button' variant="primary" onClick={this.onClick}>LOGIN</Button>
-                        <Button type='button' variant="primary" onClick={(e) => this.onClick(e)}>LOGIN</Button>
-                    </ButtonToolbar>  */}
-                    {/* <a href='/chat'><button className="login-form-control login-form-button" type='submit' value='LOGIN'>LOGIN</button></a> */}
-                    <a className="login-form-link" href={`${this.state.id}`}>LOST YOUR PASSWORD ?</a>
                     <div className='icon-bg'>
                         <div className='icon-list'>
                             <i class="fab fa-facebook-square"></i>
@@ -124,6 +98,17 @@ class LoginPages extends React.Component {
                             <i class="fab fa-instagram"></i>
                         </div>
                     </div>
+                    <div className="login-form-body">
+                        <input id="login-form-username" className="login-form-control" type="text" placeholder="EMAIL" onChange={this.onEmail} value={this.state.email}></input>
+                        <input id="login-form-password" className="login-form-control" type="password" placeholder="PASSWORD" onChange={this.onPassWord} value={this.state.password}></input>
+                    
+                    <i class={"fas fa-user-check " + this.state.check}></i>
+                    </div>
+                    <div className={"login-btn" + this.state.check}>
+                        <a id='login-btn' className='login1' onClick={(e) => this.onClick()} href={`${this.state.id}`}>LOGIN</a>
+                    </div>
+                    <a className="login-form-link" href={`${this.state.id}`}>LOST YOUR PASSWORD ?</a>
+                    
                 </div>
             </React.Fragment>
         )

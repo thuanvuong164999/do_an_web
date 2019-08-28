@@ -1,18 +1,25 @@
 .bg-search {
     width: 100%;
     margin-top: 15px;
-    border-bottom: 1px solid #95adbe;
     .box-search {
         width: 80%;
         height: 30px;
         border: none;
-        // border-bottom: 1px solid #95adbe;
+        border-bottom: 1px solid #95adbe;
         background-color: #3F0E40;
         padding: 10px;
         color: #95adbe;
         &:focus {
-            // border-bottom: 3px solid #95adbe;
             outline: none;
+        }
+        &:hover {
+            border-bottom: 1px solid white;
+            animation-name: example;
+            animation-duration: 3s;
+        }
+        @keyframes example {
+            from {color: #95adbe;}
+            to {color: white;}
         }
     }
     .ic-search {
