@@ -69,6 +69,8 @@ class SendMessage extends React.Component {
                     room: this.state.room
                 })
                 socket.emit('typing', {
+                    typeroom: this.state.typeroom,
+                    userId: this.state.userId,
                     userName: this.state.userName,
                     text: '',
                     room: this.state.room

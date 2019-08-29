@@ -106,6 +106,7 @@ io.on('connection', (socket) => {
         if(value.typeroom === 'channel'){
             // console.log(`${value.userName} typing..... in room ${roomName}`)
             if (value.text == '') {
+                // console.log('stop')
                 io.in(roomName).emit('member_stop_typing', {
                     userName: value.userName
                 })
@@ -117,6 +118,7 @@ io.on('connection', (socket) => {
         } else {
             // console.log(`${value.userName} typing..... in room ${roomUser}`)
             if (value.text == '') {
+                // console.log('stop')
                 io.in(roomUser).emit('member_stop_typing', {
                     userName: value.userName
                 })
@@ -251,7 +253,7 @@ function getOldDataFromDB(room_id, userName) {
     pool.connect(function (err, client, done) {
         // console.log(`histories-${userName}`, room_id)
         let sql = `select * from histories where room_id = '${room_id}';`
-        console.log(sql)
+        // console.log(sql)
         client.query(sql, function (err ,result) {
             //console.log(result) //underfined thì xem sql
             // console.log(result.rows)
@@ -271,7 +273,7 @@ function getOldDataFromDB(room_id, userName) {
 function getDataFromUserRoom(room_id, user_id, userName) {
     pool.connect(function (err, client, done) {
         let sql = `select * from histories where (user_id = '${user_id}' and room_id = '${room_id}') or (user_id = '${room_id}' and room_id = '${user_id}');`
-        console.log(sql)
+        // console.log(sql)
         client.query(sql, function (err ,result) {
             //console.log(result) //underfined thì xem sql
             // console.log(result.rows)
