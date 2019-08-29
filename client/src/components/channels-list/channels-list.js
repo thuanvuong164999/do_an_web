@@ -1,6 +1,6 @@
 import React from 'react'
 import './channels-list.scss'
-import { serverEndPoint, socket, userName } from '../../services/socket-service/socket-service'
+import { serverEndPoint, socket, userName, userId } from '../../services/socket-service/socket-service'
 import {Tooltip, ButtonToolbar, OverlayTrigger} from 'react-bootstrap'
 
 const axios = require('axios')
@@ -50,6 +50,8 @@ class ChannelList extends React.Component {
     onClick = (event, id, name) => {
         // console.log('Clicked', id)
         socket.emit('join', {
+            typeroom: this.state.typeroom,
+            userId: userId,
             userName: userName,
             roomName: name,
             room: id

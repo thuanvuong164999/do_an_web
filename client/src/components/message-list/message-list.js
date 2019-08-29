@@ -19,6 +19,9 @@ class MessageList extends React.Component {
             typing: false,
             users_typing: [],
             roomId: '',
+            userId: '',
+            typeroom: '',
+            hide: ''
         }
     }
 
@@ -27,14 +30,16 @@ class MessageList extends React.Component {
         this.receiveHistories()
         this.onStopTyping()
         this.onTypingFromMember()
-        this.join()
+        this.onJoined()
     }
 
-    join() {
-        socket.on('joined', (value) => {
-            // console.log(value)
+    onJoined() {
+        socket.on('joined', (user) => {
+            // console.log('Joined: ', user)
             this.setState({
-                roomId: value.room
+                userId: user.userId,
+                typeroom: user.typeroom,
+                room: user.room
             })
         })
     }
@@ -42,17 +47,21 @@ class MessageList extends React.Component {
     onReceived() {
         socket.on('receive-message', (value) => {
             // console.log(value)
+            // console.log(this.state.userId)
+            // console.log(`(${this.state.userId} !== ${value.userId}) || (${this.state.userId} !== ${value.room})`)
             let item = {
                 user: value.userName,
                 ava: value.avatar,
                 message: value.message,
                 dat: value.dat,
                 daday:value.daday,
-                fr: value.userName === this.state.userName ? 'fr' : ''
+                fr: value.userName === this.state.userName ? 'fr' : '',
+                hide: ((this.state.userId !== value.userId) || (this.state.userId !== value.roomId)) ? 'hide' : ''
             }
             let items = this.state.messages
             items.push(item)
             this.setState({
+                typeroom: value.typeroom,
                 messages: items
             })
         })

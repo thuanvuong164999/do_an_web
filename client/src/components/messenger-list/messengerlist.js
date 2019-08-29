@@ -52,6 +52,7 @@ class MessList extends React.Component {
         console.log('Clicked', id)
         // console.log(name)
         socket.emit('join-userroom', {
+            typeroom: this.state.typeroom,
             userId: userId,
             userName: userName,
             roomName: name,

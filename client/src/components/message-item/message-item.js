@@ -7,7 +7,7 @@ class MessageItem extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <div className='message-item'>
+                <div className={'message-item ' + this.props.value.hide}>
                     {/* <div className={'created ' + this.props.value.fr}>
                         {this.props.value.dat}
                     </div> */}

@@ -19,13 +19,14 @@ class SendMessage extends React.Component {
             text: '',
             open: false,
             emoji:'',
-            userId: userId
+            userId: userId,
+            typeroom: ''
         }
     }
 
     componentDidMount() {
         this.onJoined()
-        this.onLeaved()
+        // this.onLeaved()
     }
 
     onJoined() {
@@ -33,17 +34,18 @@ class SendMessage extends React.Component {
             // console.log('Joined: ', user)
             this.setMessage(`User ${user.userName} joined ${user.room}`)
             this.setState({
+                typeroom: user.typeroom,
                 room: user.room
             })
         })
     }
 
-    onLeaved() {
-        socket.on('leaved', (user) => {
-            // console.log('Leaved: ', user)
-            this.setMessage(`User ${user.userName} leaved ${user.room}`)
-        })
-    }
+    // onLeaved() {
+    //     socket.on('leaved', (user) => {
+    //         // console.log('Leaved: ', user)
+    //         this.setMessage(`User ${user.userName} leaved ${user.room}`)
+    //     })
+    // }
 
     setMessage(message) {
         let messages = this.state.receiveMessages
@@ -60,6 +62,7 @@ class SendMessage extends React.Component {
                 return;
             else {
                 socket.emit('send-message', {
+                    typeroom: this.state.typeroom,
                     userId: this.state.userId,
                     userName: this.state.userName,
                     message: event.target.value,
@@ -77,18 +80,18 @@ class SendMessage extends React.Component {
         }
     }
 
-    join() {
-        socket.emit('join', {
-            userName: this.state.userName,
-            avatar: this.state.avatar
-        })
-    }
+    // join() {
+    //     socket.emit('join', {
+    //         userName: this.state.userName,
+    //         avatar: this.state.avatar
+    //     })
+    // }
 
-    leave() {
-        socket.emit('leave', {
-            userName: this.state.userName
-        })
-    }
+    // leave() {
+    //     socket.emit('leave', {
+    //         userName: this.state.userName
+    //     })
+    // }
 
     onChange = event => {
         // console.log(event.target.value)
@@ -97,6 +100,8 @@ class SendMessage extends React.Component {
         })
 
         socket.emit('typing', {
+            typeroom: this.state.typeroom,
+            userId: this.state.userId,
             userName: this.state.userName,
             text: event.target.value,
             room: this.state.room

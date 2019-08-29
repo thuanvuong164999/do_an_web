@@ -26,7 +26,7 @@ io.on('connection', (socket) => {
     console.log('Connected')
 
     socket.on('login-chat', (user) => {
-        console.log(user)
+        // console.log(user)
         io.emit('login-chat1', user)
     })
 
@@ -44,23 +44,23 @@ io.on('connection', (socket) => {
     })
 
     socket.on('send-message', (value) => {
-        console.log(value)
+        // console.log(value)
         let roomName = generrateRoom(value.room)
         let roomUser = generrateRoom(value.userId)
-        console.log(roomName)
+        // console.log(roomName)
         let msg = value.message
         value.message = convert2Icon(msg)
         value.dat = moment().format('LT')
         value.daday = moment().format('LL')
         let ava = value.userName
         value.avatar = createAvatar(ava)
-        io.in(roomName).emit('receive-message', value)
-        // if(roomName === roomUser){
-        //     io.in(roomName).emit('receive-message', value)
-        // } else {   
-        //     io.in(roomName).emit('receive-message', value)
-        //     io.in(roomUser).emit('receive-message', value) 
-        // }
+        // io.in(roomName).emit('receive-message', value)
+        if((roomName === roomUser) || (value.typeroom === 'channel')){
+            io.in(roomName).emit('receive-message', value)
+        } else {
+            io.in(roomName).emit('receive-message', value)
+            io.in(roomUser).emit('receive-message', value) 
+        }
         save2DB(value, value.room)
     })
 
@@ -91,19 +91,44 @@ io.on('connection', (socket) => {
 
     socket.on('typing', (value) => {
         // console.log(value)
-        // console.log(`${value.userName} typing.....`)
         // console.log(value.text == '')
         let roomName = generrateRoom(value.room)
-
-        if (value.text == '') {
-            io.in(roomName).emit('member_stop_typing', {
-                userName: value.userName
-            })
+        let roomUser = generrateRoom(value.userId)
+        // if (value.text == '') {
+        //     io.in(roomName).emit('member_stop_typing', {
+        //         userName: value.userName
+        //     })
+        // } else {
+        //     io.in(roomName).emit('member_typing', {
+        //         userName: value.userName
+        //     })
+        // }
+        if(value.typeroom === 'channel'){
+            // console.log(`${value.userName} typing..... in room ${roomName}`)
+            if (value.text == '') {
+                io.in(roomName).emit('member_stop_typing', {
+                    userName: value.userName
+                })
+            } else {
+                io.in(roomName).emit('member_typing', {
+                    userName: value.userName
+                })
+            }
         } else {
-            io.in(roomName).emit('member_typing', {
-                userName: value.userName
-            })
+            // console.log(`${value.userName} typing..... in room ${roomUser}`)
+            if (value.text == '') {
+                io.in(roomUser).emit('member_stop_typing', {
+                    userName: value.userName
+                })
+            } else {
+                io.in(roomUser).emit('member_typing', {
+                    userName: value.userName
+                })
+            }
+
         }
+
+        
     })
 
     socket.on('disconnect', () => { 
