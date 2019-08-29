@@ -105,7 +105,9 @@ class LoginPages extends React.Component {
                     <i class={"fas fa-user-check " + this.state.check}></i>
                     </div>
                     <div className={"login-btn" + this.state.check}>
-                        <a id='login-btn' className='login1' onClick={(e) => this.onClick()} href={`${this.state.id}`}>LOGIN</a>
+                        
+                        <a id='login-btn' className='btn btn-lg' onClick={(e) => this.onClick()} href={`${this.state.id}`}></a>
+                        
                     </div>
                     <a className="login-form-link" href={`${this.state.id}`}>LOST YOUR PASSWORD ?</a>
                     
