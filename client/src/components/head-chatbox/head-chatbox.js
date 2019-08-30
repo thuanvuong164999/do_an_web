@@ -83,7 +83,9 @@ class HeadChatBox extends React.Component {
                             <span className={"tooltiptext " + this.state.dropdownSet}>Settings</span>
                             <span class={"dropdown-setting " + this.state.dropdownSet}>
                                 <ul className='list-setting'>
-                                    <li>View conversation datails</li>
+                                    <li>Thông tin về phòng</li>
+                                    <li>Đổi tên phòng</li>
+                                    <li>Thay đổi màu</li>
                                 </ul>
                             </span>
                         </div>
