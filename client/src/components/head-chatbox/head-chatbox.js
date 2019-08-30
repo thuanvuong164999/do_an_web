@@ -16,7 +16,8 @@ class HeadChatBox extends React.Component {
             typeRoom2: 'messenger',
             type1:'',
             type2:'',
-            appearSearch: ''
+            appearSearch: '',
+            dropdownSet: ''
         }
     }
 
@@ -51,7 +52,15 @@ class HeadChatBox extends React.Component {
     }
 
     onClick = (event) => {
-
+        if(this.state.dropdownSet === ''){
+            this.setState({
+                dropdownSet: 'On'
+            })
+        } else {
+            this.setState({
+                dropdownSet: ''
+            })
+        }
     }
 
     render() {
@@ -67,14 +76,16 @@ class HeadChatBox extends React.Component {
                         <div className='input-name'>{this.state.roomName}</div>
                     </div>
                     <div className='bg-list-icon'>
-                        <div className='setting'>
+                        <div className='setting' onClick = {(e) => this.onClick(e)}>
                             <div className='icon-setting'>
                                 <i className="fas fa-cog"></i>
                             </div>
-                            <span className="tooltiptext">Settings</span>
-                            {/* <span class="dropdown-setting">
-                                <p>Hello World!</p>
-                            </span> */}
+                            <span className={"tooltiptext " + this.state.dropdownSet}>Settings</span>
+                            <span class={"dropdown-setting " + this.state.dropdownSet}>
+                                <ul className='list-setting'>
+                                    <li>View conversation datails</li>
+                                </ul>
+                            </span>
                         </div>
                         <div className={'search-box ' + this.state.appearSearch}>
                             <input className='search-txt' type='text' name='' placeholder='Search...'></input>
