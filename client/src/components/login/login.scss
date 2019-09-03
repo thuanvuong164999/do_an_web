@@ -6,10 +6,7 @@
 }
 
 body {
-    // background-color: #3498DB;
-    // background-image: url(../../icon/12485.jpg);
     background-image: url("12485.jpg");
-    background-color: #cccccc;
     background-repeat: no-repeat;
     background-position: center;
     height: 100vh;
@@ -21,7 +18,9 @@ body {
     align-content: center;
     margin-bottom: 10px;
     display: flex;
-    height: 40px;
+    height: 25px;
+    align-items: center;
+    justify-content: center;
 }
 
 .login-form-a{
@@ -46,35 +45,37 @@ body {
     
 //    }
 
-.btn{    
-    // box-sizing: border-box;
-    text-align: center;
-    // background: url("12485.jpg");
-    border-radius: 30px;
-    background-size: 200%;
-    width: 150px;
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    // text-transform: uppercase;
-    margin: 20px auto 0 auto;
-    height: 30px;
-    width: 120px;
-    color: white;   
-    padding-top: 10px;
-    box-shadow: 0 0 10px #eee;
-    transition: 0.5s;
-    &btn.hover{
-        background-position: right center;
-    }
-    &.checked{
-        margin-left:100px; 
-    }
-}
+// .btn{    
+//     // box-sizing: border-box;
+//     text-align: center;
+//     // background: url("12485.jpg");
+//     border-radius: 30px;
+//     background-size: 200%;
+//     width: 150px;
+//     display: flex;
+//     text-align: center;
+//     text-transform: uppercase;
+//     align-content: center;
+//     // text-transform: uppercase;
+//     margin: 20px auto 0 auto;
+//     height: 30px;
+//     width: 120px;
+//     color: white;   
+//     padding-top: 10px;
+//     box-shadow: 0 0 10px #eee;
+//     transition: 0.5s;
+//     &btn.hover{
+//         background-position: right center;
+    
+//     }
+//     &.checked{
+//         margin-left:100px; 
+//     }
+// }
 
-.btn-lg{
-    background-image: linear-gradient(to right, #a1c4fd 0%, #c2e9fb 51%, #a1c4fd 100%)
-}
+// .btn-lg{
+//     background-image: linear-gradient(to right, #84fab0 0%, green 51%, #84fab0 100%);
+// }
 
 .fa-user-check{
     font-size: 0px;
@@ -111,7 +112,6 @@ body {
     min-width: 300px;
     max-width: 400px;
     height: 500px;
-    // background-color: #fff;
     position: absolute;
     top: 0;
     bottom: 0;
@@ -126,19 +126,31 @@ body {
     
 }
 
-.login-form-control {
-    // border-bottom: 2px solid black;
-    // border-left: 2px solid black;
+.text {
+    background-color: white;
     border-radius: 10px;
-    margin:10px auto 10px auto;
-    // display: block;
-    width: 85%;
-    height: 40px;
+    margin:8px auto 20px auto;
+    width: 70%;
+    height: 35px;
     font-size: 20px;
     text-align: center;
     background-color: none;
-    // border-radius: 8px;
+    align-content: center;
     justify-content: center;
+    
+}
+
+.text input{
+    flex: 1;
+    height: 70%;
+    border: none;
+    outline: none;
+    font: 14px;
+}
+
+.text i{
+    padding: 0 10px;
+    cursor: pointer;
 }
 
 // .login-form-button {
@@ -169,7 +181,7 @@ body {
     font-size: 25px;
     text-align: center;
     text-decoration: none;
-    margin: 5px 2px;
+    margin: 0 auto 0 auto;
     border-radius: 50%;
     // background-color: blue;
     width: 100%;
@@ -177,18 +189,17 @@ body {
     .icon-list{
         margin: 15px auto 25px auto;
         width: 200px;
-        height: 50px;
+        height: 40px;
         
         i{
             font-size: 50px;
             // height: 50px;
             // width: 50px;
-            &.fa-facebook-square{
-                margin-right: 4px;
-                
+            &.fa-facebook-square{                
                 border-radius: 50%;
                 color: #3088c2;
-                margin-right: 25px;
+                margin-right: 12px;
+                font-size: 40px;
                 position: relative;
                 &.fa-facebook-square:hover{
                     color: #000272;
@@ -197,7 +208,7 @@ body {
             }
             &.fa-google-plus-square{
                 margin: none;
-                
+                font-size: 40px;
                 border-radius: 50%;
                 color: #ff5858;
                 &.fa-google-plus-square:hover{
@@ -205,12 +216,11 @@ body {
                     cursor: pointer;
                 } 
             }
-            &.fa-instagram{
-                margin-left: 4px;
-                
+            &.fa-instagram{                
                 border-radius: 50%;
                 color: #f638dc;
-                margin-left: 25px;
+                margin-left: 12px;
+                font-size: 40px;
                 &.fa-instagram:hover{
                     color: #b206b0;
                     cursor: pointer;}
@@ -231,14 +241,3 @@ body {
     transition: all;
 }
 
-
-// #emoji{
-//     position: relative;
-//     width: 150px;
-//     height: 150px;
-//     left: 0;
-//     right: 0;
-//     margin: auto;
-//     transition: .5s ease-in-out;
-//     margin-top: 10px;
-// }

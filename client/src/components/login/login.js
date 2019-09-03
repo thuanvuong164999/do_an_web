@@ -99,14 +99,19 @@ class LoginPages extends React.Component {
                         </div>
                     </div>
                     <div className="login-form-body">
-                        <input id="login-form-username" className="login-form-control" type="text" placeholder="EMAIL" onChange={this.onEmail} value={this.state.email}></input>
-                        <input id="login-form-password" className="login-form-control" type="password" placeholder="PASSWORD" onChange={this.onPassWord} value={this.state.password}></input>
-                    
+                        <div class='text'>
+                            <i class='fas fa-user'></i>
+                            <input id="login-form-username" className="" type="text" placeholder="EMAIL" onChange={this.onEmail} value={this.state.email}></input>
+                        </div>
+                        <div class='text'>
+                            <i class='fas fa-key'></i>
+                            <input id="login-form-password" className="" type="password" placeholder="PASSWORD" onChange={this.onPassWord} value={this.state.password}></input>
+                        </div>
                     <i class={"fas fa-user-check " + this.state.check}></i>
                     </div>
                     <div className={"login-btn" + this.state.check}>
                         
-                        <a id='login-btn' className='btn btn-lg' onClick={(e) => this.onClick()} href={`${this.state.id}`}></a>
+                        <a id='login-btn' class='' onClick={(e) => this.onClick()} href={`${this.state.id}`}>login</a>
                         
                     </div>
                     <a className="login-form-link" href={`${this.state.id}`}>LOST YOUR PASSWORD ?</a>
