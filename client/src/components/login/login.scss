@@ -6,20 +6,19 @@
 }
 
 .bg-lg {
-    // background-color: #3498DB;
-    // background-image: url(../../icon/12485.jpg);
+
     background-image: url("12485.jpg");
-    // background-color: #cccccc;
-    // background-repeat: no-repeat;
-    // background-position: center;
-    // height: 100vh;
+   
+    height: 100vh;
     background-size: cover; 
-      .oddly {
-        // margin-top: 200px;
-        // justify-content: center;
-        margin-left: 50px;
-        // height: 1;
-      }
+    .b1 {
+      width: 40%;
+      height: 100%;
+      margin: auto;
+      align-items: center;
+      justify-content: center;
+      background-color: #ECF0F0;     
+    }
 
       .login-form-link {
         font-size: 10px;
@@ -42,6 +41,7 @@
         // background-color: blue;
         width: 100%;
         height: auto;
+        opacity: none ; 
         .icon-list{
             margin: 15px auto 0 auto;
             i{
@@ -90,9 +90,9 @@
         border: 0px;
         margin:10px auto 10px auto;
         display: block;
-        width: 300px;
-        height: 40px;
-        font-size: 20px;
+        align-items: center;
+        height: 25px;
+        font-size: 15px;
         text-align: center;
         background-color: #ECF0F0;
         border-radius: 8px;
@@ -102,11 +102,8 @@
 
       .login-form-button {
         background-color: #3088c2;
+        width: 100px;
         color: #fff;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -moz-box;
-        display: -ms-flexbox;
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
@@ -117,25 +114,24 @@
       }
 
       .login1{    
-        // box-sizing: border-box;
         text-align: center;
         background: blue;
         border-radius: 30px;
-        width: 150px;
+        width: 100px;
         display: flex;
         justify-content: center;
         align-content: center;
         font-size: 16px;
-        // text-transform: uppercase;
-        margin: 7px auto 0 auto;
+        margin: 15px auto 0 auto;
         height: 40px;
-        width: 85%;
         color: white;   
-        padding-top: 10px;
         text-decoration: none;
-        margin-top: 15px;
         &.checked{
             margin-left:100px; 
         }
+        // &.login1::hover{
+        //   color: black;
+        //   cursor: pointer;
+        // }
       }
 }

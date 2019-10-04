@@ -61,7 +61,7 @@
         margin: auto;
         top:unset;
         left: unset;
-        width: 90%;
+        width: 100%;
         &.open-list1{
             position: absolute;
             top: -999999px;
@@ -76,9 +76,10 @@
                 color: #95adbe;
                 font-size: 1.2em;
                 margin-top: 5px;
+                width: 100%;
+                padding-left: 20px;
                 &:hover {
                     background-color: #574f7d;
-                    border-radius: 5px;
                 }
             }
             .type-room-icon{

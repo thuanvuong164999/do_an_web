@@ -61,7 +61,7 @@
         top: unset;
         left: unset;
         margin: auto;
-        width: 90%;
+        width: 100%;
         &.open-list2{
             position: absolute;
             top: -99999px;
@@ -75,10 +75,11 @@
                 text-transform: capitalize;
                 color: #95adbe;
                 font-size: 1.2em;
+                width: 100%;
+                padding-left: 20px;
                 margin-top: 5px;
                 &:hover {
                     background-color: #574f7d;
-                    border-radius: 5px;
                 }
             }
             .type-room-icon{

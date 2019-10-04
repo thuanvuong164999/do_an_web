@@ -1,18 +1,20 @@
 .bg-nav {
     font-family: 'Varela Round', sans-serif;
-
-  
   .nav-checkbox {
     display: none;
   }
+  // .nav1 {
+  //   height: 50px;
+  //   width: 50px;
+  // }
   
   .nav-btn {
     background-color: #EB2188;
-    height: 7rem;
-    width: 7rem;
+    height: 4rem;
+    width: 4rem;
     position: fixed;
-    top: 6rem;
-    right: 6rem;
+    top: 3rem;
+    right: 3rem;
     border-radius: 50%;
     z-index: 2;
     text-align: center;
@@ -20,12 +22,12 @@
   }
   
   .nav-bg {
-    height: 6rem;
-    width: 6rem;
+    height: 3rem;
+    width: 3rem;
     border-radius: 50%;
     position: fixed;
-    top: 6.5rem;
-    right: 6.5rem;
+    top: 3.5rem;
+    right: 3.5rem;
     background-image: radial-gradient(#080A52, #EB2188);
     z-index: 1;
     
@@ -94,16 +96,16 @@
   .nav-icon,
   .nav-icon::before, 
   .nav-icon::after {
-    height: 5px;
+    height: 3px;
     background-color: #fff;
     display: inline-block;
     border-radius: 50px;
   }
   
   .nav-icon {
-    width: 3rem;
+    width: 1.5rem;
     position: relative;
-    margin-top: 3.5rem;
+    margin-top: 2rem;
   }
   
   .nav-icon::before,
@@ -115,21 +117,21 @@
   }
   
   .nav-icon::before {
-    top: -.8rem;
-    width: 2rem;
+    top: -.4rem;
+    width: 1rem;
   }
   
   .nav-icon::after {
-    top: .8rem;
-    width: 2.5rem;
+    top: .4rem;
+    width: 1.25rem;
   }
   
   .nav-btn:hover .nav-icon::before {
-    top: -1rem;
+    top: -0.5rem;
   }
   
   .nav-btn:hover .nav-icon::after {
-    top: 1rem;
+    top: 0.5rem;
   }
   
   .nav-checkbox:checked + .nav-btn .nav-icon {
@@ -139,13 +141,13 @@
   .nav-checkbox:checked + .nav-btn .nav-icon::before {
     top: 0;
     transform: rotate(135deg);
-    width: 3rem;
+    width: 1.5rem;
   }
   
   .nav-checkbox:checked + .nav-btn .nav-icon::after {
     top: 0;
     transform: rotate(-135deg);
-    width: 3rem;
+    width: 1.5rem;
   }
 }
   
