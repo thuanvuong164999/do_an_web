@@ -83,14 +83,15 @@ class LoginPages extends React.Component {
                     <div>
                         <Project></Project>
                     </div>
-                    
                     <div className='b1'>
                         <div className='oddly'>
                             <Oddly></Oddly>
                         </div>
-                        <input id="login-form-username" className="login-form-control" type="text" placeholder="EMAIL" onChange={this.onUserName} value={this.state.userName}></input>
-                        <input id="login-form-password" className="login-form-control" type="password" placeholder="PASSWORD" onChange={this.onPassWord} value={this.state.password}></input>
-                        {/* <i class={"fas fa-user-check " + this.state.check}></i> */}
+                        <div className='inp'>
+                            <input id="login-form-username" className="login-form-control" type="text" placeholder="EMAIL" onChange={this.onUserName} value={this.state.userName}></input>
+                            <input id="login-form-password" className="login-form-control" type="password" placeholder="PASSWORD" onChange={this.onPassWord} value={this.state.password}></input>
+                            {/* <i class={"fas fa-user-check " + this.state.check}></i> */}
+                        </div>
                         <div className={"login-btn" + this.state.check}>
                             <a className='login1' onClick={(e) => this.onClick()} href={`${this.state.id}`}>LOGIN</a>
                         </div>

@@ -6,25 +6,22 @@
 }
 
 .bg-lg {
-
     background-image: url("12485.jpg");
-   
     height: 100vh;
-    background-size: cover; 
+    background-size: cover;
     .b1 {
       width: 40%;
       height: 100%;
       margin: auto;
       align-items: center;
       justify-content: center;
-      background-color: #ECF0F0;     
+      background-color: #ecfcff;     
     }
-
       .login-form-link {
         font-size: 10px;
         // text-decoration: underline;
         color: black;
-        margin-left: 100px;
+        margin-left: 250px;
         &.login-form-link:hover{
             text-decoration: none;
             cursor: pointer;
@@ -85,19 +82,25 @@
             }
         }
       }
-
+      .inp{
+        margin-top: 100px;
+      }
       .login-form-control {
         border: 0px;
         margin:10px auto 10px auto;
         display: block;
         align-items: center;
-        height: 25px;
+        height: 40px;
+        width: 50%;
         font-size: 15px;
         text-align: center;
-        background-color: #ECF0F0;
+        background-color: #e5e5e5;
         border-radius: 8px;
         justify-content: center;
-        // margin-top: 10px; 
+        // margin-top: 100px; 
+        &:focus{
+          outline: none;
+        }
       }
 
       .login-form-button {
@@ -117,7 +120,8 @@
         text-align: center;
         background: blue;
         border-radius: 30px;
-        width: 100px;
+        width: 40%;
+        padding: 5px;
         display: flex;
         justify-content: center;
         align-content: center;
