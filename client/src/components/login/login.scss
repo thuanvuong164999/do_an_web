@@ -8,9 +8,10 @@
 .bg-lg {
 
     background-image: url("12485.jpg");
-   
+    
     height: 100vh;
     background-size: cover; 
+    
     .b1 {
       width: 40%;
       height: 100%;
@@ -19,7 +20,33 @@
       justify-content: center;
       background-color: #ECF0F0;     
     }
-
+      .textbox{
+        width: 100%;
+        overflow:hidden;
+        font-size: 20px;
+        border-bottom: 2px solid blue;
+        margin:8px 0;
+        padding: 9px 0;
+      }
+      .textbox input{
+        border: none;
+        outline: none;
+        background-color: gray;
+        
+        width: 80px;
+        
+        margin: 0 10px 0 50px;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+        
+        display: flex;
+      }
+      .textbox i{
+        width: 50px;
+        float: left;
+        text-align: center;
+      }
       .login-form-link {
         font-size: 10px;
         // text-decoration: underline;
@@ -86,19 +113,19 @@
         }
       }
 
-      .login-form-control {
-        border: 0px;
-        margin:10px auto 10px auto;
-        display: block;
-        align-items: center;
-        height: 25px;
-        font-size: 15px;
-        text-align: center;
-        background-color: #ECF0F0;
-        border-radius: 8px;
-        justify-content: center;
-        // margin-top: 10px; 
-      }
+      // .login-form-control {
+      //   border: 0px;
+      //   margin:10px auto 10px auto;
+      //   display: block;
+      //   align-items: center;
+      //   height: 25px;
+      //   font-size: 15px;
+      //   text-align: center;
+      //   background-color: #ECF0F0;
+      //   border-radius: 8px;
+      //   justify-content: center;
+      //   // margin-top: 10px; 
+      // }
 
       .login-form-button {
         background-color: #3088c2;
