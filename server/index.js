@@ -25,11 +25,6 @@ app.use(cors())
 io.on('connection', (socket) => {
     console.log('Connected')
 
-    socket.on('login-chat', (user) => {
-        // console.log(user)
-        io.emit('login-chat1', user)
-    })
-
     socket.on('user-pass', (value) => {
         // console.log(value)
         saveUser(value.userName, value.password)
@@ -182,6 +177,7 @@ function saveUser(userName, password) {
         client.query(spl , function (err, result) {
             // console.log(result.rowCount) 
             // console.log(err)
+            // console.log(result)
             done()
             if((userName === '') || (password === '')){ 
                 io.emit('no-input')

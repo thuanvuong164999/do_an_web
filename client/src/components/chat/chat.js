@@ -6,11 +6,12 @@ import SendMessage from '../send-message/send-message';
 import RoomList from '../room-list/room-list';
 import HeadChatBox from '../head-chatbox/head-chatbox';
 import HeadRoomList from '../head-roomlist/head-roomlist';
+import Cookies from 'universal-cookie';
 
 class Chat extends React.Component {
 
     componentDidMount(){
-        
+        let cookie = new Cookies()
     }
 
     render() {

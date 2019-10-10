@@ -1,7 +1,8 @@
 import React from 'react'
 import './head-roomlist.scss'
 import {Tooltip, ButtonToolbar, OverlayTrigger} from 'react-bootstrap'
-import { socket, userName } from '../../services/socket-service/socket-service';
+import { socket } from '../../services/socket-service/socket-service';
+import Cookies from 'universal-cookie';
 
 class HeadRoomList extends React.Component {
     constructor(props) {
@@ -13,15 +14,13 @@ class HeadRoomList extends React.Component {
     }
 
     componentDidMount(){
-        // this.loginChat()
+        this.loginChat()
     }
 
     loginChat() {
-        socket.on('login-chat1', (user) => {
-            console.log(user)
-            this.state({
-                userName: user.userName
-            })
+        let cookie = new Cookies()
+        this.setState({
+            userName: cookie.get('logined')
         })
     }
 
@@ -53,7 +52,7 @@ class HeadRoomList extends React.Component {
                         WEB-D002
                     </div>
                     <div className='input-username'>
-                        <i className="fas fa-circle"></i>{userName}
+                        <i className="fas fa-circle"></i>{this.state.userName}
                     </div>
                 </div>
                 {/* <div className='icon-c'>

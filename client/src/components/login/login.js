@@ -3,7 +3,10 @@ import './login.scss'
 import { socket } from '../../services/socket-service/socket-service';
 import Project from '../project/project'
 import Oddly from '../oddly/oddly'
+import {Redirect} from 'react-router-dom'
+import Cookies from 'universal-cookie';
 
+const cookie = new Cookies()
 // import { Button, ButtonToolbar } from 'react-bootstrap'
 class LoginPages extends React.Component {
     constructor() {
@@ -13,7 +16,8 @@ class LoginPages extends React.Component {
             password: '',
             infoUser: [],
             id: '#',
-            check: ''
+            check: '',
+            logined: false
         }
     }
     componentDidMount() {
@@ -33,7 +37,11 @@ class LoginPages extends React.Component {
         })
     }
     getUser() {
+        cookie.set('logined', '') //tao cookie tin hieu logined, gia tri rong
         socket.on('user-pass-true', (values) => {
+            
+            // cookie.set('logined', this.state.infoUser.username)
+    
             // console.log(values)
             // alert('đăng nhập thành công')
             values.rows.map((value, index) => {
@@ -41,8 +49,9 @@ class LoginPages extends React.Component {
                 let item = {
                     userName: value.username,
                     password: value.password,
-                    userId: value.id
+                    userId: value.user_id
                 }
+                cookie.set('logined', item.userName)
                 // console.log(item)
                 this.setState({
                     infoUser: item,
@@ -62,23 +71,24 @@ class LoginPages extends React.Component {
             password: event.target.value
         })
     }
-    // onClick() {
-    //     socket.emit('user-pass', {
-    //         userName: this.state.userName,
-    //         password: this.state.password
-    //     })
-    // }
+
     onClick = (event) => {
         socket.emit('user-pass', {
             userName: this.state.userName,
             password: this.state.password
         })
+        // console.log(this.state.userName, this.state.password)
+    }
+    renderRedirect() {
         if (this.state.id == '/chat') {
+            return <Redirect to='/chat'></Redirect>
         }
     }
+
     render() {
         return (
             <React.Fragment>
+                {this.renderRedirect()}
                 <div className='bg-lg'>
                     <div>
                         <Project></Project>
@@ -93,9 +103,9 @@ class LoginPages extends React.Component {
                             {/* <i class={"fas fa-user-check " + this.state.check}></i> */}
                         </div>
                         <div className={"login-btn" + this.state.check}>
-                            <a className='login1' onClick={(e) => this.onClick()} href={`${this.state.id}`}>LOGIN</a>
+                            <a className='login1' onClick={(e) => this.onClick()} >LOGIN</a>
                         </div>
-                        <a className="login-form-link" href={`${this.state.id}`}>LOST YOUR PASSWORD ?</a>
+                        <a className="login-form-link">LOST YOUR PASSWORD ?</a>
                         <div className='icon-bg'>
                             <div className='icon-list'>
                                 <i class="fab fa-facebook-square"></i>
