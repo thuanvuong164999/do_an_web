@@ -2,7 +2,8 @@ import React from 'react'
 import './message-list.scss'
 import MessageItem from '../message-item/message-item';
 import ScrollToBottom from 'react-scroll-to-bottom';
-import { socket, userName } from '../../services/socket-service/socket-service'
+import { socket } from '../../services/socket-service/socket-service';
+import Cookies from 'universal-cookie';
 
 class MessageList extends React.Component {
     constructor(props) {
@@ -12,7 +13,7 @@ class MessageList extends React.Component {
             dat: '',
             daday:'',
             receiveMessages: '',
-            userName: userName,
+            userName: '',
             message: '',
             avatar: '',
             messages: [],
@@ -26,21 +27,60 @@ class MessageList extends React.Component {
     }
 
     componentDidMount() {
-        this.onReceived()
+        // this.loginChat()
+        this.onJoined()
         this.receiveHistories()
+        this.onReceived()
         this.onStopTyping()
         this.onTypingFromMember()
-        this.onJoined()
     }
+
+    // loginChat() {
+    //     let cookie = new Cookies()
+    //     this.setState({
+    //         userName: cookie.get('logined')
+    //     })
+    // }
 
     onJoined() {
         socket.on('joined', (user) => {
             // console.log('Joined: ', user)
             this.setState({
+                userName: user.userName,
                 userId: user.userId,
                 typeroom: user.typeroom,
                 room: user.room
             })
+        })
+    }
+
+    receiveHistories() {
+        let cookie = new Cookies()
+
+        socket.on(`histories-${cookie.get('logined')}`, (values) => {
+            // console.log(values)
+            let items = []
+            values.rows.map((value, index) => {
+                // console.log(value)
+                // let user = value.username.trim()
+                let user = value.username
+                let item = {
+                    user: user,
+                    avatar: value.username,
+                    message: value.message,
+                    dat: value.datime,
+                    daday:value.daday,
+                    fr: user === cookie.get('logined') ? 'fr' : '',
+                }
+                items.push(item)
+            })
+            this.setState({
+                messages: items
+            })
+
+            if (values.userName !== cookie.get('logined')) {
+                return
+            }
         })
     }
 
@@ -64,35 +104,6 @@ class MessageList extends React.Component {
                 typeroom: value.typeroom,
                 messages: items
             })
-        })
-    }
-
-    receiveHistories() {
-        // console.log(`histories-${this.state.userName}`)
-
-        socket.on(`histories-${this.state.userName}`, (values) => {
-            // console.log(values)
-            let items = []
-            values.rows.map((value, index) => {
-                // console.log(value)
-                let user = value.username.trim()
-                let item = {
-                    user: user,
-                    avatar: value.username,
-                    message: value.message,
-                    dat: value.datime,
-                    daday:value.daday,
-                    fr: user === this.state.userName ? 'fr' : '',
-                }
-                items.push(item)
-            })
-            this.setState({
-                messages: items
-            })
-
-            if (values.userName !== this.state.userName) {
-                return
-            }
         })
     }
 

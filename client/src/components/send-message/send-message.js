@@ -1,6 +1,7 @@
 import React from 'react'
 import './send-message.scss'
-import { socket, userName, userId } from '../../services/socket-service/socket-service'
+import { socket, userId } from '../../services/socket-service/socket-service'
+import Cookies from 'universal-cookie'
 
 class SendMessage extends React.Component {
     constructor(props) {
@@ -10,7 +11,7 @@ class SendMessage extends React.Component {
             dat: '',
             daday:'',
             receiveMessages: '',
-            userName: userName,
+            userName: '',
             message: '',
             avatar: '',
             messages: [],
@@ -25,27 +26,29 @@ class SendMessage extends React.Component {
     }
 
     componentDidMount() {
+        // this.loginChat()
         this.onJoined()
         // this.onLeaved()
     }
+
+    // loginChat(){
+    //     let cookie = new Cookies()
+    //     this.setState({
+    //         userName: cookie.get('logined')
+    //     })
+    // }
 
     onJoined() {
         socket.on('joined', (user) => {
             // console.log('Joined: ', user)
             this.setMessage(`User ${user.userName} joined ${user.room}`)
             this.setState({
+                userName: user.userName,
                 typeroom: user.typeroom,
                 room: user.room
             })
         })
     }
-
-    // onLeaved() {
-    //     socket.on('leaved', (user) => {
-    //         // console.log('Leaved: ', user)
-    //         this.setMessage(`User ${user.userName} leaved ${user.room}`)
-    //     })
-    // }
 
     setMessage(message) {
         let messages = this.state.receiveMessages
@@ -82,19 +85,6 @@ class SendMessage extends React.Component {
         }
     }
 
-    // join() {
-    //     socket.emit('join', {
-    //         userName: this.state.userName,
-    //         avatar: this.state.avatar
-    //     })
-    // }
-
-    // leave() {
-    //     socket.emit('leave', {
-    //         userName: this.state.userName
-    //     })
-    // }
-
     onChange = event => {
         // console.log(event.target.value)
         this.setState({
@@ -119,7 +109,7 @@ class SendMessage extends React.Component {
                             <div className='plus-foder-icon'>
                                 <i className="fas fa-folder-plus"></i>
                             </div>
-                            <span><input className='input-txt' placeholder={`Message ${userName}`} onKeyPress={this.onKeyPress} onChange={this.onChange} value={this.state.message}></input></span>
+                            <span><input className='input-txt' placeholder={`Message ${this.state.userName}`} onKeyPress={this.onKeyPress} onChange={this.onChange} value={this.state.message}></input></span>
                             <div className='emoji-icon'>
                                 <i className="far fa-smile"></i>
                             </div>

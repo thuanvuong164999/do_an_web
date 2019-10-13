@@ -1,6 +1,7 @@
 import React from 'react'
 import './head-chatbox.scss'
-import { socket, userName } from '../../services/socket-service/socket-service'
+import { socket } from '../../services/socket-service/socket-service'
+import Cookies from 'universal-cookie'
 
 class HeadChatBox extends React.Component {
     constructor(props) {
@@ -11,7 +12,7 @@ class HeadChatBox extends React.Component {
             room:'',
             avatar:'',
             typeRoom: [],
-            userName:userName,
+            userName:'',
             typeRoom1: 'channel',
             typeRoom2: 'messenger',
             type1:'',
@@ -22,7 +23,15 @@ class HeadChatBox extends React.Component {
     }
 
     componentDidMount() {
+        this.loginChat()
         this.inRoomName()
+    }
+
+    loginChat() {
+        let cookie = new Cookies()
+        this.setState({
+            userName: cookie.get('logined')
+        })
     }
 
     inRoomName() {
@@ -39,7 +48,6 @@ class HeadChatBox extends React.Component {
             let item = {
                 user: value.userName,
                 ava: value.avatar,
-                // fr: value.userName === this.state.userName ? 'fr' : '',
                 type1: value.typeroom === this.state.typeRoom1 ? 'type1' : '',
                 type2: value.typeroom === this.state.typeRoom2 ? 'type2' : ''
             }

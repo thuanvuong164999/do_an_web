@@ -1,7 +1,8 @@
 import React from 'react'
 import './messengerlist.scss'
-import { serverEndPoint, socket, userName, userId } from '../../services/socket-service/socket-service'
+import { serverEndPoint, socket, userId } from '../../services/socket-service/socket-service'
 import {Tooltip, ButtonToolbar, OverlayTrigger} from 'react-bootstrap'
+import Cookies from 'universal-cookie'
 
 
 const axios = require('axios');
@@ -15,11 +16,14 @@ class MessList extends React.Component {
             roomName:'',
             avatar:'',
             typeroom: 'messenger',
-            openList: ''
+            openList: '',
+            userName: ''
         }
     }
 
     componentDidMount() {
+        this.loginChat()
+
         let self = this
 
         axios.get(`${serverEndPoint}/api/room-list/user-rooms`)
@@ -36,6 +40,14 @@ class MessList extends React.Component {
             });
     }
 
+    loginChat() {
+        let cookie = new Cookies()
+        // console.log(cookie.get('logined'))
+        this.setState({
+            userName: cookie.get('logined')
+        })
+    }
+
     onClick1 = (event) => {
         if (this.state.openList === '') {
             this.setState({
@@ -49,19 +61,19 @@ class MessList extends React.Component {
     }
 
     onClick = (event, id, name) => {
-        console.log('Clicked', id)
+        // console.log('Clicked', id, this.state.userName)
         // console.log(name)
         socket.emit('join-userroom', {
             typeroom: this.state.typeroom,
             userId: userId,
-            userName: userName,
+            userName: this.state.userName,
             roomName: name,
             room: id
         })
         socket.emit('type-room', {
             room:id,
             avatar: this.state.avatar,
-            userName: userName,
+            userName: this.state.userName,
             typeroom: this.state.typeroom
         })
     }

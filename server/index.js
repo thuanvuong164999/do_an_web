@@ -32,28 +32,28 @@ io.on('connection', (socket) => {
 
     socket.on('type-room', (value)=> {
         // console.log(value)
-        let roomName = generrateRoom(value.room)
+        let roomId = generrateRoom(value.room)
         let ava = value.userName
         value.avatar = createAvatar(ava)
-        io.in(roomName).emit('type-in-room', value)
+        io.in(roomId).emit('type-in-room', value)
     })
 
     socket.on('send-message', (value) => {
         // console.log(value)
-        let roomName = generrateRoom(value.room)
+        let roomId = generrateRoom(value.room)
         let roomUser = generrateRoom(value.userId)
-        // console.log(roomName)
+        // console.log(roomId)
         let msg = value.message
         value.message = convert2Icon(msg)
         value.dat = moment().format('LT')
         value.daday = moment().format('LL')
         let ava = value.userName
         value.avatar = createAvatar(ava)
-        // io.in(roomName).emit('receive-message', value)
-        if((roomName === roomUser) || (value.typeroom === 'channel')){
-            io.in(roomName).emit('receive-message', value)
+        // io.in(roomId).emit('receive-message', value)
+        if((roomId === roomUser) || (value.typeroom === 'channel')){
+            io.in(roomId).emit('receive-message', value)
         } else {
-            io.in(roomName).emit('receive-message', value)
+            io.in(roomId).emit('receive-message', value)
             io.in(roomUser).emit('receive-message', value) 
         }
         save2DB(value, value.room)
@@ -62,51 +62,52 @@ io.on('connection', (socket) => {
     socket.on('join', (value) => {
         // console.log(value)
         // console.log(`${value.userName} joined ${value.room}`)
-        let roomName = generrateRoom(value.room)
-        socket.join(roomName)
-        io.in(roomName).emit('joined', value) //send-message
-        io.in(roomName).emit('join-in-room', value)
-        getOldDataFromDB(roomName, value.userName)
+        let roomId = generrateRoom(value.room)
+        socket.join(roomId)
+        io.in(roomId).emit('joined', value) //send-message
+        io.in(roomId).emit('join-in-room', value)
+        getOldDataFromDB(roomId, value.userName)
     })
 
     socket.on('join-userroom', (value) => {
-        let roomName = generrateRoom(value.room)
-        socket.join(roomName)
-        io.in(roomName).emit('joined', value)
-        io.in(roomName).emit('join-in-room', value)
-        getDataFromUserRoom(roomName, value.userId, value.userName)
+        // console.log(value)
+        let roomId = generrateRoom(value.room)
+        socket.join(roomId)
+        io.in(roomId).emit('joined', value)
+        io.in(roomId).emit('join-in-room', value)
+        getDataFromUserRoom(roomId, value.userId, value.userName)
     })
 
-    socket.on('leave', (value) => {
-        // console.log(value)
-        console.log(`${value.userName} leaved`)
-        io.in(roomName).emit('leaved', value)
-        socket.leave(roomName)
-    })
+    // socket.on('leave', (value) => {
+    //     // console.log(value)
+    //     // console.log(`${value.userName} leaved`)
+    //     io.in(roomId).emit('leaved', value)
+    //     socket.leave(roomId)
+    // })
 
     socket.on('typing', (value) => {
         // console.log(value)
         // console.log(value.text == '')
-        let roomName = generrateRoom(value.room)
+        let roomId = generrateRoom(value.room)
         let roomUser = generrateRoom(value.userId)
         // if (value.text == '') {
-        //     io.in(roomName).emit('member_stop_typing', {
+        //     io.in(roomId).emit('member_stop_typing', {
         //         userName: value.userName
         //     })
         // } else {
-        //     io.in(roomName).emit('member_typing', {
+        //     io.in(roomId).emit('member_typing', {
         //         userName: value.userName
         //     })
         // }
         if(value.typeroom === 'channel'){
-            // console.log(`${value.userName} typing..... in room ${roomName}`)
+            // console.log(`${value.userName} typing..... in room ${roomId}`)
             if (value.text == '') {
                 // console.log('stop')
-                io.in(roomName).emit('member_stop_typing', {
+                io.in(roomId).emit('member_stop_typing', {
                     userName: value.userName
                 })
             } else {
-                io.in(roomName).emit('member_typing', {
+                io.in(roomId).emit('member_typing', {
                     userName: value.userName
                 })
             }
@@ -252,9 +253,9 @@ function getOldDataFromDB(room_id, userName) {
         let sql = `select * from histories where room_id = '${room_id}';`
         // console.log(sql)
         client.query(sql, function (err ,result) {
-            //console.log(result) //underfined thì xem sql
+            // console.log(result) //underfined thì xem sql
             // console.log(result.rows)
-            //console.log(err) //ra null là đúng
+            // console.log(err) //ra null là đúng
             done()
             if (!err) { //err == null
                 io.in(room_id).emit(`histories-${userName}`, {
