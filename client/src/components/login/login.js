@@ -8,56 +8,56 @@ import Cookies from 'universal-cookie';
 
 const cookie = new Cookies()
 // import { Button, ButtonToolbar } from 'react-bootstrap'
+
 class LoginPages extends React.Component {
     constructor() {
         super()
         this.state = {
+            userId: '',
             userName: '',
             password: '',
-            infoUser: [],
             id: '#',
-            check: '',
             logined: false
         }
     }
     componentDidMount() {
-        this.getUser()
-        this.noInfoUser()
-        this.falseUserPass()
+        this.saveUserExaming()
     }
-    falseUserPass() {
-        socket.on('user-pass-false', (value) => {
-            alert('Bạn đã nhập sai USERNAME hoặc PASSWORD.\nXin kiểm tra lại.')
-        })
-    }
-    noInfoUser() {
-        socket.on('no-input', (value) => {
-            // console.log('bạn đã nhập thiếu thông tin, xin kiểm tra lại')
-            alert('Bạn đã nhập thiếu thông tin \nXin kiểm tra lại')
-        })
-    }
-    getUser() {
-        socket.on('user-pass-true', (values) => {
-            // console.log(values)
-            // alert('đăng nhập thành công')
-            values.rows.map((value, index) => {
-                // console.log(value)
-                let item = {
-                    userName: value.username,
-                    password: value.password,
-                    userId: value.id
-                }
-                cookie.set('loginId', item.userId)
-                cookie.set('logined', item.userName)
-                // console.log(item)
-                this.setState({
-                    infoUser: item,
-                    id: '/chat',
-                    check: 'checked'
+
+    saveUserExaming() {
+
+        socket.on('Examing', (value) => {
+            // console.log(value)
+            let cookie = new Cookies()
+            cookie.set('userName', value.userName)
+
+
+            socket.on(`userpassfalse${cookie.get('userName')}`, (value) => {
+                console.log(`userpassfalse${cookie.get('userName')}`)
+                alert('Bạn đã nhập sai USERNAME hoặc PASSWORD.\nXin kiểm tra lại.')
+            })
+
+            socket.on(`userpasstrue${cookie.get('userName')}`, (values) => {
+                console.log(`userpasstrue${cookie.get('userName')}`)
+                // console.log(values)
+                // alert('đăng nhập thành công')
+                values.rows.map((value, index) => {
+                    // console.log(value)
+                    let item = {
+                        userName: value.username,
+                        password: value.password,
+                        userId: value.id
+                    }
+                    cookie.set('loginId', item.userId)
+                    cookie.set('logined', item.userName)
+                    this.setState({
+                        id: '/chat'
+                    })
                 })
             })
         })
     }
+
     onUserName = event => {
         this.setState({
             userName: event.target.value
@@ -70,14 +70,20 @@ class LoginPages extends React.Component {
     }
 
     onClick = (event) => {
-        socket.emit('user-pass', {
-            userName: this.state.userName,
-            password: this.state.password
-        })
-        // console.log(this.state.userName, this.state.password)
+        cookie.set('userName', '')
+        let userName = this.state.userName
+        let password = this.state.password
+        if (userName === '' || password === '') {
+            alert('Bạn đã nhập thiếu thông tin \nXin kiểm tra lại')
+        } else {
+            socket.emit('user-pass', {
+                userName: this.state.userName,
+                password: this.state.password
+            })
+        }
     }
     renderRedirect() {
-        if (this.state.id == '/chat') {
+        if (this.state.id === '/chat') {
             return <Redirect to='/chat'></Redirect>
         }
     }

@@ -26,7 +26,8 @@ io.on('connection', (socket) => {
     console.log('Connected')
 
     socket.on('user-pass', (value) => {
-        // console.log(value)
+        console.log(value)
+        io.emit('Examing', value)
         saveUser(value.userName, value.password)
     })
 
@@ -178,14 +179,14 @@ function saveUser(userName, password) {
             // console.log(err)
             // console.log(result)
             done()
-            if((userName === '') || (password === '')){ 
-                io.emit('no-input')
-            } else if(result.rowCount == '1') {
-                io.emit('user-pass-true', {
+            if(result.rowCount == '1') {
+                console.log(`userpasstrue${userName}`)
+                io.emit(`userpasstrue${userName}`, {
                     rows: result.rows
                 })
             } else {
-                io.emit('user-pass-false')
+                console.log(`userpassfalse${userName}`)
+                io.emit(`userpassfalse${userName}`)
             }
         })
     })
@@ -277,6 +278,7 @@ function getDataFromUserRoom(room_id, user_id, userName) {
             done()
             if (!err) { //err == null
                 io.in(room_id).emit(`histories-${userName}`, {
+                    userId: user_id,
                     room: room_id,
                     userName: userName,
                     rows: result.rows
