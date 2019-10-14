@@ -43,8 +43,9 @@ class MessageList extends React.Component {
     // }
 
     onJoined() {
-        socket.on('joined', (user) => {
-            // console.log('Joined: ', user)
+        let cookie = new Cookies()
+        socket.on(`joined-${cookie.get('logined')}`, (user) => {
+            console.log('Joined: ', user)
             this.setState({
                 userName: user.userName,
                 userId: user.userId,

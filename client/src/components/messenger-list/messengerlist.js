@@ -3,6 +3,7 @@ import './messengerlist.scss'
 import { serverEndPoint, socket} from '../../services/socket-service/socket-service'
 import {Tooltip, ButtonToolbar, OverlayTrigger} from 'react-bootstrap'
 import Cookies from 'universal-cookie'
+import { truncate } from 'fs'
 
 
 const axios = require('axios');
@@ -18,13 +19,14 @@ class MessList extends React.Component {
             typeroom: 'messenger',
             openList: '',
             userName: '',
-            userId: ''
+            userId: '',
+            status: ''
+            // users_login: [],
+            // login: false
         }
     }
 
     componentDidMount() {
-        this.loginChat()
-
         let self = this
 
         axios.get(`${serverEndPoint}/api/room-list/user-rooms`)
@@ -39,7 +41,38 @@ class MessList extends React.Component {
             .finally(function () {
 
             });
+
+        this.loginChat()
+        // this.usersLogin()
     }
+
+    // usersLogin(){
+    //     let cookie = new Cookies()
+    //     let listUsers = this.state.users_login
+    //     let index = listUsers.indexOf(cookie.get('logined'))
+        
+    //     // if (index !== -1) {
+    //     //     listUsers.splice(index, 1)
+    //     // }
+    //     // let status = true
+    //     // if (listUsers.length === 0) {
+    //     //     status = false
+    //     // }
+    //     console.log(index, listUsers.length)
+    // }
+
+    // login(id) {
+    //     console.log(id, this.state.userId)
+    //     console.log(id == this.state.userId)
+
+    //     let status = ''
+
+    //     if(id == this.state.userId){
+    //         status = true
+    //     }else{
+    //         status = false
+    //     }
+    // }
 
     loginChat() {
         let cookie = new Cookies()
@@ -110,15 +143,34 @@ class MessList extends React.Component {
                         <ul className='list'>
                             {
                                 this.state.room.map((value, index) => {
-                                    return (
-                                        <li key={index} onClick={(e) => this.onClick(e, value.id, value.roomname)}>
-                                            <div className='type-room-icon'>
-                                                <i id={`user_id-${value.id}`} className="far fa-circle"></i>
-                                                {/* <i class="fas fa-circle"></i> */}
-                                            </div>
-                                            {value.roomname}
-                                        </li>
-                                    )
+                                    if(value.id == this.state.userId){
+                                        return (
+                                            <li key={index} onClick={(e) => this.onClick(e, value.id, value.roomname)} >
+                                                <div className='type-room-icon'>
+                                                    <i id={`user_id-${value.id}`}  className={'fas fa-circle'} ></i>
+                                                </div>
+                                                {value.roomname}
+                                            </li>
+                                        )
+                                    }else{
+                                        return (
+                                            <li key={index} onClick={(e) => this.onClick(e, value.id, value.roomname)} >
+                                                <div className='type-room-icon'>
+                                                    <i id={`user_id-${value.id}`} className={'far fa-circle'} ></i>
+                                                </div>
+                                                {value.roomname}
+                                            </li>
+                                        )
+                                    }
+                                    // return (
+                                    //     <li key={index} onClick={(e) => this.onClick(e, value.id, value.roomname)} >
+                                    //         <div className='type-room-icon'>
+                                    //             <i id={`user_id-${value.id}`} login={this.login(value.id)} className={'far fa-circle'} ></i>
+                                    //             {/* <i class="fas fa-circle"></i> */}
+                                    //         </div>
+                                    //         {value.roomname}
+                                    //     </li>
+                                    // )
                                 })
                             }
                         </ul>

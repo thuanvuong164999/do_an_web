@@ -64,7 +64,7 @@ io.on('connection', (socket) => {
         // console.log(`${value.userName} joined ${value.room}`)
         let roomId = generrateRoom(value.room)
         socket.join(roomId)
-        io.in(roomId).emit('joined', value) //send-message
+        io.in(roomId).emit(`joined-${value.userName}`, value) //send-message
         io.in(roomId).emit('join-in-room', value)
         getOldDataFromDB(roomId, value.userName)
     })
@@ -73,7 +73,7 @@ io.on('connection', (socket) => {
         // console.log(value)
         let roomId = generrateRoom(value.room)
         socket.join(roomId)
-        io.in(roomId).emit('joined', value)
+        io.in(roomId).emit(`joined-${value.userName}`, value)
         io.in(roomId).emit('join-in-room', value)
         getDataFromUserRoom(roomId, value.userId, value.userName)
     })
@@ -90,15 +90,6 @@ io.on('connection', (socket) => {
         // console.log(value.text == '')
         let roomId = generrateRoom(value.room)
         let roomUser = generrateRoom(value.userId)
-        // if (value.text == '') {
-        //     io.in(roomId).emit('member_stop_typing', {
-        //         userName: value.userName
-        //     })
-        // } else {
-        //     io.in(roomId).emit('member_typing', {
-        //         userName: value.userName
-        //     })
-        // }
         if(value.typeroom === 'channel'){
             // console.log(`${value.userName} typing..... in room ${roomId}`)
             if (value.text == '') {

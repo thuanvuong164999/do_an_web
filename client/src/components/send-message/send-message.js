@@ -39,7 +39,9 @@ class SendMessage extends React.Component {
     // }
 
     onJoined() {
-        socket.on('joined', (user) => {
+        let cookie = new Cookies()
+
+        socket.on(`joined-${cookie.get('logined')}`, (user) => {
             // console.log('Joined: ', user)
             this.setMessage(`User ${user.userName} joined ${user.room}`)
             this.setState({
