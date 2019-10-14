@@ -3,7 +3,7 @@ import './login.scss'
 import { socket } from '../../services/socket-service/socket-service';
 import Project from '../project/project'
 import Oddly from '../oddly/oddly'
-import {Redirect} from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import Cookies from 'universal-cookie';
 
 const cookie = new Cookies()
@@ -37,7 +37,7 @@ class LoginPages extends React.Component {
         })
     }
     getUser() {
-        socket.on('user-pass-true', (values) => {   
+        socket.on('user-pass-true', (values) => {
             // console.log(values)
             // alert('đăng nhập thành công')
             values.rows.map((value, index) => {
@@ -100,7 +100,7 @@ class LoginPages extends React.Component {
                             {/* <i class={"fas fa-user-check " + this.state.check}></i> */}
                         </div>
                         <div className={"login-btn" + this.state.check}>
-                            <a className='login1' onClick={(e) => this.onClick()} >LOGIN</a>
+                            <button className='login1' onClick={(e) => this.onClick()} >LOGIN</button>
                         </div>
                         <a className="login-form-link">LOST YOUR PASSWORD ?</a>
                         <div className='icon-bg'>
