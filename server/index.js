@@ -173,7 +173,7 @@ app.get('/api/user-password', cors(), (req, res) => {
 
 function saveUser(userName, password) {
     pool.connect(function (err, client, done) {
-        let spl = `select * from users where (users.email = '${userName}' and users.password = '${password}');`
+        let spl = `select users.email, users.password, users.username, rooms.id from users, rooms where (users.email = '${userName}' and users.password = '${password}' and rooms.id_style='2' and rooms.roomname=users.username);`
         // console.log(spl)
         client.query(spl , function (err, result) {
             // console.log(result.rowCount) 

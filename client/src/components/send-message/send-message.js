@@ -1,6 +1,6 @@
 import React from 'react'
 import './send-message.scss'
-import { socket, userId } from '../../services/socket-service/socket-service'
+import { socket } from '../../services/socket-service/socket-service'
 import Cookies from 'universal-cookie'
 
 class SendMessage extends React.Component {
@@ -20,7 +20,7 @@ class SendMessage extends React.Component {
             text: '',
             open: false,
             emoji:'',
-            userId: userId,
+            userId: '',
             typeroom: ''
         }
     }
@@ -43,6 +43,7 @@ class SendMessage extends React.Component {
             // console.log('Joined: ', user)
             this.setMessage(`User ${user.userName} joined ${user.room}`)
             this.setState({
+                userId: user.userId,
                 userName: user.userName,
                 typeroom: user.typeroom,
                 room: user.room

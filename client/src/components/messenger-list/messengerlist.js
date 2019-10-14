@@ -1,6 +1,6 @@
 import React from 'react'
 import './messengerlist.scss'
-import { serverEndPoint, socket, userId } from '../../services/socket-service/socket-service'
+import { serverEndPoint, socket} from '../../services/socket-service/socket-service'
 import {Tooltip, ButtonToolbar, OverlayTrigger} from 'react-bootstrap'
 import Cookies from 'universal-cookie'
 
@@ -17,7 +17,8 @@ class MessList extends React.Component {
             avatar:'',
             typeroom: 'messenger',
             openList: '',
-            userName: ''
+            userName: '',
+            userId: ''
         }
     }
 
@@ -42,8 +43,9 @@ class MessList extends React.Component {
 
     loginChat() {
         let cookie = new Cookies()
-        // console.log(cookie.get('logined'))
+        // console.log(cookie.get('logined'), cookie.get('loginId'))
         this.setState({
+            userId: cookie.get('loginId'),
             userName: cookie.get('logined')
         })
     }
@@ -65,7 +67,7 @@ class MessList extends React.Component {
         // console.log(name)
         socket.emit('join-userroom', {
             typeroom: this.state.typeroom,
-            userId: userId,
+            userId: this.state.userId,
             userName: this.state.userName,
             roomName: name,
             room: id

@@ -37,11 +37,7 @@ class LoginPages extends React.Component {
         })
     }
     getUser() {
-        cookie.set('logined', '') //tao cookie tin hieu logined, gia tri rong
-        socket.on('user-pass-true', (values) => {
-            
-            // cookie.set('logined', this.state.infoUser.username)
-    
+        socket.on('user-pass-true', (values) => {   
             // console.log(values)
             // alert('đăng nhập thành công')
             values.rows.map((value, index) => {
@@ -49,8 +45,9 @@ class LoginPages extends React.Component {
                 let item = {
                     userName: value.username,
                     password: value.password,
-                    userId: value.user_id
+                    userId: value.id
                 }
+                cookie.set('loginId', item.userId)
                 cookie.set('logined', item.userName)
                 // console.log(item)
                 this.setState({

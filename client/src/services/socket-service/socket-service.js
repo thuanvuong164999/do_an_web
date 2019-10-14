@@ -4,7 +4,6 @@ import socketIOClient from 'socket.io-client'
 export const serverEndPoint = 'http://1e013733.ngrok.io'
 
 export const socket = socketIOClient(serverEndPoint)
-export const userId = '4'
 
 
 

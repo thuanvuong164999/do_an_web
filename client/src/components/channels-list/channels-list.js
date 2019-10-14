@@ -1,6 +1,6 @@
 import React from 'react'
 import './channels-list.scss'
-import { serverEndPoint, socket, userId } from '../../services/socket-service/socket-service'
+import { serverEndPoint, socket} from '../../services/socket-service/socket-service'
 import {Tooltip, ButtonToolbar, OverlayTrigger} from 'react-bootstrap'
 import Cookies from 'universal-cookie'
 
@@ -16,7 +16,8 @@ class ChannelList extends React.Component {
             avatar: '',
             typeroom: 'channel',
             openList: '',
-            userName: ''
+            userName: '',
+            userId: ''
         }
     }
 
@@ -41,8 +42,9 @@ class ChannelList extends React.Component {
 
     loginChat() {
         let cookie = new Cookies()
-        // console.log(cookie.get('logined'))
+        // console.log(cookie.get('logined'), cookie.get('loginId'))
         this.setState({
+            userId: cookie.get('loginId'),
             userName: cookie.get('logined')
         })
     }
@@ -63,7 +65,7 @@ class ChannelList extends React.Component {
         // console.log('Clicked', id, this.state.userName)
         socket.emit('join', {
             typeroom: this.state.typeroom,
-            userId: userId,
+            userId: this.state.userId,
             userName: this.state.userName,
             roomName: name,
             room: id

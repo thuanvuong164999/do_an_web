@@ -86,7 +86,7 @@ class MessageList extends React.Component {
 
     onReceived() {
         socket.on('receive-message', (value) => {
-            console.log(value)
+            // console.log(value)
             // console.log(this.state.userId)
             // console.log(`(${this.state.userId} !== ${value.userId}) || (${this.state.userId} !== ${value.room})`)
             let item = {
