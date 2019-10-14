@@ -238,7 +238,7 @@ app.get('/api/room-list/user-rooms', cors(), (req, res) => {
 function save2DB(value, room_id) {
     pool.connect(function (err, client, done) {
         let sql = `insert into histories (username, user_id, datime, message, room_id) values('${value.userName}', '${value.userId}', '${value.dat}', '${value.message}', '${room_id}')`
-        console.log(sql)
+        // console.log(sql)
         client.query(sql, function (err, result) {
             // console.log(result)
             // console.log(err) 
