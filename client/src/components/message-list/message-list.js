@@ -21,6 +21,8 @@ class MessageList extends React.Component {
             users_typing: [],
             roomId: '',
             userId: '',
+            tong: '',
+            tich: '',
             typeroom: '',
             hide: ''
         }
@@ -50,8 +52,12 @@ class MessageList extends React.Component {
                 userName: user.userName,
                 userId: user.userId,
                 typeroom: user.typeroom,
-                room: user.room
+                roomId: user.room,
+                tong: Number(user.userId)+Number(user.room),
+                tich: Number(user.userId)*Number(user.room)
             })
+            console.log(this.state.tong, this.state.tich)
+            console.log(`receive-message-${this.state.tong}-${this.state.tich}`)
         })
     }
 
@@ -88,26 +94,69 @@ class MessageList extends React.Component {
     }
 
     onReceived() {
-        socket.on('receive-message', (value) => {
-            // console.log(value)
-            // console.log(this.state.userId)
-            // console.log(`(${this.state.userId} !== ${value.userId}) || (${this.state.userId} !== ${value.room})`)
-            let item = {
-                user: value.userName,
-                ava: value.avatar,
-                message: value.message,
-                dat: value.dat,
-                daday:value.daday,
-                fr: value.userName === this.state.userName ? 'fr' : '',
-                hide: ((this.state.userId !== value.userId) || (this.state.userId !== value.room)) ? 'hide' : ''
-            }
-            let items = this.state.messages
-            items.push(item)
-            this.setState({
-                typeroom: value.typeroom,
-                messages: items
+        if(this.state.userId == this.state.roomId){
+            let cookie = new Cookies()
+            console.log(`receive-message-${cookie.get('logined')}`)
+            socket.on(`receive-message-${cookie.get('logined')}`, (value) => {
+                let item = {
+                    user: value.userName,
+                    ava: value.avatar,
+                    message: value.message,
+                    dat: value.dat,
+                    daday:value.daday,
+                    fr: 'fr'
+                }
+                let items = this.state.messages
+                items.push(item)
+                this.setState({
+                    typeroom: value.typeroom,
+                    messages: items
+                })
             })
-        })
+        }else if(this.state.typeroom === 'messenger'){
+            console.log(this.state.tong, this.state.tich)
+            socket.on(`receive-message-${this.state.tong}-${this.state.tich}`, (value) => {
+                // console.log(value)
+                // console.log(this.state.userId)
+                // console.log((this.state.userId !== value.userId) && (this.state.userId !== value.room))
+                let item = {
+                    user: value.userName,
+                    ava: value.avatar,
+                    message: value.message,
+                    dat: value.dat,
+                    daday:value.daday,
+                    fr: value.userName === this.state.userName ? 'fr' : '',
+                    hide: ((this.state.userId !== value.userId) && (this.state.userId !== value.room)) ? 'hide' : ''
+                }
+                let items = this.state.messages
+                items.push(item)
+                this.setState({
+                    typeroom: value.typeroom,
+                    messages: items
+                })
+            })
+        }else {
+            socket.on('receive-message', (value) => {
+                // console.log(value)
+                // console.log(this.state.userId)
+                // console.log((this.state.userId !== value.userId) && (this.state.userId !== value.room))
+                let item = {
+                    user: value.userName,
+                    ava: value.avatar,
+                    message: value.message,
+                    dat: value.dat,
+                    daday:value.daday,
+                    fr: value.userName === this.state.userName ? 'fr' : '',
+                    hide: ((this.state.userId !== value.userId) && (this.state.userId !== value.room)) ? 'hide' : ''
+                }
+                let items = this.state.messages
+                items.push(item)
+                this.setState({
+                    typeroom: value.typeroom,
+                    messages: items
+                })
+            })
+        }
     }
 
     onStopTyping() {
