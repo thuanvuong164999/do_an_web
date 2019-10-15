@@ -47,7 +47,7 @@ class MessageList extends React.Component {
     onJoined() {
         let cookie = new Cookies()
         socket.on(`joined-${cookie.get('logined')}`, (user) => {
-            console.log('Joined: ', user)
+            // console.log('Joined: ', user)
             this.setState({
                 userName: user.userName,
                 userId: user.userId,
@@ -56,8 +56,9 @@ class MessageList extends React.Component {
                 tong: Number(user.userId) + Number(user.room),
                 tich: Number(user.userId) * Number(user.room)
             })
-            console.log(this.state.tong, this.state.tich)
-            console.log(`receive-message-${this.state.tong}-${this.state.tich}`)
+            // console.log(this.state.tong, this.state.tich)
+            // console.log(`receive-message-${this.state.tong}-${this.state.tich}`)
+            this.onReceivedUser(this.state.tong, this.state.tich)
         })
     }
 
@@ -70,7 +71,7 @@ class MessageList extends React.Component {
             values.rows.map((value, index) => {
                 console.log(value)
                 // console.log(value.user_id, cookie.get('loginId'))
-                // console.log(value.user_id == cookie.get('loginId'))
+                console.log(value.user_id == cookie.get('loginId'))
                 // let user = value.username.trim()
                 let user = value.username
                 let item = {
@@ -79,9 +80,10 @@ class MessageList extends React.Component {
                     message: value.message,
                     dat: value.datime,
                     daday: value.daday,
-                    fr: value.userId == cookie.get('loginId') ? 'fr' : '', // 2 dau =, so sanh gia tri khac loai
+                    fr: (value.userId == cookie.get('loginId'))?'fr':'', // 2 dau =, so sanh gia tri khac loai
                 }
                 items.push(item)
+                console.log(items)
             })
             this.setState({
                 messages: items
@@ -90,6 +92,30 @@ class MessageList extends React.Component {
             if (values.userName !== cookie.get('logined')) {
                 return
             }
+        })
+    }
+
+    onReceivedUser(tong, tich){
+        // console.log(this.state.tong, this.state.tich)
+        socket.on(`receive-message-${tong}-${tich}`, (value) => {
+            // console.log(value)
+            // console.log(this.state.userId)
+            // console.log((this.state.userId !== value.userId) && (this.state.userId !== value.room))
+            let item = {
+                user: value.userName,
+                ava: value.avatar,
+                message: value.message,
+                dat: value.dat,
+                daday: value.daday,
+                fr: value.userName === this.state.userName ? 'fr' : '',
+                hide: ((this.state.userId !== value.userId) && (this.state.userId !== value.room)) ? 'hide' : ''
+            }
+            let items = this.state.messages
+            items.push(item)
+            this.setState({
+                typeroom: value.typeroom,
+                messages: items
+            })
         })
     }
 
@@ -104,28 +130,6 @@ class MessageList extends React.Component {
                 dat: value.dat,
                 daday: value.daday,
                 fr: 'fr'
-            }
-            let items = this.state.messages
-            items.push(item)
-            this.setState({
-                typeroom: value.typeroom,
-                messages: items
-            })
-        })
-
-        // console.log(this.state.tong, this.state.tich)
-        socket.on(`receive-message-${this.state.tong}-${this.state.tich}`, (value) => {
-            // console.log(value)
-            // console.log(this.state.userId)
-            // console.log((this.state.userId !== value.userId) && (this.state.userId !== value.room))
-            let item = {
-                user: value.userName,
-                ava: value.avatar,
-                message: value.message,
-                dat: value.dat,
-                daday: value.daday,
-                fr: value.userName === this.state.userName ? 'fr' : '',
-                hide: ((this.state.userId !== value.userId) && (this.state.userId !== value.room)) ? 'hide' : ''
             }
             let items = this.state.messages
             items.push(item)

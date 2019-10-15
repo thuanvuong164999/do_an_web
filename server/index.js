@@ -248,7 +248,7 @@ function save2DB(value, room_id) {
 
 function getOldDataFromDB(room_id, userName) {
     pool.connect(function (err, client, done) {
-        // console.log(`histories-${userName}`, room_id)
+        console.log(`histories-${userName}`, room_id)
         let sql = `select * from histories where room_id = '${room_id}';`
         // console.log(sql)
         client.query(sql, function (err ,result) {
