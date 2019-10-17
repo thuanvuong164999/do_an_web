@@ -71,7 +71,6 @@ class MessageList extends React.Component {
             values.rows.map((value, index) => {
                 console.log(value)
                 // console.log(value.user_id, cookie.get('loginId'))
-                console.log(value.user_id == cookie.get('loginId'))
                 // let user = value.username.trim()
                 let user = value.username
                 let item = {
@@ -82,6 +81,7 @@ class MessageList extends React.Component {
                     daday: value.daday,
                     fr: (value.userId == cookie.get('loginId'))?'fr':'', // 2 dau =, so sanh gia tri khac loai
                 }
+                console.log(value.user_id == cookie.get('loginId'))
                 items.push(item)
                 console.log(items)
             })
