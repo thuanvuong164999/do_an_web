@@ -6,16 +6,23 @@
 }
 
 .bg-lg {
-    background-image: url("12485.jpg");
+    background-image: url("12.jpg");
     height: 100vh;
     background-size: cover;
     .b1 {
-      width: 40%;
-      height: 100%;
       margin: auto;
       align-items: center;
       justify-content: center;
-      background-color: #ecfcff;     
+      width: 25%;
+      height: 70%;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%,-50%);
+      position: absolute;
+      background-color: rgba(64, 57, 59, 0.8);
+      border-radius: 13px;
+      box-shadow: 10px 9px 24px #000000;
+      
     }
       .login-form-link {
         font-size: 10px;
@@ -92,15 +99,15 @@
       .inp{
         margin-top: 100px;
       }
-      .login-form-control {
+      .control {
         border: 0px;
-        margin:10px auto 10px auto;
+        margin:10px auto ;
         display: block;
         align-items: center;
-        height: 40px;
-        width: 50%;
+        height: 30px;
+        width: 60%;
         font-size: 15px;
-        text-align: center;
+        text-align: left;
         background-color: #e5e5e5;
         border-radius: 8px;
         justify-content: center;

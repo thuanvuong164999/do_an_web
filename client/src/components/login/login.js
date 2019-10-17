@@ -101,8 +101,8 @@ class LoginPages extends React.Component {
                             <Oddly></Oddly>
                         </div>
                         <div className='inp'>
-                            <input id="login-form-username" className="login-form-control" type="text" placeholder="EMAIL" onChange={this.onUserName} value={this.state.userName}></input>
-                            <input id="login-form-password" className="login-form-control" type="password" placeholder="PASSWORD" onChange={this.onPassWord} value={this.state.password}></input>
+                            <input id="login-form-username" className="control" type="text" placeholder="EMAIL" onChange={this.onUserName} value={this.state.userName}></input>
+                            <input id="login-form-password" className="control" type="password" placeholder="PASSWORD" onChange={this.onPassWord} value={this.state.password}></input>
                             {/* <i class={"fas fa-user-check " + this.state.check}></i> */}
                         </div>
                         <div className={"login-btn" + this.state.check}>
