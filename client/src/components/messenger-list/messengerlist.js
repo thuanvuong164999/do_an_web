@@ -51,13 +51,14 @@ class MessList extends React.Component {
     //     let listUsers = this.state.users_login
     //     let index = listUsers.indexOf(cookie.get('logined'))
         
-    //     // if (index !== -1) {
-    //     //     listUsers.splice(index, 1)
-    //     // }
-    //     // let status = true
-    //     // if (listUsers.length === 0) {
-    //     //     status = false
-    //     // }
+    //     if (index !== -1) {
+    //         listUsers.splice(index, 1)
+    //     }
+    //     let status = true
+    //     if (listUsers.length === 0) {
+    //         status = false
+    //     }
+
     //     console.log(index, listUsers.length)
     // }
 

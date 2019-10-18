@@ -27,7 +27,7 @@ io.on('connection', (socket) => {
 
     socket.on('user-pass', (value) => {
         // console.log(value)
-        io.emit('Examing', value)
+        io.emit(`Examing-${value.userName}`, value)
         saveUser(value.userName, value.password)
     })
 
@@ -294,7 +294,7 @@ function generrateRoom(id) {
 
 function convert2Icon(message) {
     return message
-        .replace(/\:\)/gi, '<span role="image" aria-label="slightly-smiling-face">&#x1f642</span>')
+        .replace(/\:\)/gi, '<span role="image" aria-label="slightly-smiling-face"></span>')
 }
 
 function createAvatar(userStr) {

@@ -25,12 +25,10 @@ class LoginPages extends React.Component {
     }
 
     saveUserExaming() {
-
-        socket.on('Examing', (value) => {
+        socket.on(`Examing-${this.state.userName}`, (value) => {
             // console.log(value)
             let cookie = new Cookies()
             cookie.set('userName', value.userName)
-
 
             socket.on(`userpassfalse${cookie.get('userName')}`, (value) => {
                 console.log(`userpassfalse${cookie.get('userName')}`)
@@ -63,6 +61,7 @@ class LoginPages extends React.Component {
             userName: event.target.value
         })
     }
+    
     onPassWord = event => {
         this.setState({
             password: event.target.value
