@@ -26,7 +26,7 @@ io.on('connection', (socket) => {
     console.log('Connected')
 
     socket.on('user-pass', (value) => {
-        console.log(value)
+        // console.log(value)
         io.emit('Examing', value)
         saveUser(value.userName, value.password)
     })
@@ -53,7 +53,7 @@ io.on('connection', (socket) => {
 
         let tich = roomId*roomUser
         let tong = Number(roomId)+Number(roomUser)
-        console.log(`receive-message-${tong}-${tich}`)
+        // console.log(`receive-message-${tong}-${tich}`)
 
         if(roomId === roomUser){
             // console.log(`receive-message-${value.userName}`)
@@ -180,12 +180,12 @@ function saveUser(userName, password) {
             // console.log(result)
             done()
             if(result.rowCount == '1') {
-                console.log(`userpasstrue${userName}`)
+                // console.log(`userpasstrue${userName}`)
                 io.emit(`userpasstrue${userName}`, {
                     rows: result.rows
                 })
             } else {
-                console.log(`userpassfalse${userName}`)
+                // console.log(`userpassfalse${userName}`)
                 io.emit(`userpassfalse${userName}`)
             }
         })
@@ -248,7 +248,7 @@ function save2DB(value, room_id) {
 
 function getOldDataFromDB(room_id, userName) {
     pool.connect(function (err, client, done) {
-        console.log(`histories-${userName}`, room_id)
+        // console.log(`histories-${userName}`, room_id)
         let sql = `select * from histories where room_id = '${room_id}';`
         // console.log(sql)
         client.query(sql, function (err ,result) {

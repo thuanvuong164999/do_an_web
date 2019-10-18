@@ -69,7 +69,7 @@ class MessageList extends React.Component {
             // console.log(values)
             let items = []
             values.rows.map((value, index) => {
-                console.log(value)
+                // console.log(value)
                 // console.log(value.user_id, cookie.get('loginId'))
                 // let user = value.username.trim()
                 let user = value.username
@@ -79,17 +79,17 @@ class MessageList extends React.Component {
                     message: value.message,
                     dat: value.datime,
                     daday: value.daday,
-                    fr: (value.userId == cookie.get('loginId'))?'fr':'', // 2 dau =, so sanh gia tri khac loai
+                    fr: (value.user_id == this.state.userId) ?'fr':'', // 2 dau =, so sanh gia tri khac loai
                 }
-                console.log(value.user_id == cookie.get('loginId'))
+                // console.log(value.user_id == this.state.userId)
                 items.push(item)
-                console.log(items)
+                // console.log(items)
             })
             this.setState({
                 messages: items
             })
 
-            if (values.userName !== cookie.get('logined')) {
+            if (values.userName !== this.state.userName) {
                 return
             }
         })
