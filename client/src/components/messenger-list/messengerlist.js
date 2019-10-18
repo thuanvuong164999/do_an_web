@@ -147,7 +147,7 @@ class MessList extends React.Component {
                                     return (
                                         <li key={index} onClick={(e) => this.onClick(e, value.id, value.roomname)} >
                                             <div className='type-room-icon'>
-                                                <i id={`user_id-${value.id}`} login={this.login(value.id)} className={'far fa-circle'} ></i>
+                                                <i id={`user_id-${value.id}`} className={'far fa-circle'} ></i>
                                                 {/* <i class="fas fa-circle"></i> */}
                                             </div>
                                             {value.roomname}
