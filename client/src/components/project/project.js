@@ -12,12 +12,18 @@ class Project extends React.Component {
                             <span className="nav-icon"></span></label>
                         <div className="nav-bg"></div>
                         <div className="nav">
-                            <ul className="nav-list">
-                                <li className="nav-item"><a href="#" class="nav-link">Hoang</a></li>
-                                <li className="nav-item"><a href="#" class="nav-link">Son</a></li>
-                                <li className="nav-item"><a href="#" class="nav-link">Thuan</a></li>
-                                <li className="nav-item"><a href="#" class="nav-link">information for project</a></li>
-                            </ul>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <ul className="nav-list">
+                                        <li className="nav-item"><a href="#" class="nav-link">Information For Project</a></li>
+                                        <li className="nav-item"><a href="#" class="nav-link">Le Minh Hoang</a></li>
+                                        <li className="nav-item"><a href="#" class="nav-link">Huynh Kim Son</a></li>
+                                        <li className="nav-item"><a href="#" class="nav-link">Vuong Dung Thuan</a></li>
+                                
+                                    </ul>
+                                </td>
+                            </tr>
                         </div>
                     </div>
                 </div>

@@ -124,9 +124,12 @@ io.on('connection', (socket) => {
             }
 
         }
-
-        
     })
+
+    // socket.on('loginn', (value) => {
+    //     let userLogin = getDataFromUserRoom(value.roomUser)
+    //     if(value)
+    // })
 
     socket.on('disconnect', () => { 
         console.log('Client disconnected.')

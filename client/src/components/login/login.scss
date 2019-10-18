@@ -13,8 +13,8 @@
       margin: auto;
       align-items: center;
       justify-content: center;
-      width: 25%;
-      height: 70%;
+      width: 375px;
+      height: 520px;
       left: 50%;
       top: 50%;
       transform: translate(-50%,-50%);
@@ -50,7 +50,7 @@
             margin: 15px auto 0 auto;
             i{
                 font-size: 50px;
-               
+                position: relative;
                 // height: 50px;
                 // width: 50px;
                 &.fa-facebook-square{
@@ -61,7 +61,7 @@
                     margin-right: 25px;
                     
                     &.fa-facebook-square:hover{
-                        color: black;
+                        color:#b1e8ed;
                         cursor: pointer;
                     }
                     // &:focus{
@@ -75,7 +75,7 @@
                     border-radius: 5px;
                     color: #ff5858;
                     &.fa-google-plus-square:hover{
-                        color:black;
+                        color:#ff0000;
                         cursor: pointer;
                     } 
                 }
@@ -86,7 +86,7 @@
                     color: #f638dc;
                     margin-left: 25px;
                     &.fa-instagram:hover{
-                        color: black;
+                        color: #dd6892;
                         cursor: pointer;}
                 }
                 &.icon-list:hover {
@@ -97,7 +97,7 @@
         
       }
       .inp{
-        margin-top: 100px;
+        margin-top: 50px;
       }
       .control {
         border: 0px;
