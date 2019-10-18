@@ -20,9 +20,9 @@ class MessList extends React.Component {
             openList: '',
             userName: '',
             userId: '',
-            status: ''
-            // users_login: [],
-            // login: false
+            status: '',
+            users_login: [],
+            login: false
         }
     }
 
@@ -43,24 +43,24 @@ class MessList extends React.Component {
             });
 
         this.loginChat()
-        // this.usersLogin()
+        this.usersLogin()
     }
 
-    // usersLogin(){
-    //     let cookie = new Cookies()
-    //     let listUsers = this.state.users_login
-    //     let index = listUsers.indexOf(cookie.get('logined'))
+    usersLogin(){
+        let cookie = new Cookies()
+        let listUsers = this.state.users_login
+        let index = listUsers.indexOf(cookie.get('logined'))
         
-    //     if (index !== -1) {
-    //         listUsers.splice(index, 1)
-    //     }
-    //     let status = true
-    //     if (listUsers.length === 0) {
-    //         status = false
-    //     }
+        if (index !== -1) {
+            listUsers.splice(index, 1)
+        }
+        let status = true
+        if (listUsers.length === 0) {
+            status = false
+        }
 
-    //     console.log(index, listUsers.length)
-    // }
+        console.log(index, listUsers.length)
+    }
 
     // login(id) {
     //     console.log(id, this.state.userId)
@@ -144,34 +144,15 @@ class MessList extends React.Component {
                         <ul className='list'>
                             {
                                 this.state.room.map((value, index) => {
-                                    if(value.id == this.state.userId){
-                                        return (
-                                            <li key={index} onClick={(e) => this.onClick(e, value.id, value.roomname)} >
-                                                <div className='type-room-icon'>
-                                                    <i id={`user_id-${value.id}`}  className={'fas fa-circle'} ></i>
-                                                </div>
-                                                {value.roomname}
-                                            </li>
-                                        )
-                                    }else{
-                                        return (
-                                            <li key={index} onClick={(e) => this.onClick(e, value.id, value.roomname)} >
-                                                <div className='type-room-icon'>
-                                                    <i id={`user_id-${value.id}`} className={'far fa-circle'} ></i>
-                                                </div>
-                                                {value.roomname}
-                                            </li>
-                                        )
-                                    }
-                                    // return (
-                                    //     <li key={index} onClick={(e) => this.onClick(e, value.id, value.roomname)} >
-                                    //         <div className='type-room-icon'>
-                                    //             <i id={`user_id-${value.id}`} login={this.login(value.id)} className={'far fa-circle'} ></i>
-                                    //             {/* <i class="fas fa-circle"></i> */}
-                                    //         </div>
-                                    //         {value.roomname}
-                                    //     </li>
-                                    // )
+                                    return (
+                                        <li key={index} onClick={(e) => this.onClick(e, value.id, value.roomname)} >
+                                            <div className='type-room-icon'>
+                                                <i id={`user_id-${value.id}`} login={this.login(value.id)} className={'far fa-circle'} ></i>
+                                                {/* <i class="fas fa-circle"></i> */}
+                                            </div>
+                                            {value.roomname}
+                                        </li>
+                                    )
                                 })
                             }
                         </ul>

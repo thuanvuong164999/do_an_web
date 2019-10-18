@@ -27,7 +27,7 @@ io.on('connection', (socket) => {
 
     socket.on('user-pass', (value) => {
         // console.log(value)
-        io.emit(`Examing-${value.userName}`, value)
+        io.emit(`Examing-${value.userName}-${value.password}`, value)
         saveUser(value.userName, value.password)
     })
 

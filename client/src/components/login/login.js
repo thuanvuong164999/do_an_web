@@ -21,11 +21,11 @@ class LoginPages extends React.Component {
         }
     }
     componentDidMount() {
-        this.saveUserExaming()
+
     }
 
-    saveUserExaming() {
-        socket.on(`Examing-${this.state.userName}`, (value) => {
+    saveUserExaming(userName, password) {
+        socket.on(`Examing-${userName}-${password}`, (value) => {
             // console.log(value)
             let cookie = new Cookies()
             cookie.set('userName', value.userName)
@@ -80,7 +80,9 @@ class LoginPages extends React.Component {
                 password: this.state.password
             })
         }
+        this.saveUserExaming(userName, password)
     }
+    
     renderRedirect() {
         if (this.state.id === '/chat') {
             return <Redirect to='/chat'></Redirect>
