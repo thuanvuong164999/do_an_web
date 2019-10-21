@@ -2,6 +2,7 @@ import React from 'react'
 import './send-message.scss'
 import { socket } from '../../services/socket-service/socket-service'
 import Cookies from 'universal-cookie'
+import Emoji from '../picker/picker'
 
 class SendMessage extends React.Component {
     constructor(props) {
@@ -19,7 +20,7 @@ class SendMessage extends React.Component {
             changeInput: '',
             text: '',
             open: false,
-            emoji:'',
+            emoji:'off',
             userId: '',
             typeroom: ''
         }
@@ -102,6 +103,18 @@ class SendMessage extends React.Component {
             room: this.state.room
         })
     }
+
+    onClick1() {
+        if(this.state.emoji === 'off') {
+            this.setState({
+                emoji: 'on'
+            })
+        } else {
+            this.setState({
+                emoji: 'off'
+            })
+        }
+    }
     
     render() {
         return (
@@ -114,7 +127,8 @@ class SendMessage extends React.Component {
                             </div>
                             <span><input className='input-txt' placeholder={`Message ${this.state.userName}`} onKeyPress={this.onKeyPress} onChange={this.onChange} value={this.state.message}></input></span>
                             <div className='emoji-icon'>
-                                <i className="far fa-smile"></i>
+                                <i onClick={() => this.onClick1()} className="far fa-smile"></i>
+                                <div className={`${this.state.emoji}`}><Emoji></Emoji></div>
                             </div>
                         </div>
                     </div>

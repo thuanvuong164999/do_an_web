@@ -59,6 +59,16 @@
                 &.emoji-icon:hover{
                     color: blueviolet;
                 }
+                .off {
+                    position: absolute;
+                    top:-999999px;
+                    left: -9999999px;
+                }
+                .on{
+                    position: absolute;
+                    right: 1%;
+                    bottom: 7%;
+                }
             }
             .plus-foder-icon{
                 background-color: white;
