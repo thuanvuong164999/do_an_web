@@ -25,9 +25,14 @@ app.use(cors())
 io.on('connection', (socket) => {
     console.log('Connected')
 
+    socket.on('join-chatpage', (value) => {
+        // console.log(value)
+        io.emit('user-logined', value)
+    })
+
     socket.on('user-pass', (value) => {
         // console.log(value)
-        io.emit(`Examing-${value.userName}-${value.password}`, value)
+        // io.emit(`Examing-${value.userName}-${value.password}`, value)
         saveUser(value.userName, value.password)
     })
 

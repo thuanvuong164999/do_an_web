@@ -1,7 +1,7 @@
 import React from 'react'
 import './messengerlist.scss'
-import { serverEndPoint, socket} from '../../services/socket-service/socket-service'
-import {Tooltip, ButtonToolbar, OverlayTrigger} from 'react-bootstrap'
+import { serverEndPoint, socket } from '../../services/socket-service/socket-service'
+import { Tooltip, ButtonToolbar, OverlayTrigger } from 'react-bootstrap'
 import Cookies from 'universal-cookie'
 import { truncate } from 'fs'
 
@@ -14,8 +14,8 @@ class MessList extends React.Component {
 
         this.state = {
             room: [],
-            roomName:'',
-            avatar:'',
+            roomName: '',
+            avatar: '',
             typeroom: 'messenger',
             openList: '',
             userName: '',
@@ -27,6 +27,9 @@ class MessList extends React.Component {
     }
 
     componentDidMount() {
+        this.userLogining()
+        this.userLogined()
+
         let self = this
 
         axios.get(`${serverEndPoint}/api/room-list/user-rooms`)
@@ -41,44 +44,37 @@ class MessList extends React.Component {
             .finally(function () {
 
             });
-
-        this.loginChat()
-        this.usersLogin()
     }
 
-    usersLogin(){
-        let cookie = new Cookies()
-        let listUsers = this.state.users_login
-        let index = listUsers.indexOf(cookie.get('logined'))
-        
-        if (index !== -1) {
-            listUsers.splice(index, 1)
-        }
-        let status = true
-        if (listUsers.length === 0) {
-            status = false
-        }
+    userLogined() {
+        socket.on('user-logined', (value) => {
+            console.log(value)
+            // let listUsers = this.state.users_login
 
-        console.log(index, listUsers.length)
+            // if (!listUsers.includes(value.userName)) {
+            //     listUsers.push(value.userName)
+            // }
+
+            // this.setState({
+            //     login: true,
+            //     users_login: listUsers
+            // })
+
+            // console.log(this.state.users_login)
+            // console.log(listUsers)
+        })
     }
 
-    // login(id) {
-    //     console.log(id, this.state.userId)
-    //     console.log(id == this.state.userId)
-
-    //     let status = ''
-
-    //     if(id == this.state.userId){
-    //         status = true
-    //     }else{
-    //         status = false
-    //     }
-    // }
-
-    loginChat() {
+    userLogining() {
         let cookie = new Cookies()
         // console.log(cookie.get('logined'), cookie.get('loginId'))
         this.setState({
+            userId: cookie.get('loginId'),
+            userName: cookie.get('logined')
+        })
+
+        socket.emit('join-chatpage', {
+            // listUsers : listUsers,
             userId: cookie.get('loginId'),
             userName: cookie.get('logined')
         })
@@ -107,7 +103,7 @@ class MessList extends React.Component {
             room: id
         })
         socket.emit('type-room', {
-            room:id,
+            room: id,
             avatar: this.state.avatar,
             userName: this.state.userName,
             typeroom: this.state.typeroom
@@ -119,25 +115,25 @@ class MessList extends React.Component {
             <React.Fragment>
                 <div className='messengerlist-bg'>
                     <div className='title-chanels' onClick={(e) => this.onClick1(e)}>
-                    <ButtonToolbar className='title'>
-                        {['top'].map(placement => (
-                            <OverlayTrigger
-                                key={placement}
-                                placement={placement}
-                                overlay={
-                                    <Tooltip id={`tooltip-${placement}`}>
-                                        <strong>Open a dirct message</strong>
-                                    </Tooltip>
-                                }
-                            >
-                                <div>Direct message</div>
-                            </OverlayTrigger>
-                        ))}
-                    </ButtonToolbar>
-                        
+                        <ButtonToolbar className='title'>
+                            {['top'].map(placement => (
+                                <OverlayTrigger
+                                    key={placement}
+                                    placement={placement}
+                                    overlay={
+                                        <Tooltip id={`tooltip-${placement}`}>
+                                            <strong>Open a dirct message</strong>
+                                        </Tooltip>
+                                    }
+                                >
+                                    <div>Direct message</div>
+                                </OverlayTrigger>
+                            ))}
+                        </ButtonToolbar>
+
                         <div className='icon'>
-                        <i className={'plus-icon fas fa-plus-circle ' + this.state.openList} ></i>
-                        <i className={'minus-icon fas fa-minus-circle ' + this.state.openList}></i>
+                            <i className={'plus-icon fas fa-plus-circle ' + this.state.openList} ></i>
+                            <i className={'minus-icon fas fa-minus-circle ' + this.state.openList}></i>
                         </div>
                     </div>
                     <div className={'list-bg ' + this.state.openList}>
