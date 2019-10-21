@@ -228,6 +228,20 @@ app.get('/api/room-list/chanels', cors(), (req, res) => {
     })
 })
 
+// app.get('/api/users', cors(), (req, res) => {
+//     pool.connect(function (err, client, done) {
+//         client.query(`select rooms.roomname, rooms.id, users.user_id from rooms, users where (rooms.id_style = '2') and (rooms.roomname = users.username);`, function (err, result) {
+//             done()
+//             if (!err) {
+//                 res.send({
+//                     status: 200,
+//                     data: result.rows
+//                 })
+//             }
+//         })
+//     })
+// })
+
 app.get('/api/room-list/user-rooms', cors(), (req, res) => {
     pool.connect(function (err, client, done) {
         client.query(`select rooms.roomname, rooms.id, users.user_id from rooms, users where (rooms.id_style = '2') and (rooms.roomname = users.username);`, function (err, result) {
