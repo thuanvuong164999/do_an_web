@@ -91,6 +91,16 @@ io.on('connection', (socket) => {
         getDataFromUserRoom(roomId, value.userId, value.userName)
     })
 
+    socket.on('login-online', (value) => {
+        console.log(value)
+        logUsersStatus(value.userName)
+    })
+
+    socket.on('logout-chat', (value) => {
+        console.log(value.userName)
+        logOutUser(value.userName)
+    })
+
     // socket.on('leave', (value) => {
     //     // console.log(value)
     //     // console.log(`${value.userName} leaved`)
@@ -228,19 +238,19 @@ app.get('/api/room-list/chanels', cors(), (req, res) => {
     })
 })
 
-// app.get('/api/users', cors(), (req, res) => {
-//     pool.connect(function (err, client, done) {
-//         client.query(`select rooms.roomname, rooms.id, users.user_id from rooms, users where (rooms.id_style = '2') and (rooms.roomname = users.username);`, function (err, result) {
-//             done()
-//             if (!err) {
-//                 res.send({
-//                     status: 200,
-//                     data: result.rows
-//                 })
-//             }
-//         })
-//     })
-// })
+app.get('/api/users', cors(), (req, res) => {
+    pool.connect(function (err, client, done) {
+        client.query(`select email, password, username, status from users;`, function (err, result) {
+            done()
+            if (!err) {
+                res.send({
+                    status: 200,
+                    data: result.rows
+                })
+            }
+        })
+    })
+})
 
 app.get('/api/room-list/user-rooms', cors(), (req, res) => {
     pool.connect(function (err, client, done) {
@@ -283,6 +293,49 @@ function getOldDataFromDB(room_id, userName) {
                     room: room_id,
                     userName: userName,
                     rows: result.rows
+                })
+            }
+        })
+    })
+}
+
+function logUsersStatus(userName) {
+    pool.connect(function (err, client, done) {
+        let sql = `update users set status = 'online' where username='${userName}';`
+        // console.log(sql)
+        client.query(sql, function (err ,result) {
+            done()
+            if (!err) { //err == null
+                loglistUsers(userName)
+            }
+        })
+    })
+}
+
+function logOutUser(userName) {
+    pool.connect(function (err, client, done) {
+        let sql = `update users set status = 'offline' where username='${userName}';`
+        // console.log(sql)
+        client.query(sql, function (err ,result) {
+            done()
+            if (!err) { //err == null
+                loglistUsers(userName)
+            }
+        })
+    })
+}
+
+function loglistUsers(userName) {
+    pool.connect(function (err, client, done) {
+        let sql = `select username, status from users;`
+        client.query(sql, function (err, result) {
+            done()
+            if(!err){
+                io.emit(`up-logined`, {
+                    rows: result.rows
+                })
+                io.emit(`logout-${userName}`, {
+                    userName: userName
                 })
             }
         })

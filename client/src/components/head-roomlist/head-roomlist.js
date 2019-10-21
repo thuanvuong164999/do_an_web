@@ -3,13 +3,15 @@ import './head-roomlist.scss'
 import {Tooltip, ButtonToolbar, OverlayTrigger} from 'react-bootstrap'
 import { socket } from '../../services/socket-service/socket-service';
 import Cookies from 'universal-cookie';
+import { Redirect } from 'react-router-dom'
 
 class HeadRoomList extends React.Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            userName: ''
+            userName: '',
+            id: ''
         }
     }
 
@@ -24,9 +26,34 @@ class HeadRoomList extends React.Component {
         })
     }
 
+    onLogOutUser(){
+        let cookie = new Cookies()
+        socket.emit('logout-chat', {
+            userName: cookie.get('logined'),
+            userId: cookie.get('loginId')
+        })
+    }
+
+    onClick1() {
+        this.onLogOutUser()
+        let cookie = new Cookies()
+        socket.on(`logout-${cookie.get('logined')}`, value => {
+            this.setState({
+                id: '/login'
+            })
+        })
+    }
+
+    renderRedirect() {
+        if (this.state.id === '/login') {
+            return <Redirect to='/login'></Redirect>
+        }
+    }
+
     render() {
         return (
             <React.Fragment>
+                {this.renderRedirect()}
                 <div className='headroomlist-bg'>
                     <ButtonToolbar className='ic-bell'>
                         {['bottom'].map(placement => (
@@ -40,7 +67,7 @@ class HeadRoomList extends React.Component {
                                 }
                             >
                                 <div>
-                                    <a href='/login'><i className="fas fa-sign-out-alt"></i></a>
+                                    <a onClick={()=>this.onClick1()}><i className="fas fa-sign-out-alt"></i></a>
                                 </div>
                             </OverlayTrigger>
                         ))}

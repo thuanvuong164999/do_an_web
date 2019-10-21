@@ -17,7 +17,8 @@ class LoginPages extends React.Component {
             userName: '',
             password: '',
             id: '#',
-            logined: false
+            logined: false,
+            n:'0'
         }
     }
     componentDidMount() {
@@ -48,36 +49,6 @@ class LoginPages extends React.Component {
                 })
             })
         })
-
-        // socket.on(`Examing-${userName}-${password}`, (value) => {
-        //     // console.log(value)
-        //     let cookie = new Cookies()
-        //     cookie.set('userName', value.userName)
-
-        //     socket.on(`userpassfalse${cookie.get('userName')}`, (value) => {
-        //         // console.log(`userpassfalse${cookie.get('userName')}`)
-        //         alert('Bạn đã nhập sai USERNAME hoặc PASSWORD.\nXin kiểm tra lại.')
-        //     })
-
-        //     socket.on(`userpasstrue${cookie.get('userName')}`, (values) => {
-        //         // console.log(`userpasstrue${cookie.get('userName')}`)
-        //         // console.log(values)
-        //         // alert('đăng nhập thành công')
-        //         values.rows.map((value, index) => {
-        //             // console.log(value)
-        //             let item = {
-        //                 userName: value.username,
-        //                 password: value.password,
-        //                 userId: value.id
-        //             }
-        //             cookie.set('loginId', item.userId)
-        //             cookie.set('logined', item.userName)
-        //             this.setState({
-        //                 id: '/chat'
-        //             })
-        //         })
-        //     })
-        // })
     }
 
     onUserName = event => {

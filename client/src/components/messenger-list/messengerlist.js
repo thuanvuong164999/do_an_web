@@ -47,7 +47,7 @@ class MessList extends React.Component {
     }
 
     userLogined() {
-        socket.on('user-logined', (value) => {
+        socket.on('up-logined', (value) => {
             console.log(value)
             // let listUsers = this.state.users_login
 
