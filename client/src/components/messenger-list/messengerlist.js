@@ -143,7 +143,7 @@ class MessList extends React.Component {
                         </div>
                     </div>
                     <div className={'list-bg ' + this.state.openList}>
-                        <div className='list'>
+                        <ul className='list'>
                             {
                                 this.state.users_login.map((value, index) => {
                                     return (
@@ -153,7 +153,7 @@ class MessList extends React.Component {
                                     )
                                 })
                             }
-                        </div>
+                        </ul>
                         {/* <ul className='list'>
                             {
                                 this.state.room.map((value, index) => {

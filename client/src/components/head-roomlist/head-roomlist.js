@@ -67,7 +67,7 @@ class HeadRoomList extends React.Component {
                                 }
                             >
                                 <div>
-                                    <a onClick={()=>this.onClick1()}><i className="fas fa-sign-out-alt"></i></a>
+                                    <a href='#' onClick={()=>this.onClick1()}><i className="fas fa-sign-out-alt"></i></a>
                                 </div>
                             </OverlayTrigger>
                         ))}
