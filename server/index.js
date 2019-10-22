@@ -92,12 +92,12 @@ io.on('connection', (socket) => {
     })
 
     socket.on('login-online', (value) => {
-        console.log(value)
+        // console.log(value)
         logUsersStatus(value.userName)
     })
 
     socket.on('logout-chat', (value) => {
-        console.log(value.userName)
+        // console.log(value.userName)
         logOutUser(value.userName)
     })
 
@@ -327,7 +327,7 @@ function logOutUser(userName) {
 
 function loglistUsers(userName) {
     pool.connect(function (err, client, done) {
-        let sql = `select username, status from users;`
+        let sql = `select users.username, users.status, rooms.roomname, rooms.id from users, rooms where users.username=rooms.roomname;`
         client.query(sql, function (err, result) {
             done()
             if(!err){

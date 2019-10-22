@@ -4,6 +4,7 @@ import { serverEndPoint, socket } from '../../services/socket-service/socket-ser
 import { Tooltip, ButtonToolbar, OverlayTrigger } from 'react-bootstrap'
 import Cookies from 'universal-cookie'
 import { truncate } from 'fs'
+import UserItem from '../user-item/user-item'
 
 
 const axios = require('axios');
@@ -22,7 +23,8 @@ class MessList extends React.Component {
             userId: '',
             status: '',
             users_login: [],
-            login: false
+            login: false,
+            status: 'online'
         }
     }
 
@@ -47,21 +49,25 @@ class MessList extends React.Component {
     }
 
     userLogined() {
-        socket.on('up-logined', (value) => {
-            console.log(value)
-            // let listUsers = this.state.users_login
-
-            // if (!listUsers.includes(value.userName)) {
-            //     listUsers.push(value.userName)
-            // }
-
-            // this.setState({
-            //     login: true,
-            //     users_login: listUsers
-            // })
-
+        socket.on('up-logined', (values) => {
+            let items = []
+            values.rows.map((value, index) => {
+                // console.log(value)
+                let item = {
+                    roomName: value.roomname,
+                    id: value.id,
+                    userName: value.username,
+                    status: value.status,
+                    online: (value.status == 'offline   ')?'far':'fas',
+                }
+                items.push(item)
+                // console.log(items)
+                // console.log(value.status == 'offline   ')
+            })
+            this.setState({
+                users_login: items
+            })
             // console.log(this.state.users_login)
-            // console.log(listUsers)
         })
     }
 
@@ -93,7 +99,7 @@ class MessList extends React.Component {
     }
 
     onClick = (event, id, name) => {
-        // console.log('Clicked', id, this.state.userName)
+        console.log('Clicked', id, name)
         // console.log(name)
         socket.emit('join-userroom', {
             typeroom: this.state.typeroom,
@@ -137,21 +143,32 @@ class MessList extends React.Component {
                         </div>
                     </div>
                     <div className={'list-bg ' + this.state.openList}>
-                        <ul className='list'>
+                        <div className='list'>
+                            {
+                                this.state.users_login.map((value, index) => {
+                                    return (
+                                        <li onClick={(e) => this.onClick(e, value.id, value.roomName)}>
+                                            <UserItem key={index} value={value}></UserItem>
+                                        </li>
+                                    )
+                                })
+                            }
+                        </div>
+                        {/* <ul className='list'>
                             {
                                 this.state.room.map((value, index) => {
                                     return (
                                         <li key={index} onClick={(e) => this.onClick(e, value.id, value.roomname)} >
                                             <div className='type-room-icon'>
                                                 <i id={`user_id-${value.id}`} className={'far fa-circle'} ></i>
-                                                {/* <i class="fas fa-circle"></i> */}
+                                                <i class="fas fa-circle"></i>
                                             </div>
                                             {value.roomname}
                                         </li>
                                     )
                                 })
                             }
-                        </ul>
+                        </ul> */}
                     </div>
                 </div>
             </React.Fragment>
