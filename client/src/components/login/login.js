@@ -104,7 +104,7 @@ class LoginPages extends React.Component {
                         <div className={"login-btn" + this.state.check}>
                             <button className='login1' onClick={(e) => this.onClick()} >LOGIN</button>
                         </div>
-                        <a className="login-form-link">LOST YOUR PASSWORD ?</a>
+                        <div className="llink"><a>LOST YOUR PASSWORD ?</a></div>    
                         <div className='icon-bg'>
                             <div className='icon-list'>
                                 <i class="fab fa-facebook-square"></i>

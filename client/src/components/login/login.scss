@@ -18,19 +18,23 @@
       left: 50%;
       top: 50%;
       transform: translate(-50%,-50%);
+     
       position: absolute;
       background-color: rgba(64, 57, 59, 0.8);
       border-radius: 13px;
       box-shadow: 10px 9px 24px #000000;
       
     }
-      .login-form-link {
-        font-size: 10px;
-        // text-decoration: underline;
-        color: black;
-        margin-left: 250px;
-        &.login-form-link:hover{
-            text-decoration: none;
+      .llink {
+        margin-top: 8px;        
+        font-size: 11px;
+        text-align: center;
+        box-sizing: border-box;
+        color: white;
+        width: 100%;
+        &.llink:hover{
+            color:blue;
+            text-decoration: underline blue ;
             cursor: pointer;
         }
       }
@@ -42,7 +46,7 @@
         text-decoration: none;
         margin: 5px 2px;
         border-radius: 50%;
-        // background-color: blue;
+       
         width: 100%;
         height: auto;
         opacity: none ; 
@@ -51,11 +55,10 @@
             i{
                 font-size: 50px;
                 position: relative;
-                // height: 50px;
-                // width: 50px;
+               
                 &.fa-facebook-square{
                     margin-right: 5px;
-                    // background-color: whitesmoke;
+                   
                     border-radius: 50%;
                     color: #3088c2;
                     margin-right: 25px;
@@ -64,14 +67,11 @@
                         color:#b1e8ed;
                         cursor: pointer;
                     }
-                    // &:focus{
-                    //   outline: none;
-                  
-                    // }
+                   
                 }
                 &.fa-google-plus-square{
                     margin: none;
-                    // background-color: whitesmoke;
+                   
                     border-radius: 5px;
                     color: #ff5858;
                     &.fa-google-plus-square:hover{
@@ -81,7 +81,7 @@
                 }
                 &.fa-instagram{
                     margin-left: 5px;
-                    // background-color: whitesmoke;
+                   
                     border-radius: 50%;
                     color: #f638dc;
                     margin-left: 25px;
@@ -103,15 +103,15 @@
         border: 0px;
         margin:10px auto ;
         display: block;
-        align-items: center;
-        height: 30px;
+        // align-items: center;
+        height: 28px;
         width: 60%;
-        font-size: 15px;
+        font-size: 14px;
         text-align: left;
         background-color: #e5e5e5;
         border-radius: 8px;
         justify-content: center;
-        // margin-top: 100px; 
+        
         &:focus{
           outline: none;
         }
@@ -132,28 +132,27 @@
 
       .login1{    
         text-align: center;
-        background: blue;
-        // border:none;
-        
+        background: orange;        
         border-radius: 30px;
-        width: 40%;
-        padding: 5px;
+        width: 35%;
+        padding: 3px;
         display: flex;
         justify-content: center;
         align-content: center;
-        font-size: 16px;
+        font-size: 14px;
         margin: 15px auto 0 auto;
-        height: 40px;
+        height: 32px;
         color: white;   
         text-decoration: none;
         &.checked{
             margin-left:100px; 
         }
         &:focus{
+          color: blue !important;
           outline: none;
         }
         // &.login1::hover{
-        //   color: black;
+        //   color: blue;
         //   cursor: pointer;
         // }
       }

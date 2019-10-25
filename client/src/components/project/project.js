@@ -16,7 +16,9 @@ class Project extends React.Component {
                                 <td></td>
                                 <td>
                                     <ul className="nav-list">
-                                        <li className="nav-item"><a href="#" class="nav-link">Information For Project</a></li>
+                                        <li className="nav-item"><a href="#" class="nav1">Information For Project</a></li>
+                                        <li className="nav-item"><a href="#" class="nav2">Its Name Is: M.E.R </a></li>
+                                        <li className="nav-item"><a href="#" class="nav2">Maybe Education Reality </a></li>
                                         <li className="nav-item"><a href="#" class="nav-link">Le Minh Hoang</a></li>
                                         <li className="nav-item"><a href="#" class="nav-link">Huynh Kim Son</a></li>
                                         <li className="nav-item"><a href="#" class="nav-link">Vuong Dung Thuan</a></li>

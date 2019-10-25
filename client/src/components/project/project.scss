@@ -56,12 +56,48 @@
   .nav-item {
     margin: 10px;
   }
+
+  .nav1 {
+    
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    margin: 6px;
+    background-image: linear-gradient(120deg, transparent 0%, transparent 50%, #EB2188 50%);
+    padding: 1rem 2rem;
+    background-size: 250%;
+    transition: all .4s;
+    border-radius: 50px;
+  }
+
+  .nav2 {    
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 250;
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    margin: 7px;
+    background-image: linear-gradient(120deg, transparent 0%, transparent 50%, #EB2188 50%);
+    padding: 1rem 2rem;
+    background-size: 250%;
+    transition: all .4s;
+    border-radius: 50px;
+  }
   
   .nav-link:link,
   .nav-link:visited {
+    position: relative;
     display: inline-block;
-    font-size: 2rem;
-    font-weight: 300;
+    font-size: 1.5rem;
+    font-weight: 200;
     color: #fff;
     text-decoration: none;
     text-transform: uppercase;
