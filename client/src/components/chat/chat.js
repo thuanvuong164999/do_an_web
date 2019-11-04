@@ -61,6 +61,7 @@ class Chat extends React.Component {
                         {
                             <SendMessage></SendMessage>
                         }
+                        
                     </div>
                 </div>
             </React.Fragment>
