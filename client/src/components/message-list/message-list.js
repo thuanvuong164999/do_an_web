@@ -59,6 +59,8 @@ class MessageList extends React.Component {
             // console.log(this.state.tong, this.state.tich)
             // console.log(`receive-message-${this.state.tong}-${this.state.tich}`)
             this.onReceivedUser(this.state.tong, this.state.tich)
+            this.onStopTyping(this.state.tong, this.state.tich)
+            this.onTypingFromMember(this.state.tong, this.state.tich)
         })
     }
 
@@ -161,9 +163,25 @@ class MessageList extends React.Component {
         })
     }
 
-    onStopTyping() {
-        socket.on('member_stop_typing', (user) => {
+    onStopTyping(tong, tich) {
+        socket.on(`member_stop_typing-${tong}-${tich}`, (user) => {
+            let listUsers = this.state.users_typing
+            let index = listUsers.indexOf(user.userName)
+            if (index !== -1) {
+                listUsers.splice(index, 1)
+            }
 
+            let status = true
+            if (listUsers.length === 0) {
+                status = false
+            }
+            this.setState({
+                typing: status,
+                users_typing: listUsers
+            })
+        })
+
+        socket.on('member_stop_typing', (user) => {
             let listUsers = this.state.users_typing
             let index = listUsers.indexOf(user.userName)
             if (index !== -1) {
@@ -181,9 +199,26 @@ class MessageList extends React.Component {
         })
     }
 
-    onTypingFromMember() {
-        socket.on('member_typing', (user) => {
+    onTypingFromMember(tong, tich) {
+        // console.log(`member_typing-${tong}-${tich}`)
+        socket.on(`member_typing-${tong}-${tich}`,(user) => {
+            console.log(user)
+            if (user.userName !== this.state.userName) {
+                let listUsers = this.state.users_typing
 
+                if (!listUsers.includes(user.userName)) {
+                    listUsers.push(user.userName)
+                }
+
+                this.setState({
+                    typing: true,
+                    users_typing: listUsers
+                })
+                this.setMessage(`${user.userName} typing ....`)
+            }
+        })
+
+        socket.on('member_typing', (user) => {
             if (user.userName !== this.state.userName) {
                 let listUsers = this.state.users_typing
 
