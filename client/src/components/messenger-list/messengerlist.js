@@ -52,17 +52,17 @@ class MessList extends React.Component {
         socket.on('up-logined', (values) => {
             let items = []
             values.rows.map((value, index) => {
-                // console.log(value)
+                console.log(value.status)
                 let item = {
                     roomName: value.roomname,
                     id: value.id,
                     userName: value.username,
                     status: value.status,
-                    online: (value.status == 'offline   ')?'far':'fas',
+                    online: (value.status == 'offline')?'far':'fas',
                 }
                 items.push(item)
                 // console.log(items)
-                // console.log(value.status == 'offline   ')
+                console.log(value.status == 'offline')
             })
             this.setState({
                 users_login: items
