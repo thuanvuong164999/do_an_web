@@ -50,8 +50,8 @@
             .emoji-icon{
                 background-color: white;
                 float: right;
-                height: 32px;
-                width: 32px;
+                height: 30px;
+                width: 30px;
                 border-radius: 50%;
                 display: flex;
                 justify-content: center;
@@ -69,12 +69,16 @@
                     right: 1%;
                     bottom: 7%;
                 }
+                .onSideBar{
+                    position: absolute;
+                    right: 15% !important;
+                }
             }
             .plus-foder-icon{
                 background-color: white;
                 float: left;
-                height: 32px;
-                width: 32px;
+                height: 30px;
+                width: 30px;
                 border-radius: 50%;
                 display: flex;
                 justify-content: center;

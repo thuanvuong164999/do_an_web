@@ -7,6 +7,7 @@ import RoomList from '../room-list/room-list';
 import HeadChatBox from '../head-chatbox/head-chatbox';
 import HeadRoomList from '../head-roomlist/head-roomlist';
 import Cookies from 'universal-cookie';
+import SideBar from '../sidebar/sidebar';
 // import Cookies from 'universal-cookie';
 
 class Chat extends React.Component {
@@ -17,6 +18,7 @@ class Chat extends React.Component {
         this.state={
             userName: '',
             userId: '',
+            onSideBar: 'offSideBar'
         }
     }    
 
@@ -39,6 +41,18 @@ class Chat extends React.Component {
         })
     }
 
+    updateItemWidth(){
+        if(this.state.onSideBar=='offSideBar'){
+            this.setState({
+                onSideBar:'onSideBar'
+            })
+        }else{
+            this.setState({
+                onSideBar:'offSideBar'
+            })
+        }
+    }
+
     render() {
         return (
             <React.Fragment>
@@ -53,14 +67,23 @@ class Chat extends React.Component {
                     </div>
                     <div className='chat-box'>
                         {
-                            <HeadChatBox></HeadChatBox>
+                            <HeadChatBox updateItemWidth={()=>this.updateItemWidth()}></HeadChatBox>
                         }
-                        {
-                            <MessageList></MessageList>
-                        }
-                        {
-                            <SendMessage></SendMessage>
-                        }
+                        <div className='bottom-div'>
+                            <div className={'left-div '+this.state.onSideBar}>
+                                {
+                                    <MessageList></MessageList>
+                                }
+                                {
+                                    <SendMessage onSideBar={this.state.onSideBar}></SendMessage>
+                                }
+                            </div>
+                            <div className={'right-div '+this.state.onSideBar}>
+                                {
+                                    <SideBar></SideBar>
+                                }
+                            </div>
+                        </div>
                         
                     </div>
                 </div>
