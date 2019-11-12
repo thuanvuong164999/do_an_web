@@ -26,7 +26,7 @@ class SideBar extends React.Component {
                             </label>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="llink">Hoang</a></li>
+                            <a href="#" class="llink"><span>Hoang</span></a></li>
                         <li class="nav-item">
                             <a href="#" class="llink">Son</a></li>
                         <li class="nav-item">
