@@ -2,7 +2,9 @@ import React from 'react'
 import './send-message.scss'
 import { socket } from '../../services/socket-service/socket-service'
 import Cookies from 'universal-cookie'
-import Emoji from '../picker/picker'
+// import Emoji from '../picker/picker'
+import 'emoji-mart/css/emoji-mart.css'
+import { Picker } from 'emoji-mart'
 
 class SendMessage extends React.Component {
     constructor(props) {
@@ -104,6 +106,14 @@ class SendMessage extends React.Component {
         })
     }
 
+    addEmoji = (e) => {
+        console.log(e.native)
+        let emoji = e.native;
+        this.setState({
+          message: this.state.message + emoji
+        })
+    }
+
     onClick1() {
         if(this.state.emoji === 'off') {
             this.setState({
@@ -128,7 +138,7 @@ class SendMessage extends React.Component {
                             <span><input className='input-txt' placeholder={`Message ${this.state.userName}`} onKeyPress={this.onKeyPress} onChange={this.onChange} value={this.state.message}></input></span>
                             <div className='emoji-icon'>
                                 <i onClick={() => this.onClick1()} className="far fa-smile"></i>
-                                <div className={`${this.state.emoji} `+this.props.onSideBar}><Emoji></Emoji></div>
+                                <div className={`${this.state.emoji} `+this.props.onSideBar}><Picker onSelect={this.addEmoji} style={{ position: 'absolute', bottom: '20px', right: '20px' }} /></div>
                             </div>
                         </div>
                     </div>
