@@ -37,6 +37,7 @@ class HeadRoomList extends React.Component {
     onClick1() {
         this.onLogOutUser()
         let cookie = new Cookies()
+        cookie.set('login-status', '')
         socket.on(`logout-${cookie.get('logined')}`, value => {
             this.setState({
                 id: '/login'

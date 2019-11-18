@@ -18,11 +18,7 @@ class LoginPages extends React.Component {
             password: '',
             id: '#',
             logined: false,
-            n:'0'
         }
-    }
-    componentDidMount() {
-
     }
 
     saveUserExaming(userName, password) {
@@ -64,6 +60,8 @@ class LoginPages extends React.Component {
     }
 
     onClick = (event) => {
+        cookie.set('login-status', '')
+        cookie.set('login-status', 'online')
         cookie.set('userName', '')
         let userName = this.state.userName
         let password = this.state.password
@@ -79,6 +77,9 @@ class LoginPages extends React.Component {
     }
     
     renderRedirect() {
+        if(cookie.get('login-status')==='online'){
+            return <Redirect to='/chat'></Redirect>
+        }
         if (this.state.id === '/chat') {
             return <Redirect to='/chat'></Redirect>
         }

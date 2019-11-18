@@ -3,6 +3,7 @@ import { Picker } from 'emoji-mart'
 import React from 'react'
 
 class Emoji extends React.Component {
+
     render() {
         return (
             // <Picker set='emojione' />

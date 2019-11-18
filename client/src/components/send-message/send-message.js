@@ -126,8 +126,8 @@ class SendMessage extends React.Component {
                                 <i className="fas fa-folder-plus"></i>
                             </div>
                             <span><input className='input-txt' placeholder={`Message ${this.state.userName}`} onKeyPress={this.onKeyPress} onChange={this.onChange} value={this.state.message}></input></span>
-                            <div onClick={() => this.onClick1()} className='emoji-icon'>
-                                <i className="far fa-smile"></i>
+                            <div className='emoji-icon'>
+                                <i onClick={() => this.onClick1()} className="far fa-smile"></i>
                                 <div className={`${this.state.emoji} `+this.props.onSideBar}><Emoji></Emoji></div>
                             </div>
                         </div>
