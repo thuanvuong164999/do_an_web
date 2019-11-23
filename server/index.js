@@ -113,6 +113,8 @@ io.on('connection', (socket) => {
         // console.log(value.text == '')
         let roomId = generrateRoom(value.room)
         let roomUser = generrateRoom(value.userId)
+        let tich = roomId*roomUser
+        let tong = Number(roomId)+Number(roomUser)
         if(value.typeroom === 'channel'){
             // console.log(`${value.userName} typing..... in room ${roomId}`)
             if (value.text == '') {
@@ -121,7 +123,7 @@ io.on('connection', (socket) => {
                     userName: value.userName
                 })
             } else {
-                io.in(roomId).emit('member_typing', {
+                io.in(roomId).emit(`member_typing`, {
                     userName: value.userName
                 })
             }
@@ -133,7 +135,7 @@ io.on('connection', (socket) => {
                     userName: value.userName
                 })
             } else {
-                io.in(roomUser).emit('member_typing', {
+                io.in(roomUser).emit(`member_typing-${tong}-${tich}`, {
                     userName: value.userName
                 })
             }

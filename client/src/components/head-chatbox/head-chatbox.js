@@ -18,7 +18,8 @@ class HeadChatBox extends React.Component {
             type1:'',
             type2:'',
             appearSearch: '',
-            dropdownSet: ''
+            dropdownSet: '',
+            status: '',
         }
     }
 
@@ -38,6 +39,7 @@ class HeadChatBox extends React.Component {
         socket.on('join-in-room', (value) => {
             // console.log(value)
             this.setState({
+                status: (value.status==='offline')?'far':'fas',
                 roomName: value.roomName,
                 room: value.room,
                 appearSearch: 'appear-search'
@@ -79,7 +81,7 @@ class HeadChatBox extends React.Component {
                         {/* <div className={'type-room ' + this.state.type1 + this.state.type2}></div> */}
                         <div className='bg-icon-type'>
                             <span><i className={"fas fa-hashtag " + this.state.type2}></i></span>
-                            <span><i className={"fas fa-circle " + this.state.type2}></i></span>
+                            <span><i className={this.state.status + " fa-circle " + this.state.type2}></i></span>
                         </div>
                         <div className='input-name'><b>{this.state.roomName}</b></div>
                     </div>
