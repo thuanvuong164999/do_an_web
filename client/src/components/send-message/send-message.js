@@ -106,11 +106,17 @@ class SendMessage extends React.Component {
         })
     }
 
-    addEmoji = (e) => {
-        console.log(e.native)
-        let emoji = e.native;
+    addEmoji = event => {
+        let emoji = event.native;
         this.setState({
           message: this.state.message + emoji
+        })
+        socket.emit('typing', {
+            typeroom: this.state.typeroom,
+            userId: this.state.userId,
+            userName: this.state.userName,
+            text: this.state.message,
+            room: this.state.room
         })
     }
 
