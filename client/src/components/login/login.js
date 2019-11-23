@@ -7,7 +7,6 @@ import { Redirect } from 'react-router-dom'
 import Cookies from 'universal-cookie';
 
 const cookie = new Cookies()
-// import { Button, ButtonToolbar } from 'react-bootstrap'
 
 class LoginPages extends React.Component {
     constructor() {
@@ -23,16 +22,11 @@ class LoginPages extends React.Component {
 
     saveUserExaming(userName, password) {
         socket.on(`userpassfalse${userName}`, (value) => {
-            // console.log(`userpassfalse${cookie.get('userName')}`)
             alert('Bạn đã nhập sai USERNAME hoặc PASSWORD.\nXin kiểm tra lại.')
         })
 
         socket.on(`userpasstrue${userName}`, (values) => {
-            // console.log(`userpasstrue${cookie.get('userName')}`)
-            // console.log(values)
-            // alert('đăng nhập thành công')
             values.rows.map((value, index) => {
-                // console.log(value)
                 let item = {
                     userName: value.username,
                     password: value.password,
@@ -98,9 +92,14 @@ class LoginPages extends React.Component {
                             <Oddly></Oddly>
                         </div>
                         <div className='inp'>
-                            <input id="login-form-username" className="control" type="text" placeholder="EMAIL" onChange={this.onUserName} value={this.state.userName}></input>
-                            <input id="login-form-password" className="control" type="password" placeholder="PASSWORD" onChange={this.onPassWord} value={this.state.password}></input>
-                            {/* <i class={"fas fa-user-check " + this.state.check}></i> */}
+                            <div class="ipcontrol">                                
+                                {/* <i class="fas fa-user"></i>                            */}
+                                <input id="login-form-username" className="control" type="text" placeholder="EMAIL" onChange={this.onUserName} value={this.state.userName}></input>                               
+                                    
+                            </div>
+                            <div class="ipcontrol">
+                                <input id="login-form-password" className="control" type="password" placeholder="PASSWORD" onChange={this.onPassWord} value={this.state.password}></input>
+                            </div>
                         </div>
                         <div className={"login-btn" + this.state.check}>
                             <button className='login1' onClick={(e) => this.onClick()} >LOGIN</button>

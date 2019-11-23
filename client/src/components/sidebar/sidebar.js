@@ -12,11 +12,8 @@ class SideBar extends React.Component {
         return (
             <React.Fragment>
                 <div class="navbar" id="navID">
-                    {/* <button type="button" class="tgl-collapse" id="tgl-collapse">
-                        <span class="tgl-icon"></span>
-                    </button> */}
                     <ul class="side-nav">
-                        <li class="nav-item">
+                        <li class="nav-item1">
                             <a href="#" class="site"><h2>M.E.R</h2></a></li>
                         <li class="llink">
     

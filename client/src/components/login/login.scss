@@ -96,27 +96,47 @@
         }
         
       }
+      .incontrol{
+        position: relative;
+        margin-bottom:15px;
+      }
+      .control{
+        width:230px;
+        height:30px;
+        border:none;
+        margin: 15px auto;
+        border-radius: 8px;
+        padding:5px 7px 5px 15px;
+        background:#fff;
+        color:#666;
+        border:2.5px solid #ddd;
+        font-size: 15px;
+        transition:  all .3s linear;
+        display: block;
+        
+          &:focus{
+            border-color:#10CE88;
+            color:#10CE88;
+            outline: none;
+          }
+      }
+      .incontrol .fa{
+        position: absolute;
+        right:15px;
+        top:17px;
+        color:#999;
+      }
       .inp{
         margin-top: 50px;
+       position: relative;       
       }
-      .control {
-        border: 0px;
-        margin:10px auto ;
-        display: block;
-        // align-items: center;
-        height: 28px;
-        width: 60%;
-        font-size: 14px;
-        text-align: left;
-        background-color: #e5e5e5;
-        border-radius: 8px;
-        justify-content: center;
-        
-        &:focus{
-          outline: none;
-        }
-      }
-
+      
+      // .fas {
+      //   position: absolute;
+      //   &:focus {
+      //     border-color:#10CE88;
+      //   }
+      // }
       .login-form-button {
         background-color: #3088c2;
         width: 100px;
@@ -132,7 +152,7 @@
 
       .login1{    
         text-align: center;
-        background: blue ;        
+        background: transparent ;        
         border-radius: 30px;
         width: 35%;
         padding: 3px;
@@ -144,16 +164,15 @@
         height: 32px;
         color: white;   
         text-decoration: none;
+        border: none;
+        border: 2.5px solid #3F0E40;
         &.checked{
             margin-left:100px; 
         }
         &:focus{
-          color: blue !important;
-          outline: none;
+          border-color:#10CE88;
+            color:#10CE88;
+            outline: none;
         }
-        // &.login1::hover{
-        //   color: blue;
-        //   cursor: pointer;
-        // }
       }
 }

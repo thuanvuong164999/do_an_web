@@ -3,11 +3,10 @@
     width: 100%;
     height: 10%;
     position: relative;
-    // z-index: 0;
     margin: 0;
     padding: 0;
+    border-bottom: 0.75px solid gray;
     .bg-status-room{
-        // background-color: blue;
         width: auto;
         height: 100%;
         float: left;
@@ -37,18 +36,15 @@
         }
         .input-name{
             text-transform: capitalize;
-            // background-color: blue;
             width: auto;
             height: 50%;
             float: left;
             line-height: 1em;
             font-size: 30px;
             transform: translateY(50%);
-            // margin-left: 10px;
         }
     }
     .bg-list-icon{
-        // background-color: blue;
         width: auto;
         height: 100%;
         float: right;
@@ -133,7 +129,6 @@
                         border-bottom: 1px solid whitesmoke; 
                         line-height: 1.5em;
                         &:hover{
-                            // background-color: aqua;
                             color: whitesmoke;
                         }
                     }
@@ -173,10 +168,8 @@
                     color: blueviolet;
                 }
                 .search-btn{
-                    // background: blue;
                     float: right;
                     margin: 0;
-                    // margin:5px 0px 5px 0px;
                     width: 32px;
                     height: 32px;
                     border-radius: 8px;

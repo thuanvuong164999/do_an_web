@@ -154,21 +154,6 @@ class MessList extends React.Component {
                                 })
                             }
                         </ul>
-                        {/* <ul className='list'>
-                            {
-                                this.state.room.map((value, index) => {
-                                    return (
-                                        <li key={index} onClick={(e) => this.onClick(e, value.id, value.roomname)} >
-                                            <div className='type-room-icon'>
-                                                <i id={`user_id-${value.id}`} className={'far fa-circle'} ></i>
-                                                <i class="fas fa-circle"></i>
-                                            </div>
-                                            {value.roomname}
-                                        </li>
-                                    )
-                                })
-                            }
-                        </ul> */}
                     </div>
                 </div>
             </React.Fragment>

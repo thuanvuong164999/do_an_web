@@ -8,8 +8,6 @@ import HeadChatBox from '../head-chatbox/head-chatbox';
 import HeadRoomList from '../head-roomlist/head-roomlist';
 import Cookies from 'universal-cookie';
 import SideBar from '../sidebar/sidebar';
-// import Cookies from 'universal-cookie';
-
 class Chat extends React.Component {
 
     constructor(props){
@@ -29,7 +27,6 @@ class Chat extends React.Component {
     loginedChat(){
 
         let cookie = new Cookies()
-        // console.log(cookie.get('logined'), cookie.get('loginId'))
         this.setState({
             userName: cookie.get('logined'),
             userId: cookie.get('loginId')

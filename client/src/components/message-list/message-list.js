@@ -29,7 +29,6 @@ class MessageList extends React.Component {
     }
 
     componentDidMount() {
-        // this.loginChat()
         this.onJoined()
         this.receiveHistories()
         this.onReceived()

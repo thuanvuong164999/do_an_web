@@ -30,7 +30,7 @@ $duration: 10s;
   100% {left: 0; top: 0;}
 }
 
-// This is just a cute animation that cycles through the different hues.
+
 @keyframes hue-rotate {
   0% {filter: hue-rotate(0deg)}
   100% {filter: hue-rotate(360deg)}
