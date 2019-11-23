@@ -81,7 +81,7 @@ class HeadChatBox extends React.Component {
                             <span><i className={"fas fa-hashtag " + this.state.type2}></i></span>
                             <span><i className={"fas fa-circle " + this.state.type2}></i></span>
                         </div>
-                        <div className='input-name'>{this.state.roomName}</div>
+                        <div className='input-name'><b>{this.state.roomName}</b></div>
                     </div>
                     
                     <div className='bg-list-icon'>
