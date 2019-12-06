@@ -98,10 +98,11 @@ class MessList extends React.Component {
         }
     }
 
-    onClick = (event, id, name) => {
-        console.log('Clicked', id, name)
+    onClick = (event, id, name, status) => {
+        // console.log('Clicked', id, name)
         // console.log(name)
         socket.emit('join-userroom', {
+            status: status,
             typeroom: this.state.typeroom,
             userId: this.state.userId,
             userName: this.state.userName,
@@ -147,7 +148,7 @@ class MessList extends React.Component {
                             {
                                 this.state.users_login.map((value, index) => {
                                     return (
-                                        <li onClick={(e) => this.onClick(e, value.id, value.roomName)}>
+                                        <li onClick={(e) => this.onClick(e, value.id, value.roomName, value.status)}>
                                             <UserItem key={index} value={value}></UserItem>
                                         </li>
                                     )
