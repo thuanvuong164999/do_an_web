@@ -96,9 +96,12 @@
         }
         
       }
-      .incontrol{
-        position: relative;
-        margin-bottom:15px;
+      
+      .fas {
+        position: absolute;
+        font-size:23px;
+        margin: none;
+        margin-left: 70px;
       }
       .control{
         width:230px;
@@ -127,16 +130,11 @@
         color:#999;
       }
       .inp{
-        margin-top: 50px;
-       position: relative;       
+        margin-top: 70px;
+         position: relative;     
       }
       
-      // .fas {
-      //   position: absolute;
-      //   &:focus {
-      //     border-color:#10CE88;
-      //   }
-      // }
+      
       .login-form-button {
         background-color: #3088c2;
         width: 100px;
@@ -159,18 +157,22 @@
         display: flex;
         justify-content: center;
         align-content: center;
-        font-size: 14px;
+        font-size: 16px;
         margin: 15px auto 0 auto;
         height: 32px;
-        color: white;   
+        color: #10CE88;   
         text-decoration: none;
         border: none;
-        border: 2.5px solid #3F0E40;
+        transition: none;
+        border-bottom: 1.5px solid #10CE88;
+        
         &.checked{
             margin-left:100px; 
         }
         &:focus{
-          border-color:#10CE88;
+          background-color: black;
+          border: 2.5px solid #10CE88 ;
+          
             color:#10CE88;
             outline: none;
         }

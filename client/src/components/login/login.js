@@ -93,11 +93,12 @@ class LoginPages extends React.Component {
                         </div>
                         <div className='inp'>
                             <div class="ipcontrol">                                
-                                {/* <i class="fas fa-user"></i>                            */}
+                                  
                                 <input id="login-form-username" className="control" type="text" placeholder="EMAIL" onChange={this.onUserName} value={this.state.userName}></input>                               
                                     
                             </div>
                             <div class="ipcontrol">
+                                {/* <i class="fas fa-user"></i> */}
                                 <input id="login-form-password" className="control" type="password" placeholder="PASSWORD" onChange={this.onPassWord} value={this.state.password}></input>
                             </div>
                         </div>
