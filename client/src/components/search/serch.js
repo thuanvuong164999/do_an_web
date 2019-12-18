@@ -2,7 +2,7 @@ import React from 'react'
 import './serch.scss'
 import { locale } from '../../services/system'
 
-class Serch extends React.Component {
+class Search extends React.Component {
     render() {
         return (
             <React.Fragment>
@@ -15,4 +15,4 @@ class Serch extends React.Component {
     }
 }
 
-export default Serch
+export default Search
