@@ -5,6 +5,7 @@ import Cookies from 'universal-cookie'
 // import Emoji from '../picker/picker'
 import 'emoji-mart/css/emoji-mart.css'
 import { Picker } from 'emoji-mart'
+import { locale } from '../../services/system'
 
 class SendMessage extends React.Component {
     constructor(props) {
@@ -141,7 +142,7 @@ class SendMessage extends React.Component {
                             <div className='plus-foder-icon'>
                                 <i className="fas fa-folder-plus"></i>
                             </div>
-                            <span><input className='input-txt' placeholder={`Message ${this.state.userName}`} onKeyPress={this.onKeyPress} onChange={this.onChange} value={this.state.message}></input></span>
+                            <span><input className='input-txt' placeholder={`${locale.message} ${this.state.userName}`} onKeyPress={this.onKeyPress} onChange={this.onChange} value={this.state.message}></input></span>
                             <div className='emoji-icon'>
                                 <i onClick={() => this.onClick1()} className="far fa-smile"></i>
                                 <div className={`${this.state.emoji} `+this.props.onSideBar}><Picker onSelect={this.addEmoji} style={{ position: 'absolute', bottom: '20px', right: '20px' }} /></div>

@@ -2,6 +2,8 @@ import React from 'react'
 import './head-chatbox.scss'
 import { socket } from '../../services/socket-service/socket-service'
 import Cookies from 'universal-cookie'
+import { locale } from '../../services/system'
+
 
 class HeadChatBox extends React.Component {
     constructor(props) {
@@ -9,14 +11,14 @@ class HeadChatBox extends React.Component {
 
         this.state = {
             roomName: 'Introduce My Project',
-            room:'',
-            avatar:'',
+            room: '',
+            avatar: '',
             typeRoom: [],
-            userName:'',
+            userName: '',
             typeRoom1: 'channel',
             typeRoom2: 'messenger',
-            type1:'',
-            type2:'',
+            type1: '',
+            type2: '',
             appearSearch: '',
             dropdownSet: '',
             status: '',
@@ -39,7 +41,7 @@ class HeadChatBox extends React.Component {
         socket.on('join-in-room', (value) => {
             // console.log(value)
             this.setState({
-                status: (value.status==='offline')?'far':'fas',
+                status: (value.status === 'offline') ? 'far' : 'fas',
                 roomName: value.roomName,
                 room: value.room,
                 appearSearch: 'appear-search'
@@ -62,7 +64,7 @@ class HeadChatBox extends React.Component {
     }
 
     onClick = (event) => {
-        if(this.state.dropdownSet === ''){
+        if (this.state.dropdownSet === '') {
             this.setState({
                 dropdownSet: 'On'
             })
@@ -85,13 +87,13 @@ class HeadChatBox extends React.Component {
                         </div>
                         <div className='input-name'><b>{this.state.roomName}</b></div>
                     </div>
-                    
+
                     <div className='bg-list-icon'>
-                        <div className='setting' onClick = {() => this.props.updateItemWidth()}>
+                        <div className='setting' onClick={() => this.props.updateItemWidth()}>
                             <div className='icon-setting'>
                                 <i className="fas fa-cog"></i>
                             </div>
-                            <span className={"tooltiptext " + this.state.dropdownSet}>Settings</span>
+                            <span className={"tooltiptext " + this.state.dropdownSet}>{locale.settings}</span>
                             <span class={"dropdown-setting " + this.state.dropdownSet}>
                                 <ul className='list-setting'>
                                     <li>Thông tin về phòng</li>
@@ -101,7 +103,7 @@ class HeadChatBox extends React.Component {
                             </span>
                         </div>
                         <div className={'search-box ' + this.state.appearSearch}>
-                            <input className='search-txt' type='text' name='' placeholder='Search...'></input>
+                            <input className='search-txt' type='text' name='' placeholder={locale.search}></input>
                             <div className='search-btn' href='#'>
                                 <i className="fas fa-search"></i>
                             </div>

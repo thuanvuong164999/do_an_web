@@ -1,8 +1,9 @@
 import React from 'react'
 import './channels-list.scss'
-import { serverEndPoint, socket} from '../../services/socket-service/socket-service'
-import {Tooltip, ButtonToolbar, OverlayTrigger} from 'react-bootstrap'
+import { serverEndPoint, socket } from '../../services/socket-service/socket-service'
+import { Tooltip, ButtonToolbar, OverlayTrigger } from 'react-bootstrap'
 import Cookies from 'universal-cookie'
+import { locale } from '../../services/system'
 
 const axios = require('axios')
 
@@ -83,21 +84,21 @@ class ChannelList extends React.Component {
             <React.Fragment>
                 <div className='chanellist-bg'>
                     <div className='title-chanels' onClick={(e) => this.onClick1(e)}>
-                    <ButtonToolbar className='title'>
-                        {['top'].map(placement => (
-                            <OverlayTrigger
-                                key={placement}
-                                placement={placement}
-                                overlay={
-                                    <Tooltip id={`tooltip-${placement}`}>
-                                        <strong>Browse all channels</strong>
-                                    </Tooltip>
-                                }
-                            >
-                                <div>Chanels</div>
-                            </OverlayTrigger>
-                        ))}
-                    </ButtonToolbar>
+                        <ButtonToolbar className='title'>
+                            {['top'].map(placement => (
+                                <OverlayTrigger
+                                    key={placement}
+                                    placement={placement}
+                                    overlay={
+                                        <Tooltip id={`tooltip-${placement}`}>
+                                            <strong>{locale.browse_all_channels}</strong>
+                                        </Tooltip>
+                                    }
+                                >
+                                    <div>{locale.channels}</div>
+                                </OverlayTrigger>
+                            ))}
+                        </ButtonToolbar>
                         <div className='icon'>
                             <i className={"plus-icon fas fa-plus-circle " + this.state.openList} ></i>
                             <i className={"minus-icon fas fa-minus-circle " + this.state.openList}></i>

@@ -1,9 +1,10 @@
 import React from 'react'
 import './head-roomlist.scss'
-import {Tooltip, ButtonToolbar, OverlayTrigger} from 'react-bootstrap'
+import { Tooltip, ButtonToolbar, OverlayTrigger } from 'react-bootstrap'
 import { socket } from '../../services/socket-service/socket-service';
 import Cookies from 'universal-cookie';
 import { Redirect } from 'react-router-dom'
+import { locale } from '../../services/system'
 
 class HeadRoomList extends React.Component {
     constructor(props) {
@@ -15,7 +16,7 @@ class HeadRoomList extends React.Component {
         }
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.loginChat()
     }
 
@@ -26,7 +27,7 @@ class HeadRoomList extends React.Component {
         })
     }
 
-    onLogOutUser(){
+    onLogOutUser() {
         let cookie = new Cookies()
         socket.emit('logout-chat', {
             userName: cookie.get('logined'),
@@ -63,12 +64,12 @@ class HeadRoomList extends React.Component {
                                 placement={placement}
                                 overlay={
                                     <Tooltip id={`tooltip-${placement}`}>
-                                        <strong>Log Out</strong>
+                                        <strong>{locale.logout}</strong>
                                     </Tooltip>
                                 }
                             >
                                 <div>
-                                    <a href='#' onClick={()=>this.onClick1()}><i className="fas fa-sign-out-alt"></i></a>
+                                    <a href='#' onClick={() => this.onClick1()}><i className="fas fa-sign-out-alt"></i></a>
                                 </div>
                             </OverlayTrigger>
                         ))}

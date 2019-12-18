@@ -5,6 +5,7 @@ import { Tooltip, ButtonToolbar, OverlayTrigger } from 'react-bootstrap'
 import Cookies from 'universal-cookie'
 import { truncate } from 'fs'
 import UserItem from '../user-item/user-item'
+import { locale } from '../../services/system'
 
 
 const axios = require('axios');
@@ -58,7 +59,7 @@ class MessList extends React.Component {
                     id: value.id,
                     userName: value.username,
                     status: value.status,
-                    online: (value.status == 'offline')?'far':'fas',
+                    online: (value.status == 'offline') ? 'far' : 'fas',
                 }
                 items.push(item)
                 // console.log(items)
@@ -129,11 +130,11 @@ class MessList extends React.Component {
                                     placement={placement}
                                     overlay={
                                         <Tooltip id={`tooltip-${placement}`}>
-                                            <strong>Open a dirct message</strong>
+                                            <strong>{locale.direct_message}</strong>
                                         </Tooltip>
                                     }
                                 >
-                                    <div>Direct message</div>
+                                    <div>{locale.direct_message}</div>
                                 </OverlayTrigger>
                             ))}
                         </ButtonToolbar>

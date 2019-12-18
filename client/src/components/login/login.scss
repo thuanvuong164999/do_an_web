@@ -96,12 +96,9 @@
         }
         
       }
-      
-      .fas {
-        position: absolute;
-        font-size:23px;
-        margin: none;
-        margin-left: 70px;
+      .incontrol{
+        position: relative;
+        margin-bottom:15px;
       }
       .control{
         width:230px;
@@ -130,11 +127,16 @@
         color:#999;
       }
       .inp{
-        margin-top: 70px;
-         position: relative;     
+        margin-top: 50px;
+       position: relative;       
       }
       
-      
+      // .fas {
+      //   position: absolute;
+      //   &:focus {
+      //     border-color:#10CE88;
+      //   }
+      // }
       .login-form-button {
         background-color: #3088c2;
         width: 100px;
@@ -163,18 +165,14 @@
         color: #10CE88;   
         text-decoration: none;
         border: none;
-        transition: none;
-        border-bottom: 1.5px solid #10CE88;
+        border-bottom: 2px solid #10CE88;
         
         &.checked{
             margin-left:100px; 
         }
         &:focus{
-          background-color: black;
-          border: 2.5px solid #10CE88 ;
-          
-            color:#10CE88;
-            outline: none;
+          border:2.5px solid #10CE88;
+        background-color: black;  
         }
       }
 }

@@ -1,14 +1,31 @@
 import React from 'react'
 import './sidebar.scss'
-import { socket } from '../../services/socket-service/socket-service'
-import Cookies from 'universal-cookie'
+import { cookieM, locale } from '../../services/system'
 
 class SideBar extends React.Component {
     constructor(props) {
         super(props)
+        this.state = {
+            lan: 'vi',
+            lang: 'on'
+        }
+    }
+    onClick() {
+        cookieM.setLang(this.state.lan)
+        // console.log(this.state.lan)
+        if (this.state.lan === 'vi') {
+            this.setState({
+                lan: 'en',
+            })
+        } else {
+            this.setState({
+                lan: 'vi',
+            })
+        }
     }
 
     render() {
+
         return (
             <React.Fragment>
                 <div class="navbar" id="navID">
@@ -16,11 +33,11 @@ class SideBar extends React.Component {
                         <li class="nav-item1">
                             <a href="#" class="site"><h2>M.E.R</h2></a></li>
                         <li class="llink">
-    
                             <label class="switch">
-                                <input type="checkbox"></input>
+                                <input type="checkbox" onClick={() => this.onClick()}></input>
                                 <span class="slider"></span>
                             </label>
+                            <div className='language'><p>{locale.lang}</p></div>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="llink"><span>Hoang</span></a></li>
@@ -30,12 +47,6 @@ class SideBar extends React.Component {
                             <a href="#" class="llink">Thuan</a></li>
                         <li class="nav-item">
                             <a href="#" class="llink">An</a></li>
-                        <li class="llink">
-                            <label class="switch">
-                                <input type="checkbox"></input>
-                                <span class="slider"></span>
-                            </label>
-                        </li>
                     </ul>
                 </div>
             </React.Fragment>
