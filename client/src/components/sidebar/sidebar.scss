@@ -71,52 +71,147 @@
                 }
             }
         }
-        .switch {
-        position: relative;
-        display: inline-block;
-        width:100px;
-        height: 50px;
-        }
-        .switch input { 
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            -webkit-transition: .4s;
-            transition: .4s;
-            border-radius:34px;            
-        }
-            .slider:before {
-                position: absolute;
-                content: "";
-                height: 42px;
-                width: 42px;
-                left: 4px;
-                bottom: 4px;
-                background-color: white;
-                -webkit-transition: .4s;
-                transition: .4s;
-                border-radius:50%;
-            }
-            input:checked + .slider {
-                background-color: #2196F3;
-            }
-              
-            input:focus + .slider {
-                box-shadow: 0 0 1px #2196F3;
-            }
-              
-            input:checked + .slider:before {
+        // .switch {
+        // // margin-left: 20px;
+        // position: relative;
+        // display: inline-block;
+        // width:120px;
+        // height: 50px;
+        // }
+        // .switch input { 
+        //     opacity: 0;
+        //     width: 0;
+        //     height: 0;
+        // }
+        // .slider {
+        //     position: absolute;
+        //     display: flex;
+        //     top: 0;
+        //     left: 0;
+        //     right: 0;
+        //     bottom: 0;
+        //     background-color: #ccc;
+        //     transition: .4s;
+        //     transition: .4s;
+        //     border-radius:34px;            
+        // }
+        //     .slider::after, .slider:before{
+        //         flex: 1;
+        //         text-align: center;
+        //         line-height: 2.5rem;
+        //     }
+        //     .slider::after{
+        //         position: absolute;
+        //         content: "on";
+        //         height: 42px;
+        //         width: 42px;
+        //         left: 4px;
+        //         bottom: 4px;
+        //         background-color: white;
+        //         -webkit-transition: .4s;
+        //         transition: .4s;
+        //         border-radius:50%;
+        //         user-select: none;
+        //     }
+        //     .slider:before {
+        //         position: absolute;
+        //         content: "off";
+        //         height: 42px;
+        //         width: 42px;
+        //         left: 4px;
+        //         bottom: 4px;
+        //         background-color: white;
+        //         -webkit-transition: .4s;
+        //         transition: .4s;
+        //         border-radius:50%;
+        //     }
+        //     .input{
+        //         display: none;
+        //     }
             
-                transform: translateX(50px);
-            }
+        //     input:checked + .slider {
+        //         background-color: #2196F3;
+        //     }
+              
+        //     input:focus + .slider {
+        //         box-shadow: 0 0 1px #2196F3;
+        //     }
+              
+        //     input:checked + .slider:before {
+            
+        //         transform: translateX(70px);
+        //     }
+        .toggle {
+            margin-left: 20px;
+            display:flex;
+            position:relative;
+            width:7.5rem;
+            height:2.5rem; 
+            background:white;
+            border:.2px solid gray;
+            align-self:center;
+            user-select:none;
+            
+          }
+          
+          
+          
+            .toggle:after, .toggle:before {
+            flex:1;
+            text-align:center;
+            line-height:2.5rem;
+          }
+          .toggle:after {
+            content:"VIE";
+          }
+          .toggle:before {
+            content:"ENG";
+          }
+          
+          input { display:none; }
+          
+          label {
+            position:absolute;
+            top:0; left:0; right:0; bottom:0;
+            perspective:1000; 
+            cursor:pointer;
+          }
+          
+          .card {
+            // border-radius: 35px;
+            position:relative;
+            background:limegreen;
+            transition:.4s;
+            width:50%;
+            height:2.5rem;
+            pointer-events:none;
+          }
+          
+          input:checked + label .card { background:tomato; }
+          
+          
+          
+          input:checked + label .flip {
+            transform:perspective(200) rotateY(180deg);
+          }
+          
+          
+          .slide .card { transform:translate(0); }
+          .slide input:checked + label .card {
+            transform:translateX(3.75rem);
+          }
+          
+          .slide2 { overflow:hidden; }
+          .slide2 .card {
+            transform:translate(0);
+            background:transparent;
+            box-shadow:
+              -3.75rem 0 limegreen,
+              3.75rem 0 #3F0E40;
+          }
+          .slide2 input:checked + label .card {
+            transform:translateX(3.75rem);
+            background:transparent;
+          }
     }
 }

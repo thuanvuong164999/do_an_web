@@ -33,11 +33,14 @@ class SideBar extends React.Component {
                         <li class="nav-item1">
                             <a href="#" class="site"><h2>M.E.R</h2></a></li>
                         <li class="llink">
-                            <label class="switch">
-                                <input type="checkbox" onClick={() => this.onClick()}></input>
-                                <span class="slider"></span>
-                            </label>
-                            <div className='language'><p>{locale.lang}</p></div>
+                            <div class="toggle slide2">
+                                <input id="d" type="checkbox" onClick={() => this.onClick()} />
+                                <label for="d">
+                                    <div class="card"></div>    
+                                </label>
+                            </div>
+                            
+                            {/* <div className='language'><p>{locale.lang}</p></div> */}
                         </li>
                         <li class="nav-item">
                             <a href="#" class="llink"><span>Hoang</span></a></li>
