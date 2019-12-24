@@ -50,7 +50,6 @@
             font-size:38px;
             margin-left:50px;
             color:gray;
-            
             width: 100%;
             position: relative;
             &:after {
@@ -142,7 +141,7 @@
         //         transform: translateX(70px);
         //     }
         .toggle {
-            margin-left: 20px;
+            margin-top: 15px;
             display:flex;
             position:relative;
             width:7.5rem;
@@ -151,7 +150,7 @@
             border:.2px solid gray;
             align-self:center;
             user-select:none;
-            
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
           }
           
           
