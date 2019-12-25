@@ -58,6 +58,7 @@ class MessageList extends React.Component {
             // console.log(this.state.tong, this.state.tich)
             // console.log(`receive-message-${this.state.tong}-${this.state.tich}`)
             this.onReceivedUser(this.state.tong, this.state.tich)
+            this.onTypingFromUser(this.state.tong, this.state.tich)
         })
     }
 
@@ -95,8 +96,9 @@ class MessageList extends React.Component {
     }
 
     onReceivedUser(tong, tich){
+        let cookie = new Cookies()
         // console.log(this.state.tong, this.state.tich)
-        socket.on(`receive-message-${tong}-${tich}`, (value) => {
+        socket.on(`receive-message-${tong}-${tich}-${cookie.get('loginId')}`, (value) => {
             // console.log(value)
             // console.log(this.state.userId)
             // console.log((this.state.userId !== value.userId) && (this.state.userId !== value.room))
@@ -115,6 +117,24 @@ class MessageList extends React.Component {
                 typeroom: value.typeroom,
                 messages: items
             })
+        })
+    }
+
+    onTypingFromUser(tong, tich){
+        socket.on(`member_typing-${tong}-${tich}`, (user) => {
+            if (user.userName !== this.state.userName) {
+                let listUsers = this.state.users_typing
+
+                if (!listUsers.includes(user.userName)) {
+                    listUsers.push(user.userName)
+                }
+
+                this.setState({
+                    typing: true,
+                    users_typing: listUsers
+                })
+                this.setMessage(`${user.userName} typing ....`)
+            }
         })
     }
 

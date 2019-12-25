@@ -66,8 +66,8 @@ io.on('connection', (socket) => {
         }else if(value.typeroom === 'channel'){
             io.in(roomId).emit('receive-message', value)
         }else {
-            io.in(roomId).emit(`receive-message-${tong}-${tich}`, value)
-            io.in(roomUser).emit(`receive-message-${tong}-${tich}`, value) 
+            io.in(roomId).emit(`receive-message-${tong}-${tich}-${roomUser}`, value)
+            io.in(roomUser).emit(`receive-message-${tong}-${tich}-${roomId}`, value) 
         }
         save2DB(value, value.room)
     })
