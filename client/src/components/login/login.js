@@ -32,8 +32,10 @@ class LoginPages extends React.Component {
                     password: value.password,
                     userId: value.id
                 }
+                cookie.set('login-status', '')
                 cookie.set('loginId', item.userId)
                 cookie.set('logined', item.userName)
+                cookie.set('login-status', 'online')
                 this.setState({
                     id: '/chat'
                 })
@@ -54,8 +56,6 @@ class LoginPages extends React.Component {
     }
 
     onClick = (event) => {
-        cookie.set('login-status', '')
-        cookie.set('login-status', 'online')
         cookie.set('userName', '')
         let userName = this.state.userName
         let password = this.state.password
