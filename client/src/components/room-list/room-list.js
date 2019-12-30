@@ -3,7 +3,7 @@ import './room-list.scss'
 import { serverEndPoint } from '../../services/socket-service/socket-service'
 import ChannelList from '../channels-list/channels-list';
 import MessList from '../messenger-list/messengerlist';
-import Search from '../search/serch'
+import Search from '../search/search'
 import { locale } from '../../services/system'
 
 const axios = require('axios');

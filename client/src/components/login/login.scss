@@ -131,12 +131,6 @@
        position: relative;       
       }
       
-      // .fas {
-      //   position: absolute;
-      //   &:focus {
-      //     border-color:#10CE88;
-      //   }
-      // }
       .login-form-button {
         background-color: #3088c2;
         width: 100px;
@@ -173,7 +167,7 @@
         &:focus{
           border:2.5px solid #10CE88;
           outline: none;
-        // background-color: black;  
+        
         }
       }
 }

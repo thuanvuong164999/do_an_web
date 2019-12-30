@@ -16,13 +16,15 @@ class Project extends React.Component {
                                 <td></td>
                                 <td>
                                     <ul className="nav-list">
+                                    
                                         <li className="nav-item"><a href="#" class="nav1">Information For Project</a></li>
                                         <li className="nav-item"><a href="#" class="nav2">Its Name Is: M.E.R </a></li>
                                         <li className="nav-item"><a href="#" class="nav2">Maybe Education Reality </a></li>
-                                        <li className="nav-item"><a href="#" class="nav-link">Le Minh Hoang</a></li>
-                                        <li className="nav-item"><a href="#" class="nav-link">Huynh Kim Son</a></li>
-                                        <li className="nav-item"><a href="#" class="nav-link">Vuong Dung Thuan</a></li>
-                                
+                                        <li className="nav-item"><a href="#" class="nav-link">Lê Minh Hoàng</a></li>
+                                        <li className="nav-item"><a href="#" class="nav-link">Huỳnh Kim Sơn</a></li>
+                                        <li className="nav-item"><a href="#" class="nav-link">Vương Dũng Thuận</a></li>
+                                        <li className="nav-item"><a href="#" class="nav1">From Green Academy</a></li>
+                                        <li className="nav-item"><a href="#" class="nav3">Our Lecturer:teacher Phương</a></li>
                                     </ul>
                                 </td>
                             </tr>

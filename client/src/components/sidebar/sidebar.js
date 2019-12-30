@@ -39,7 +39,7 @@ class SideBar extends React.Component {
                                     <div class="card"></div>    
                                 </label>
                             </div>
-                            {/* <div className='language'><p>{locale.lang}</p></div> */}
+                            
                         </li>
                         <li class="nav-item">
                             <a href="#" class="llink"><span>Hoang</span></a></li>

@@ -11,7 +11,7 @@ class App extends React.Component {
     cookieM.setLang('en')
     ListenService.language.onSwitchLang().subscribe(
       () => {
-        // console.log('Hello')
+        
         self.setState({})
       }
     )
